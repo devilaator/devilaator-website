@@ -351,6 +351,12 @@ a:focus-visible {
   margin-top: 0;
 }
 
+.demo-download-note {
+  margin-top: 14px;
+  color: #b9bdbd;
+  font-size: 14px;
+}
+
 /* Telefoni mockup */
 .phone-demo {
   display: flex;
