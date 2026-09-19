@@ -1,5 +1,12 @@
 (() => {
   'use strict';
+  // SUPABASE SEADISTUS — kleebi siia oma projekti kaks avalikku väärtust.
+  // Need on tavalised JS-konstandid; GitHub Pages ei loe .env faile.
+  const NEXT_PUBLIC_SUPABASE_URL 
+  = 'https://atmzrmvzopydbpwwffjx.supabase.co'; // Näiteks https://YOUR_PROJECT.supabase.co
+  const NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY 
+  = 'sb_publishable_PYTBA2nEa9SK0xYlG-7BHg_2Q16kQQb'; // Projekti publishable key
+
   const motion = matchMedia('(prefers-reduced-motion: reduce)');
   const mobile = matchMedia('(max-width: 750px)');
   const header = document.querySelector('header');
@@ -83,8 +90,23 @@
   if (!form) return;
   const fields = [...form.querySelectorAll('input, textarea')];
   const status = document.querySelector('#contact-status');
+  const submitButton = form.querySelector('button[type="submit"]');
+  const submitLabel = submitButton.textContent;
+  let sending = false;
+  let contactClient;
+  // Toetab nii puhast väärtust kui ka kopeeritud kujul NIMI=väärtus seadistust.
+  // Algseid seadistuskonstante ei muudeta.
+  function readPublicConfig(value, name) {
+    let result = String(value ?? '').trim();
+    const prefix = new RegExp(`^${name}\\s*=\\s*`);
+    result = result.replace(prefix, '').trim();
+    if ((result.startsWith('"') && result.endsWith('"')) || (result.startsWith("'") && result.endsWith("'"))) {
+      result = result.slice(1, -1).trim();
+    }
+    return result;
+  }
   form.noValidate = true;
-  form.querySelector('button[type="submit"]').disabled = false;
+  submitButton.disabled = false;
   function validate(field) {
     const value = field.value.trim();
     let error = '';
@@ -102,17 +124,66 @@
       if (field.getAttribute('aria-invalid') === 'true') validate(field);
     });
   });
-  form.addEventListener('submit', event => {
+  form.addEventListener('submit', async event => {
     event.preventDefault();
+    if (sending) return;
     const invalid = fields.filter(field => !validate(field));
     if (invalid.length) {
       status.textContent = 'Palun paranda märgitud väljad.';
       invalid[0].focus();
       return;
     }
-    // Liidestuskoht: saada FormData serveri kontaktiteenusele. Server peab
-    // valideerima sisendi ja piirama päringuid; saaja aadress jääb serverisse.
-    // Eduteade ja vormi tühjendamine ainult pärast serveri kinnitust.
-    status.textContent = 'Väljad on korrektsed, kuid saatmine pole veel avatud. Sõnumit ei saadetud. Seni leiad mind GitHubist.';
+    const payload = {
+      name: form.elements.name.value.trim(),
+      email: form.elements.email.value.trim(),
+      message: form.elements.message.value.trim()
+    };
+    sending = true;
+    submitButton.disabled = true;
+    submitButton.textContent = 'Saadan…';
+    form.setAttribute('aria-busy', 'true');
+    fields.forEach(field => { field.readOnly = true; });
+    status.textContent = 'Sõnumi saatmine…';
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 15000);
+    try {
+      const supabaseUrl = readPublicConfig(NEXT_PUBLIC_SUPABASE_URL, 'NEXT_PUBLIC_SUPABASE_URL');
+      const supabaseKey = readPublicConfig(NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY, 'NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY');
+      if (!supabaseUrl || !supabaseKey) {
+        throw new Error('Supabase public URL or publishable key is missing.');
+      }
+      if (!URL.canParse(supabaseUrl) || new URL(supabaseUrl).protocol !== 'https:') {
+        throw new Error('Supabase URL must be a valid HTTPS project URL.');
+      }
+      if (typeof window.supabase?.createClient !== 'function') {
+        throw new Error('Supabase CDN client did not load. Check the CDN script in Network.');
+      }
+      contactClient ??= window.supabase.createClient(
+        supabaseUrl,
+        supabaseKey,
+        { db: { schema: 'public' }, auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false } }
+      );
+      // Ainult INSERT: ei küsi ridu tagasi. status, id ja created_at tulevad andmebaasist.
+      const { error } = await contactClient.from('contact_messages').insert(payload).abortSignal(controller.signal);
+      if (error) throw error;
+      form.reset();
+      fields.forEach(field => {
+        field.removeAttribute('aria-invalid');
+        document.getElementById(`${field.id}-error`).textContent = '';
+      });
+      status.textContent = 'Sõnum saadetud. Aitäh!';
+    } catch (error) {
+      console.error('Supabase contact error:', error);
+      status.textContent = controller.signal.aborted
+        ? 'Saatmise kinnitust ei saabunud õigel ajal. Sõnum võis kohale jõuda; palun oota enne uuesti saatmist.'
+        : 'Sõnumi saatmine ei õnnestunud. Palun kontrolli internetiühendust ja proovi hiljem uuesti.';
+    } finally {
+      clearTimeout(timeout);
+      sending = false;
+      submitButton.disabled = false;
+      submitButton.textContent = submitLabel;
+      form.removeAttribute('aria-busy');
+      fields.forEach(field => { field.readOnly = false; });
+    }
   });
 })();
