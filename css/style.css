@@ -357,6 +357,29 @@ a:focus-visible {
   font-size: 14px;
 }
 
+.project-primary-actions {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  column-gap: 16px;
+  width: 100%;
+}
+
+.project-primary-actions .btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 54px;
+  text-align: center;
+}
+
+.project-primary-actions .demo-download-note { grid-column: 1; }
+
+@media (max-width: 600px) {
+  .project-primary-actions { grid-template-columns: minmax(0, 1fr); }
+  .project-primary-actions .demo-download-note { grid-row: 2; }
+  .project-primary-actions a[href="#funktsioonid"] { grid-row: 3; margin-top: 20px; }
+}
+
 /* Telefoni mockup */
 .phone-demo {
   display: flex;
