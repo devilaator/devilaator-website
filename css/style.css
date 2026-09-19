@@ -602,6 +602,31 @@ a:focus-visible {
 .info-page p { max-width: 760px; margin-bottom: 20px; color: #b9bdbd; }
 .info-page p a { color: #53e68b; }
 
+/* Ainult admin-postkast */
+.admin-page [hidden] { display: none !important; }
+.admin-page h1 { font-size: clamp(24px, 4vw, 40px); margin-bottom: 24px; overflow-wrap: anywhere; }
+.admin-page .contact-form { margin-inline: auto; }
+.admin-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin-bottom: 24px; }
+.admin-toolbar h1 { margin-bottom: 8px; }
+.admin-page button { min-height: 48px; }
+.admin-page button:disabled { cursor: wait; opacity: 0.6; }
+.admin-page button:focus-visible { outline: 2px solid #ffd500; outline-offset: 4px; }
+.admin-page [role="status"] { margin: 16px 0; color: #b9bdbd; }
+.admin-page .message-card { width: 100%; min-width: 0; background: #101212; border: 1px solid #303636; border-radius: 18px; padding: clamp(20px, 4vw, 30px); margin: 22px 0; overflow-wrap: anywhere; }
+.admin-page .message-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 12px 20px; margin-bottom: 20px; }
+.admin-page .message-date { display: block; color: #aeb3b3; font-size: 13px; line-height: 1.5; }
+.admin-page .message-card h2 { font-size: 24px; margin: 0 0 8px; }
+.admin-page .message-card a:not(.btn) { color: #53e68b; }
+.admin-page .status-badge { display: inline-flex; align-items: center; flex-shrink: 0; padding: 5px 11px; border: 1px solid #606666; border-radius: 999px; font-size: 11px; font-weight: 800; letter-spacing: 1px; line-height: 1.5; background: #222727; color: #f5f5f5; }
+.admin-page .status-badge[data-status="new"] { background: #38280c; border-color: #82621b; color: #ffe082; }
+.admin-page .status-badge[data-status="read"] { background: #162b3c; border-color: #386384; color: #a6d8ff; }
+.admin-page .status-badge[data-status="replied"] { background: #192f22; border-color: #3f7754; color: #8cf0ac; }
+.admin-message-text { white-space: pre-wrap; margin: 24px 0; }
+.admin-message-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.admin-page .admin-action { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 12px 18px; border: 0; font: inherit; font-weight: 800; line-height: 24px; cursor: pointer; text-align: center; }
+.admin-page .admin-action:hover:not(:disabled) { filter: brightness(1.08); }
+#admin-user-email { overflow-wrap: anywhere; }
+
 /* Mobiilivaade ja vähendatud liikumine */
 @media (max-width: 900px) {
   .project-hero,

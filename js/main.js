@@ -7,6 +7,11 @@
   const NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY 
   = 'sb_publishable_PYTBA2nEa9SK0xYlG-7BHg_2Q16kQQb'; // Projekti publishable key
 
+  // Jagatud avalik seadistus admin-vaatele; kontaktvormi Auth-seanss jääb eraldatuks.
+  window.DEVILAATOR_SUPABASE_CONFIG = Object.freeze({
+    url: readPublicConfig(NEXT_PUBLIC_SUPABASE_URL, 'NEXT_PUBLIC_SUPABASE_URL'),
+    key: readPublicConfig(NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY, 'NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY')
+  });
   const motion = matchMedia('(prefers-reduced-motion: reduce)');
   const mobile = matchMedia('(max-width: 750px)');
   const header = document.querySelector('header');

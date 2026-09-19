@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="et">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="referrer" content="no-referrer">
+    <title>Postkast | DEVILAATOR</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="stylesheet" href="/css/style.css?v=admin-reply-3">
+  </head>
+  <body class="admin-page">
+    <header><a href="/" class="logo">DEVILAATOR</a></header>
+    <main>
+      <section id="admin-login" class="section">
+        <form id="admin-login-form" class="contact-form">
+          <h1>Admini sisselogimine</h1>
+          <div class="contact-field">
+            <label for="admin-email">E-post</label>
+            <input id="admin-email" name="email" type="email" autocomplete="username" required>
+          </div>
+          <div class="contact-field">
+            <label for="admin-password">Parool</label>
+            <input id="admin-password" name="password" type="password" autocomplete="current-password" required>
+          </div>
+          <button id="admin-signin" type="submit" class="btn admin-action" disabled>Logi sisse</button>
+          <p id="admin-login-status" class="contact-note" role="status" aria-live="polite"></p>
+          <noscript><p>Sisselogimiseks luba JavaScript.</p></noscript>
+        </form>
+      </section>
+      <section id="admin-inbox" class="section" hidden>
+        <div class="admin-toolbar">
+          <div><h1>DEVILAATOR POSTKAST</h1><p id="admin-user-email"></p></div>
+          <button id="admin-signout" type="button" class="btn admin-action">Logi välja</button>
+        </div>
+        <button id="admin-refresh" type="button" class="btn admin-action">Värskenda</button>
+        <p id="admin-inbox-status" role="status" aria-live="polite"></p>
+        <div id="admin-messages"></div>
+        <button id="admin-more" type="button" class="btn admin-action" hidden>Laadi rohkem</button>
+      </section>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+    <script src="/js/main.js" defer></script>
+    <script src="/js/admin.js?v=admin-reply-3" defer></script>
+  </body>
+</html>
