@@ -1,0 +1,663 @@
+/* Alus ja DEVILAATORi värvid */
+:root {
+  --dev-gradient: linear-gradient( 90deg, #ff3030 0%, #ff7a00 32%, #ffd500 58%, #35e06f 100% );
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 130px;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #080909;
+  color: #f5f5f5;
+  line-height: 1.6;
+}
+
+/* Päis, navigatsioon ja ühised elemendid */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 8%;
+  background: rgba(8, 9, 9, 0.95);
+  border-bottom: 1px solid #1b2721;
+  backdrop-filter: blur(10px);
+  flex-wrap: wrap;
+  gap: 14px 24px;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: transparent;
+  background: var(--dev-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  text-decoration: none;
+}
+
+nav {
+  display: flex;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+nav a {
+  color: #b8c4bd;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+nav a:hover,
+nav a[aria-current] {
+  color: #53e68b;
+}
+
+nav a[aria-current] {
+  text-decoration: underline;
+  text-decoration-color: #ffd500;
+  text-underline-offset: 6px;
+}
+
+.menu-toggle {
+  display: none;
+  min-height: 44px;
+  padding: 8px 12px;
+  border: 1px solid #606666;
+  border-radius: 8px;
+  background: #101212;
+  color: #f5f5f5;
+  font: inherit;
+  cursor: pointer;
+}
+
+.menu-toggle:focus-visible {
+  outline: 2px solid #ffd500;
+  outline-offset: 3px;
+}
+
+main {
+  width: min(1100px, 88%);
+  margin: 0 auto;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+footer {
+  width: min(1100px, 88%);
+  margin: 0 auto;
+  padding: 40px 0;
+  border-top: 1px solid #242727;
+  color: #777;
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+  gap: 8px 24px;
+  flex-wrap: wrap;
+}
+
+.section-label {
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 4px;
+  display: inline-block;
+  background: var(--dev-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.small-title {
+  color: #53e68b;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.button,
+.btn {
+  display: inline-block;
+  padding: 14px 22px;
+  background: #53e68b;
+  color: #07110b;
+  text-decoration: none;
+  font-weight: 800;
+  border-radius: 10px;
+  transition: 0.2s;
+}
+
+.btn {
+  background: var(--dev-gradient);
+}
+
+a:focus-visible {
+  outline: 2px solid #ffd500;
+  outline-offset: 5px;
+}
+
+/* Avaleht ja projektikaardid */
+.hero {
+  min-height: 80vh;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  align-items: center;
+  gap: clamp(20px, 2vw, 28px);
+  padding: 60px 0;
+}
+
+.hero-copy {
+  min-width: 0;
+}
+
+.hero-illustration {
+  display: block;
+  width: 100%;
+  max-width: 540px;
+  height: auto;
+  justify-self: center;
+  mix-blend-mode: screen;
+}
+
+.hero h1 {
+  font-size: clamp(40px, 6vw, 76px);
+  line-height: 1;
+  margin: 20px 0;
+  max-width: 850px;
+}
+
+.intro {
+  color: #9aa79f;
+  max-width: 650px;
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+
+.section {
+  padding: 90px 0;
+  border-top: 1px solid #17211b;
+}
+
+.section h2 {
+  font-size: clamp(34px, 5vw, 56px);
+  margin: 12px 0 35px;
+}
+
+.project-card {
+  background: #101212;
+  border: 1px solid #292c2c;
+  padding: 30px;
+  border-radius: 20px;
+  min-height: 260px;
+  transition: 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  border-color: #555;
+}
+
+.project-card h3 {
+  font-size: 34px;
+  margin: 0 0 16px;
+}
+
+.project-card p {
+  color: #b9bdbd;
+  line-height: 1.7;
+  font-size: 16px;
+  max-width: 520px;
+}
+
+.text {
+  max-width: 760px;
+  color: #aab5ae;
+  font-size: 18px;
+}
+
+.section-heading {
+  margin-bottom: 36px;
+}
+
+.section-heading h2 {
+  margin: 8px 0 0;
+  font-size: clamp(32px, 5vw, 54px);
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.project-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--dev-gradient);
+}
+
+.project-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 34px;
+  flex-wrap: wrap;
+}
+
+.project-badge,
+.project-status {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.project-badge {
+  color: #aaa;
+}
+
+.project-status {
+  color: #48df75;
+}
+
+.project-link {
+  display: inline-block;
+  margin-top: 20px;
+  font-weight: 800;
+  color: #fff;
+  text-decoration: none;
+}
+
+.project-link:hover {
+  background: var(--dev-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.project-link.disabled {
+  color: #666;
+  pointer-events: none;
+}
+
+.project-card a.project-link {
+  color: #53e68b;
+}
+
+/* QUIT30 tutvustus */
+.project-hero {
+  min-height: 78vh;
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(290px, 0.8fr);
+  align-items: center;
+  gap: 50px;
+  padding: 100px 0;
+}
+
+.project-hero h1 {
+  font-size: clamp(70px, 10vw, 130px);
+  line-height: 0.9;
+  margin: 20px 0 28px;
+  background: var(--dev-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.project-intro {
+  max-width: 720px;
+  font-size: 21px;
+  line-height: 1.7;
+  color: #b9bdbd;
+}
+
+.hero-actions {
+  margin-top: 36px;
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+.project-hero-text {
+  min-width: 0;
+}
+
+.hero-actions .project-link {
+  margin-top: 0;
+}
+
+/* Telefoni mockup */
+.phone-demo {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  min-width: 0;
+}
+
+.phone-screen {
+  width: 290px;
+  background: #050606;
+  border: 4px solid #222;
+  border-radius: 34px;
+  overflow: hidden;
+  box-shadow: 0 30px 70px rgba(0,0,0,0.6);
+  max-width: 100%;
+}
+
+.phone-screenshot {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 30px;
+}
+
+@media (min-width: 901px) {
+  .phone-screen {
+    width: 330px;
+  }
+}
+
+/* Funktsioonid ja arenduse staatus */
+.feature-section {
+  padding: 100px 0;
+  border-top: 1px solid #242727;
+}
+
+.feature-section h2,
+.status-section h2 {
+  font-size: clamp(36px, 5vw, 58px);
+  margin: 12px 0 45px;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.feature-card {
+  padding: 30px;
+  background: #101212;
+  border: 1px solid #292c2c;
+  border-radius: 18px;
+}
+
+.feature-icon {
+  font-size: 30px;
+  margin-bottom: 24px;
+}
+
+.feature-card h3 {
+  margin-bottom: 12px;
+  font-size: 21px;
+}
+
+.feature-card p {
+  color: #aeb3b3;
+  line-height: 1.65;
+}
+
+.status-section {
+  padding: 100px 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(250px, 0.6fr);
+  gap: 50px;
+  border-top: 1px solid #242727;
+}
+
+.status-section p {
+  color: #aeb3b3;
+  line-height: 1.7;
+  max-width: 700px;
+}
+
+.status-box {
+  background: #101212;
+  border: 1px solid #292c2c;
+  border-radius: 18px;
+  padding: 30px;
+}
+
+.status-box span {
+  display: block;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: #777;
+  margin-top: 20px;
+}
+
+.status-box span:first-child {
+  margin-top: 0;
+}
+
+.status-box strong {
+  display: block;
+  margin-top: 5px;
+}
+
+.status-live {
+  color: #43df73;
+}
+
+/* Avalehe kontaktivorm */
+.contact-github {
+  margin-bottom: 28px;
+}
+
+.contact-form {
+  max-width: 680px;
+  padding: clamp(20px, 4vw, 32px);
+  border: 1px solid #292c2c;
+  border-radius: 20px;
+  background: #101212;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-form::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 4px;
+  background: var(--dev-gradient);
+}
+
+.contact-field {
+  margin-bottom: 22px;
+}
+
+.contact-field label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.contact-field input,
+.contact-field textarea {
+  display: block;
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 14px;
+  border: 1px solid #606666;
+  border-radius: 10px;
+  background: #080909;
+  color: #f5f5f5;
+  font: inherit;
+  font-size: 16px;
+}
+
+.contact-field textarea {
+  resize: vertical;
+  min-height: 150px;
+}
+
+.contact-field input:focus-visible,
+.contact-field textarea:focus-visible,
+.contact-submit:focus-visible {
+  outline: 2px solid #ffd500;
+  outline-offset: 3px;
+}
+
+.contact-note {
+  color: #b9bdbd;
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+
+.contact-submit {
+  min-height: 48px;
+  margin-top: 20px;
+  border: 0;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.contact-submit:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+#contact-status:not(:empty) {
+  margin-top: 16px;
+}
+
+.field-error {
+  color: #ffaaa0;
+  font-size: 14px;
+}
+
+.field-error:not(:empty) { margin-top: 6px; }
+.contact-field [aria-invalid="true"] { border-color: #ffaaa0; }
+
+.reveal {
+  transition: opacity 450ms ease, translate 450ms ease;
+}
+
+.reveal-pending {
+  opacity: 0;
+  translate: 0 14px;
+}
+
+.reveal:focus-within { opacity: 1; translate: none; }
+
+.info-page { min-height: 70vh; }
+.info-page h1 { font-size: clamp(36px, 6vw, 64px); margin: 16px 0 24px; }
+.info-page h2 { font-size: 26px; margin: 32px 0 12px; }
+.info-page p { max-width: 760px; margin-bottom: 20px; color: #b9bdbd; }
+.info-page p a { color: #53e68b; }
+
+/* Mobiilivaade ja vähendatud liikumine */
+@media (max-width: 900px) {
+  .project-hero,
+  .status-section {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .feature-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 750px) {
+  .menu-ready .menu-toggle { display: inline-flex; align-items: center; gap: 8px; }
+  .menu-ready #primary-nav { display: none; width: 100%; }
+  .menu-ready #primary-nav.is-open { display: flex; flex-direction: column; gap: 0; }
+  #primary-nav a { min-height: 44px; display: flex; align-items: center; }
+
+  header {
+    padding: 16px 6%;
+  }
+
+  nav {
+    gap: 12px;
+  }
+
+  nav a {
+    font-size: 12px;
+  }
+
+  .hero {
+    min-height: 70vh;
+    grid-template-columns: minmax(0, 1fr);
+    gap: clamp(24px, 4vw, 56px);
+    padding: 50px 0;
+  }
+
+  .hero-illustration {
+    max-width: 360px;
+  }
+
+  .intro,
+  .project-intro {
+    font-size: 17px;
+  }
+
+  .project-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .section,
+  .project-hero,
+  .feature-section,
+  .status-section {
+    padding: 65px 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .feature-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .project-card,
+  .feature-card,
+  .status-box {
+    padding: 24px;
+  }
+
+  footer {
+    padding: 30px 0;
+    flex-direction: column;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .button,
+  .btn,
+  .project-card {
+    transition: none;
+  }
+
+  .reveal { transition: none; opacity: 1; translate: none; }
+}

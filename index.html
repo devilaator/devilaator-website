@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="et">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DEVILAATOR | Ideedest väärtuseks.</title>
+    <meta name="description" content="Äpid, tarkvara, mängud ja eksperimendid. Õpin, katsetan ja ehitan. Tutvu DEVILAATORi projektide ja QUIT30 äpiga.">
+    <meta name="theme-color" content="#080909">
+    <link rel="canonical" href="https://devilaator.ee/">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="DEVILAATOR">
+    <meta property="og:locale" content="et_EE">
+    <meta property="og:title" content="DEVILAATOR | Ideedest väärtuseks.">
+    <meta property="og:description" content="Äpid, tarkvara, mängud ja eksperimendid. Õpin, katsetan ja ehitan. Tutvu DEVILAATORi projektide ja QUIT30 äpiga.">
+    <meta property="og:url" content="https://devilaator.ee/">
+    <meta property="og:image" content="https://devilaator.ee/img/monkey.png">
+    <meta property="og:image:alt" content="DEVILAATORi ahv sülearvutiga">
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <header>
+      <a href="#home" class="logo">DEVILAATOR</a>
+      <button class="menu-toggle" type="button" aria-controls="primary-nav" aria-expanded="false" aria-label="Ava või sulge menüü"><span aria-hidden="true">☰</span> Menüü</button>
+      <nav id="primary-nav" aria-label="Põhinavigatsioon">
+        <a href="#home">Avaleht</a>
+        <a href="#projektid">Projektid</a>
+        <a href="#about">Minust</a>
+        <a href="#contact">Kontakt</a>
+      </nav>
+    </header>
+
+    <main>
+      <section id="home" class="hero">
+        <div class="hero-copy">
+          <p class="small-title">APPS • SOFTWARE • CREATIONS</p>
+          <h1>Ideedest väärtuseks.</h1>
+          <p class="intro">
+            Äpid, tarkvara, mängud ja eksperimendid. Õpin, katsetan ja ehitan.
+          </p>
+          <a class="button" href="#projektid">Vaata projekte</a>
+        </div>
+        <img class="hero-illustration" src="img/monkey.png" alt="Ahv sülearvutiga, ümbritsetud värvilistest tehnoloogiaikoonidest" width="1280" height="1280" fetchpriority="high">
+      </section>
+
+      <section id="projektid" class="section">
+        <div class="section-heading">
+          <span class="section-label">PROJEKTID</span>
+          <h2>Mida ma ehitan</h2>
+        </div>
+        <div class="project-grid">
+          <article class="project-card">
+            <div class="project-top">
+              <span class="project-badge">ANDROID • APP</span>
+              <span class="project-status">TESTIMISEL</span>
+            </div>
+            <h3>QUIT30</h3>
+            <p>
+              30-päevane suitsetamisest loobumise äpp.
+              Reaalajas säästetud raha, suitsetamata sigaretid,
+              verstapostid ja motivatsiooniteavitused.
+            </p>
+            <a href="quit30.html" class="project-link">Vaata projekti →</a>
+          </article>
+          <article class="project-card">
+            <div class="project-top">
+              <span class="project-badge">EXPERIMENT</span>
+              <span class="project-status">TULEMAS</span>
+            </div>
+            <h3>LOLL ÄPP</h3>
+            <p>
+              Täiesti ebavajalik äpp.
+              Seega loomulikult tuleb see ära teha.
+            </p>
+            <span class="project-link disabled">Varsti →</span>
+          </article>
+        </div>
+      </section>
+
+      <section id="about" class="section">
+        <p class="section-label">MINUST</p>
+        <h2>Õpin ehitades</h2>
+        <p class="text">
+          Tegelen tarkvara ja tehnoloogiaga ning ehitan oma ideedest
+          päriselt töötavaid projekte. Kasutan muu hulgas React Native'i,
+          TypeScripti, Pythonit, SQL-i ja AI arendustööriistu.
+        </p>
+      </section>
+
+      <section id="contact" class="section">
+        <p class="section-label">KONTAKT</p>
+        <h2>Võta ühendust</h2>
+        <p class="text">Kas sul on idee, küsimus või tagasiside? Kirjuta mulle.</p>
+        <a class="project-link contact-github" href="https://github.com/devilaator">DEVILAATOR GitHubis →</a>
+        <form id="contact-form" class="contact-form" method="post" aria-describedby="contact-note">
+          <div class="contact-field">
+            <label for="contact-name">Nimi</label>
+            <input id="contact-name" aria-describedby="contact-name-error" name="name" type="text" autocomplete="name" maxlength="100" required>
+            <p id="contact-name-error" class="field-error"></p>
+          </div>
+          <div class="contact-field">
+            <label for="contact-email">E-post</label>
+            <input id="contact-email" aria-describedby="contact-email-error" name="email" type="email" autocomplete="email" maxlength="254" required>
+            <p id="contact-email-error" class="field-error"></p>
+          </div>
+          <div class="contact-field">
+            <label for="contact-message">Sõnum</label>
+            <textarea id="contact-message" aria-describedby="contact-message-error" name="message" rows="6" maxlength="5000" required></textarea>
+            <p id="contact-message-error" class="field-error"></p>
+          </div>
+          <p id="contact-note" class="contact-note">Vormi saatmine pole veel avatud. Seni leiad mind GitHubist.</p>
+          <button class="btn contact-submit" type="submit" disabled>Saada</button>
+          <p id="contact-status" class="contact-note" role="status" aria-live="polite"></p>
+          <noscript><p class="contact-note">Vormi kasutamiseks luba JavaScript.</p></noscript>
+        </form>
+      </section>
+
+    </main>
+
+    <footer>
+      <span>© 2026 DEVILAATOR</span>
+      <nav aria-label="Jaluse lingid">
+        <a href="https://github.com/devilaator">GitHub</a>
+        <a href="/privacy.html">Privacy</a>
+        <a href="/index.html#contact">Kontakt</a>
+      </nav>
+    </footer>
+    <script src="/js/main.js" defer></script>
+  </body>
+</html>
