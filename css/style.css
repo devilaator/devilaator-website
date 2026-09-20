@@ -494,6 +494,102 @@ a:focus-visible {
   color: #43df73;
 }
 
+/* Eraldi lisasoovitus, väljaspool DEVILAATORi projekte */
+.see-also {
+  display: grid;
+  grid-template-columns: minmax(0, 420px) minmax(0, 240px);
+  align-items: center;
+  gap: 24px;
+  padding: 50px 0;
+  border-top: 1px solid #242727;
+}
+
+.see-also-copy { min-width: 0; }
+.see-also-description { margin-top: 12px; color: #b9bdbd; }
+.see-also-prompt {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 18px;
+  color: #d4af67;
+  font-size: 14px;
+}
+
+.see-also-direction {
+  display: inline-block;
+  font-size: 24px;
+  line-height: 1;
+  animation: hessy-point 2.4s ease-in-out infinite;
+}
+
+@keyframes hessy-point {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 4px 0; }
+}
+
+@keyframes hessy-point-down {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 4px; }
+}
+
+.see-also h2 {
+  margin: 12px 0 8px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(22px, 3vw, 28px);
+  font-weight: 600;
+  text-transform: none;
+  line-height: 1.5;
+}
+
+.hessy-brand {
+  color: #d4af67;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  text-shadow: 0 1px 10px rgba(212, 175, 103, 0.12);
+}
+
+.hessy-text {
+  font-family: Georgia, "Times New Roman", serif;
+  color: #d4af67;
+  font-size: 0.82em;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+.see-also-logo {
+  display: block;
+  width: 100%;
+  max-width: 240px;
+  margin: 0 auto;
+  padding: 8px;
+  background: rgba(24, 22, 18, 0.55);
+  border: 1px solid rgba(212, 175, 103, 0.24);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 0 18px rgba(214, 181, 109, 0.07);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.see-also-logo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .see-also-logo:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.3), 0 0 24px rgba(212, 175, 103, 0.13);
+  }
+}
+
+@media (max-width: 600px) {
+  .see-also { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .see-also-logo { max-width: 220px; margin: 0; }
+  .see-also-direction { rotate: 90deg; animation-name: hessy-point-down; }
+}
+
 /* Avalehe kontaktivorm */
 .contact-github {
   margin-bottom: 28px;
@@ -720,4 +816,7 @@ a:focus-visible {
   }
 
   .reveal { transition: none; opacity: 1; translate: none; }
+  .see-also-logo { transition: none; }
+  .see-also-direction { animation: none; }
+  .see-also-logo:hover { transform: none; }
 }
