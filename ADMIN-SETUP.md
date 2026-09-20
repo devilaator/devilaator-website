@@ -68,6 +68,12 @@ using ((auth.jwt() -> 'app_metadata' ->> 'contact_admin') = 'true');
 
 Käivita need lisad pärast eespool olevat põhiseadistust ja ainult juhul, kui samanimelisi poliitikaid veel pole. Kustutatud rea ID tagastamist kasutatakse õnnestumise kontrolliks: null kustutatud rida ei eemalda kaarti vaatest.
 
+## Vastamine Edge Functioniga
+
+„Vasta” avab sõnumikaardil vastusevormi ja kutsub olemasoleva Auth-seansiga funktsiooni `clever-endpoint`. JSON sisaldab ainult `to`, `name`, `subject` ja `message`. Resendi võti peab jääma Edge Functioni serveripoolsesse seadistusse; frontend seda ei kasuta.
+
+Funktsioon peab kontrollima sisseloginud administraatori õigust serveris ja lubama brauseri CORS-päringud saidilt https://devilaator.ee. Edukas HTTP vastus tähendab frontendile edukat saatmist; saatmisvea korral tagasta veastaatus või JSON `error` / `success: false`. Pärast edukat saatmist uuendab postkast sõnumi staatuseks `replied`. Kui ainult staatuse salvestamine ebaõnnestub, näidatakse eraldi teadet ega saadeta kirja automaatselt uuesti.
+
 ## Käitumine
 
 - Sõnumeid loetakse alles pärast Supabase Authi kinnitatud kasutaja kontrolli.

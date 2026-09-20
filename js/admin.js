@@ -71,10 +71,100 @@
     const content = textElement('p', message.message, 'admin-message-text');
     const actions = document.createElement('div');
     actions.className = 'admin-message-actions';
-    const reply = textElement('a', 'Vasta', 'btn admin-action');
-    const subject = encodeURIComponent('Re: DEVILAATOR kontaktvorm');
-    const body = encodeURIComponent(`Tere ${String(message.name ?? '')},\r\n\r\n`);
-    reply.href = `mailto:${encodeURIComponent(String(message.email ?? ''))}?subject=${subject}&body=${body}`;
+    const reply = textElement('button', 'Vasta', 'btn admin-action');
+    reply.type = 'button';
+    reply.setAttribute('aria-expanded', 'false');
+    const replyForm = document.createElement('form');
+    replyForm.className = 'admin-reply-form';
+    replyForm.hidden = true;
+    const subject = 'Re: DEVILAATOR kontaktvorm';
+    const recipient = textElement('p', `Saaja: ${message.email}`);
+    const subjectLine = textElement('p', `Teema: ${subject}`);
+    const field = document.createElement('label');
+    field.className = 'contact-field';
+    field.append(textElement('span', 'Vastus'));
+    const textarea = document.createElement('textarea');
+    textarea.rows = 7;
+    textarea.required = true;
+    field.append(textarea);
+    const replyActions = document.createElement('div');
+    replyActions.className = 'admin-message-actions';
+    const send = textElement('button', 'Saada vastus', 'btn admin-action');
+    send.type = 'submit';
+    const cancel = textElement('button', 'Tühista', 'btn admin-action');
+    cancel.type = 'button';
+    replyActions.append(send, cancel);
+    replyForm.append(recipient, subjectLine, field, replyActions);
+    const replyStatus = textElement('p', '', 'admin-reply-status');
+    replyStatus.setAttribute('role', 'status');
+    replyStatus.setAttribute('aria-live', 'polite');
+    let replySending = false;
+    reply.addEventListener('click', () => {
+      if (!user || card.getAttribute('aria-busy') === 'true') return;
+      replyForm.hidden = false;
+      reply.setAttribute('aria-expanded', 'true');
+      textarea.focus();
+    });
+    cancel.addEventListener('click', () => {
+      if (replySending) return;
+      replyForm.hidden = true;
+      reply.setAttribute('aria-expanded', 'false');
+      reply.focus();
+    });
+    replyForm.addEventListener('submit', async event => {
+      event.preventDefault();
+      if (!user || replySending || card.getAttribute('aria-busy') === 'true') return;
+      const replyText = textarea.value.trim();
+      if (!replyText) {
+        replyStatus.textContent = 'Palun kirjuta vastus.';
+        textarea.focus();
+        return;
+      }
+      const version = generation;
+      const buttons = [...card.querySelectorAll('button')];
+      replySending = true;
+      card.setAttribute('aria-busy', 'true');
+      buttons.forEach(button => { button.disabled = true; });
+      textarea.readOnly = true;
+      send.textContent = 'Saadan...';
+      replyStatus.textContent = 'Saadan vastust…';
+      let sent = false;
+      try {
+        const { data, error } = await query(signal => client.functions.invoke('clever-endpoint', {
+          body: { to: message.email, name: message.name, subject, message: replyText },
+          signal
+        }));
+        if (error) throw error;
+        if (data?.error || data?.success === false) throw new Error('Edge Function reported a send failure.');
+        sent = true;
+        if (version !== generation || !user) return;
+        replyStatus.textContent = 'Vastus saadetud.';
+        textarea.value = '';
+        replyForm.hidden = true;
+        reply.setAttribute('aria-expanded', 'false');
+        // Staatust muudame ainult pärast Edge Functioni edukat vastust.
+        const { data: updated, error: updateError } = await query(signal => client.from('contact_messages')
+          .update({ status: 'replied' }).eq('id', message.id).select('id,status').single().abortSignal(signal));
+        if (updateError) throw updateError;
+        if (!updated || updated.status !== 'replied') throw new Error('Reply status update was not confirmed.');
+        if (version !== generation || !user) return;
+        message.status = updated.status;
+        badge.textContent = labels[updated.status];
+        badge.dataset.status = updated.status;
+      } catch (error) {
+        console.error('Supabase admin reply error:', error);
+        if (version !== generation || !user) return;
+        replyStatus.textContent = sent
+          ? 'Vastus saadetud. Staatuse salvestamine ebaõnnestus; kasuta nuppu „Märgi vastatuks”. Vastust pole vaja uuesti saata.'
+          : 'Vastuse saatmist ei õnnestunud kinnitada. Kontrolli ühendust ja proovi hiljem uuesti. Ühenduse katkemisel võis kiri siiski kohale jõuda.';
+      } finally {
+        replySending = false;
+        buttons.forEach(button => { button.disabled = false; });
+        textarea.readOnly = false;
+        send.textContent = 'Saada vastus';
+        card.removeAttribute('aria-busy');
+      }
+    });
     actions.append(reply);
     for (const [status, label] of [['read', 'Märgi loetuks'], ['replied', 'Märgi vastatuks']]) {
       const button = textElement('button', label, 'btn admin-action');
@@ -135,7 +225,7 @@
       }
     });
     actions.append(deleteButton);
-    card.append(meta, heading, email, content, actions);
+    card.append(meta, heading, email, content, actions, replyForm, replyStatus);
     return card;
   }
 
