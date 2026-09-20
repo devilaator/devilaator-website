@@ -105,6 +105,36 @@
       });
       actions.append(button);
     }
+    const deleteButton = textElement('button', 'Kustuta', 'btn admin-action admin-delete');
+    deleteButton.type = 'button';
+    deleteButton.addEventListener('click', async () => {
+      if (!user || loading || card.getAttribute('aria-busy') === 'true') return;
+      if (!window.confirm('Kas oled kindel, et soovid selle sõnumi kustutada?')) return;
+      const version = generation;
+      const buttons = [...actions.querySelectorAll('button')];
+      buttons.forEach(button => { button.disabled = true; });
+      card.setAttribute('aria-busy', 'true');
+      inboxStatus.textContent = 'Kustutan sõnumit…';
+      try {
+        const { data, error } = await query(signal => client.from('contact_messages')
+          .delete().eq('id', message.id).select('id').single().abortSignal(signal));
+        if (version !== generation || !user) return;
+        if (error) throw error;
+        // RLS võib keelatud kustutamise korral tagastada null rida ilma HTTP veata.
+        if (!data || String(data.id) !== String(message.id)) throw new Error('Delete was not confirmed.');
+        card.remove();
+        offset = Math.max(0, offset - 1);
+        inboxStatus.textContent = 'Sõnum kustutatud.';
+      } catch (error) {
+        if (version !== generation || !user) return;
+        console.error('Supabase admin delete error:', error);
+        inboxStatus.textContent = 'Sõnumi kustutamine ei õnnestunud. Kontrolli internetiühendust ja administraatori DELETE-õigust Supabase’is ning proovi uuesti.';
+      } finally {
+        buttons.forEach(button => { button.disabled = false; });
+        card.removeAttribute('aria-busy');
+      }
+    });
+    actions.append(deleteButton);
     card.append(meta, heading, email, content, actions);
     return card;
   }

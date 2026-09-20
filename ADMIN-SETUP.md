@@ -50,6 +50,24 @@ SQL on mõeldud ühekordseks lisamiseks; kui samanimelised poliitikad on juba ol
 
 Ilma SELECT-poliitikata võib RLS tagastada tühja tulemuse, mitte HTTP viga. Postkast selgitab seda tühja tulemuse teates. Permission errori korral näidatakse veateadet. Testi eraldi anon-kasutaja ja tavalise autentitud kasutajaga, et kumbki ei saa sõnumeid lugeda ega muuta.
 
+## Kustutamise õigus
+
+„Kustuta” kasutab sama sisselogitud klienti ja küsib enne kinnitust. Kui DELETE-õigust veel pole, lisa Supabase SQL Editoris allolev grant ja poliitikad. See ei muuda olemasolevaid SELECT-/UPDATE-poliitikaid ega anna anon-kasutajale kustutamisõigust. Veebilehe kood ei rakenda seda SQL-i automaatselt.
+
+```sql
+grant delete on public.contact_messages to authenticated;
+
+create policy contact_admin_delete on public.contact_messages
+for delete to authenticated
+using ((auth.jwt() -> 'app_metadata' ->> 'contact_admin') = 'true');
+
+create policy contact_admin_delete_guard on public.contact_messages
+as restrictive for delete to authenticated
+using ((auth.jwt() -> 'app_metadata' ->> 'contact_admin') = 'true');
+```
+
+Käivita need lisad pärast eespool olevat põhiseadistust ja ainult juhul, kui samanimelisi poliitikaid veel pole. Kustutatud rea ID tagastamist kasutatakse õnnestumise kontrolliks: null kustutatud rida ei eemalda kaarti vaatest.
+
 ## Käitumine
 
 - Sõnumeid loetakse alles pärast Supabase Authi kinnitatud kasutaja kontrolli.
