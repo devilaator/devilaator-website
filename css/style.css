@@ -497,7 +497,8 @@ a:focus-visible {
 /* Eraldi lisasoovitus, väljaspool DEVILAATORi projekte */
 .see-also {
   display: grid;
-  grid-template-columns: minmax(0, 420px) minmax(0, 240px);
+  grid-template-columns: minmax(0, 400px) minmax(0, 230px);
+  justify-content: start;
   align-items: center;
   gap: 24px;
   padding: 50px 0;
@@ -516,10 +517,25 @@ a:focus-visible {
 }
 
 .see-also-direction {
-  display: inline-block;
-  font-size: 24px;
-  line-height: 1;
+  position: relative;
+  display: block;
+  width: clamp(64px, 8vw, 100px);
+  height: 1px;
+  background: currentColor;
+  flex-shrink: 0;
   animation: hessy-point 2.4s ease-in-out infinite;
+}
+
+.see-also-direction::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: -4px;
+  width: 9px;
+  height: 9px;
+  border-top: 1px solid currentColor;
+  border-right: 1px solid currentColor;
+  transform: rotate(45deg);
 }
 
 @keyframes hessy-point {
@@ -559,8 +575,8 @@ a:focus-visible {
 .see-also-logo {
   display: block;
   width: 100%;
-  max-width: 240px;
-  margin: 0 auto;
+  max-width: 230px;
+  margin: 0;
   padding: 8px;
   background: rgba(24, 22, 18, 0.55);
   border: 1px solid rgba(212, 175, 103, 0.24);
@@ -587,7 +603,9 @@ a:focus-visible {
 @media (max-width: 600px) {
   .see-also { grid-template-columns: minmax(0, 1fr); gap: 24px; }
   .see-also-logo { max-width: 220px; margin: 0; }
-  .see-also-direction { rotate: 90deg; animation-name: hessy-point-down; }
+  .see-also-prompt { flex-direction: column; align-items: flex-start; gap: 14px; }
+  .see-also-direction { width: 1px; height: 40px; margin-left: 60px; animation-name: hessy-point-down; }
+  .see-also-direction::after { top: auto; bottom: 0; right: -4px; transform: rotate(135deg); }
 }
 
 /* Avalehe kontaktivorm */
