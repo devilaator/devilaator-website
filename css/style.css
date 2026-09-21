@@ -169,6 +169,36 @@ a:focus-visible {
   min-width: 0;
 }
 
+.idea-cta {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 18px;
+  margin-top: 28px;
+  padding: 18px;
+  border: 1px solid #354139;
+  border-radius: 14px;
+  background: linear-gradient(120deg, rgba(53, 224, 111, 0.045), rgba(255, 122, 0, 0.025));
+}
+.idea-cta h2 { font-size: 16px; line-height: 1.5; margin-bottom: 8px; }
+.idea-cta p { font-size: 14px; line-height: 1.65; color: #abb6af; }
+.idea-cta-link { display: inline-flex; align-items: center; min-height: 44px; font-size: 11px; font-weight: 800; color: #a3e5bb; text-decoration: none; }
+.idea-cta-link:hover { color: #d1f5de; text-decoration: underline; text-underline-offset: 4px; }
+@media (max-width: 750px) {
+  .idea-cta { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+}
+
+#projektid {
+  background-image: radial-gradient(ellipse at 50% 35%, rgba(53, 224, 111, 0.04), transparent 65%), linear-gradient(rgba(158, 190, 169, 0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(158, 190, 169, 0.035) 1px, transparent 1px);
+  background-size: auto, 40px 40px, 40px 40px;
+}
+#project-grid .project-card { background: linear-gradient(145deg, rgba(22, 29, 26, 0.97), rgba(14, 17, 17, 0.97)); border-color: #34403a; }
+.project-id { font-family: Consolas, monospace; font-size: 11px; letter-spacing: 1.5px; color: #8d9f94; margin-bottom: 16px; }
+#project-grid .project-status-testing::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: currentColor; margin-right: 7px; box-shadow: 0 0 7px rgba(217, 191, 118, 0.18); }
+@media (hover: hover) and (pointer: fine) {
+  #project-grid .project-card:has(a):hover { border-color: #52745e; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25), 0 0 18px rgba(53, 224, 111, 0.06); }
+}
+
 .hero-illustration {
   display: block;
   width: 100%;
@@ -236,9 +266,18 @@ a:focus-visible {
   overflow: hidden;
 }
 
-.project-card:hover {
-  transform: translateY(-5px);
-  border-color: #555;
+@media (hover: hover) and (pointer: fine) {
+  .project-card:has(a):hover { transform: translateY(-3px); border-color: #555; }
+  .project-card:has(a):hover .project-preview { transform: scale(1.025); }
+}
+
+#project-grid .project-card { display: flex; flex-direction: column; min-width: 0; }
+#project-grid .project-link { align-self: flex-start; margin-top: auto; padding-top: 20px; min-height: 44px; }
+#project-grid .project-card:focus-within { border-color: #7a8f7e; }
+.project-preview-area { height: 180px; margin-bottom: 20px; overflow: hidden; border-radius: 10px; background: #0b0d0d; display: flex; align-items: center; justify-content: center; }
+.project-preview-empty { background: transparent; }
+@media (min-width: 1200px) {
+  #project-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 
 .project-card h3 {
@@ -342,6 +381,26 @@ a:focus-visible {
 .project-card a.project-link {
   color: #53e68b;
 }
+
+.project-preview {
+  display: block;
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  max-height: 180px;
+  transition: transform 0.25s ease;
+  border-radius: 10px;
+}
+
+.steady-hand-page .project-hero h1 {
+  font-size: clamp(40px, 6vw, 80px);
+  line-height: 1.05;
+}
+
+.steady-hand-page .project-intro + .project-intro { margin-top: 18px; }
+.apk-trust { margin-top: 22px; padding-left: 14px; border-left: 2px solid #344c3b; max-width: 620px; }
+.apk-trust h3 { font-size: 15px; color: #afc4b5; margin-bottom: 6px; }
+.apk-trust p { font-size: 14px; color: #aeb3b3; }
 
 /* QUIT30 tutvustus */
 .project-hero {
@@ -869,6 +928,8 @@ a:focus-visible {
   }
 
   .reveal { transition: none; opacity: 1; translate: none; }
+  .project-preview { transition: none; }
+  .project-card:has(a):hover, .project-card:has(a):hover .project-preview { transform: none; }
   .see-also-logo { transition: none; }
   .see-also-direction { animation: none; }
   .see-also-logo:hover { transform: none; }

@@ -16,7 +16,7 @@
     <meta property="og:url" content="https://devilaator.ee/">
     <meta property="og:image" content="https://devilaator.ee/img/monkey.png">
     <meta property="og:image:alt" content="DEVILAATORi ahv sülearvutiga">
-    <link rel="stylesheet" href="css/style.css?v=devilaator-tech-10">
+    <link rel="stylesheet" href="css/style.css?v=lab-polish-13">
   </head>
   <body>
     <header>
@@ -36,9 +36,16 @@
           <p class="small-title">APPS • SOFTWARE • CREATIONS</p>
           <h1>Ideedest väärtuseks.</h1>
           <p class="intro">
-            Äpid, tarkvara ja mängud. Loon, katsetan ning ehitan valmis
+            Äpid, tarkvara ja mängud.
           </p>
           <a class="button" href="#projektid">Vaata projekte</a>
+          <aside class="idea-cta" aria-labelledby="idea-heading">
+            <div>
+              <h2 id="idea-heading"><span aria-hidden="true">💡</span> Sul on idee? Anna mulle märku.</h2>
+              <p>Kui sul on mõte äpiks, veebiks või millekski veidi teistsuguseks, kirjuta mulle. Ka poolikust ideest võib midagi head saada.</p>
+            </div>
+            <a class="idea-cta-link" href="#contact">VÕTA ÜHENDUST →</a>
+          </aside>
         </div>
         <img class="hero-illustration" src="img/monkey.png" alt="Ahv sülearvutiga, ümbritsetud värvilistest tehnoloogiaikoonidest" width="1280" height="1280" fetchpriority="high">
       </section>
@@ -47,42 +54,21 @@
       <section id="projektid" class="section">
         <div class="section-heading">
           <span class="section-label">PROJEKTID</span>
-          <h2>Mida ma ehitan</h2>
+          <h2>Millega ma tegelen?</h2>
         </div>
-        <div class="project-grid">
-          <article class="project-card">
-            <div class="project-top">
-              <span class="project-badge">ANDROID • APP</span>
-              <span class="project-status project-status-testing">TESTIMISEL</span>
-            </div>
-            <h3>QUIT30</h3>
-            <p>
-              30-päevane suitsetamisest loobumise äpp.
-              Reaalajas säästetud raha, suitsetamata sigaretid,
-              verstapostid ja motivatsiooniteavitused.
-            </p>
-            <a href="quit30.html" class="project-link">Vaata projekti →</a>
-          </article>
-          <article class="project-card">
-            <div class="project-top">
-              <span class="project-badge">EXPERIMENT</span>
-              <span class="project-status">TULEMAS</span>
-            </div>
-            <h3>AJUVABA ÄPP</h3>
-            <p>
-              Arendusjärgus.
-              Ajuvaba äpp, millel puudub loogika.
-            </p>
-            <span class="project-link disabled">Varsti →</span>
-          </article>
-        </div>
+        <div id="project-grid" class="project-grid"></div>
+        <noscript>
+          <p><a class="project-link" href="quit30.html">QUIT30 — Vaata projekti →</a></p>
+          <p><a class="project-link" href="steady-hand.html">STEADY HAND — Vaata projekti →</a></p>
+          <p class="text">AJUVABA ÄPP — TULEMAS</p>
+        </noscript>
       </section>
 
       <section class="see-also" aria-labelledby="hessy-heading">
         <div class="see-also-copy">
           <p class="section-label">VAATA LISAKS</p>
           <h2 id="hessy-heading"><span class="hessy-brand">HESSY</span> <span class="hessy-text">käsitöötooted</span></h2>
-          <p class="see-also-description">Padjad, käsitöö ja muud personaalsed tooted.</p>
+          <p class="see-also-description">Padjad, käsitöö ning muud personaalsed tooted.</p>
           <p class="see-also-prompt">Vaata Facebookis <span class="see-also-direction" aria-hidden="true"></span></p>
         </div>
         <a class="see-also-logo" href="https://www.facebook.com/share/17jCv7hCRV/" target="_blank" rel="noopener noreferrer" aria-label="HESSY käsitöötooted Facebookis (avaneb uues tabis)">
@@ -139,6 +125,7 @@
       </nav>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+    <script src="/js/projects.js?v=2" defer></script>
     <script src="/js/main.js" defer></script>
   </body>
 </html>
