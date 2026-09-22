@@ -1,6 +1,6 @@
 (() => {
   'use strict';
-  // Uue projektikaardi lisamiseks lisa siia üks kirje.
+  // Tulevastele projektidele lisa lehe link alles siis, kui projektileht on olemas.
   const projects = [
     {
       id: 'PROJECT_01', name: 'QUIT30', label: 'ANDROID • APP', status: 'TESTIMISEL',
@@ -13,9 +13,19 @@
       image: 'img/steady-hand.jpg', alt: 'STEADY HAND Android mäng', url: 'steady-hand.html'
     },
     {
-      id: 'PROJECT_03', name: 'AJUVABA ÄPP', label: 'EXPERIMENT', status: 'TULEMAS',
-      description: 'Arendusjärgus. Ajuvaba äpp, millel puudub loogika.'
-    }
+      id: 'PROJECT_03', name: 'LOLL ÄPP', status: 'TULEKUL',
+      description: 'Täiesti ebavajalik äpp. Seega loomulikult tuleb see ära teha? VÕIB-OLLA juaa'
+    },
+    
+      {
+        id: 'PROJECT_04',
+        name: 'ELVA POKSIKLUBI',
+        status: 'TULEKUL',
+        description: 'Veebileht ja klubihaldussüsteem treeningute, liikmete, broneeringute ja väikese e-poe jaoks.',
+        image: 'img/elva-poksiklubi.png',
+        alt: 'Vanad poksikindad poksiringi nurgas'
+      }
+    
   ];
   const grid = document.querySelector('#project-grid');
   if (!grid) return;
@@ -27,10 +37,11 @@
   };
   const fragment = document.createDocumentFragment();
   for (const project of projects) {
-    const card = element('article', 'project-card');
+    const placeholder = !project.url;
+    const card = element('article', `project-card${placeholder ? ' project-placeholder' : ''}`);
     const top = element('div', 'project-top');
-    top.append(element('span', 'project-badge', project.label),
-      element('span', `project-status${project.status === 'TESTIMISEL' ? ' project-status-testing' : ''}`, project.status));
+    if (project.label) top.append(element('span', 'project-badge', project.label));
+    top.append(element('span', `project-status${project.status === 'TESTIMISEL' ? ' project-status-testing' : ''}${placeholder ? ' project-status-upcoming' : ''}`, project.status));
     const preview = element('div', 'project-preview-area');
     if (project.image) {
       const image = element('img', 'project-preview');
@@ -43,9 +54,13 @@
       preview.classList.add('project-preview-empty');
       preview.setAttribute('aria-hidden', 'true');
     }
-    const action = element(project.url ? 'a' : 'span', `project-link${project.url ? '' : ' disabled'}`, project.url ? 'VAATA PROJEKTI →' : 'Varsti →');
-    if (project.url) action.href = project.url;
-    card.append(element('span', 'project-id', project.id), top, element('h3', '', project.name), preview, element('p', '', project.description), action);
+    card.append(element('span', 'project-id', project.id), top, element('h3', '', project.name), preview);
+    if (project.description) card.append(element('p', '', project.description));
+    if (project.url) {
+      const action = element('a', 'project-link', 'VAATA PROJEKTI →');
+      action.href = project.url;
+      card.append(action);
+    }
     fragment.append(card);
   }
   grid.replaceChildren(fragment);
