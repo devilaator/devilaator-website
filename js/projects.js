@@ -4,7 +4,7 @@
   const projects = [
     {
       id: 'PROJECT_01', name: 'QUIT30', label: 'ANDROID • APP', status: 'TESTIMISEL',
-      description: '30-päevane suitsetamisest loobumise äpp. Reaalajas säästetud raha, suitsetamata sigaretid, verstapostid ja motivatsiooniteavitused.',
+      description: 'Nutikas 30-päevane loobumisäpp, mis aitab sul püsida suitsuvabal rajal. Reaalajas ülevaade säästudest, edusammudest ja igapäevasest toest.',
       image: 'img/quit30.jpg', alt: 'QUIT30 äpi ekraanipilt', url: 'quit30.html'
     },
     {
