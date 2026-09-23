@@ -495,6 +495,52 @@ a:focus-visible {
   }
 }
 
+/* QUIT30 phone: restrained cyan/green depth without altering the real screenshot. */
+.quit30-page .phone-screen {
+  position: relative;
+  border: 2px solid rgba(80, 238, 190, 0.3);
+  background: #04090a;
+  box-shadow:
+    0 26px 60px rgba(0, 0, 0, 0.48),
+    0 0 0 1px rgba(76, 205, 222, 0.09),
+    0 0 22px rgba(76, 205, 222, 0.075);
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.quit30-page .phone-screen::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background: linear-gradient(145deg, rgba(85, 232, 138, 0.04), transparent 46%, rgba(76, 205, 222, 0.035));
+  mix-blend-mode: screen;
+}
+
+.quit30-page .phone-screenshot {
+  filter: saturate(0.96) contrast(1.02) hue-rotate(2deg);
+}
+
+@media (min-width: 901px) {
+  .quit30-page .phone-screen { width: 370px; }
+}
+
+@media (hover: hover) and (pointer: fine) and (min-width: 901px) {
+  .quit30-page .phone-screen:hover {
+    transform: translateY(-3px) scale(1.01);
+    border-color: rgba(80, 238, 190, 0.42);
+    box-shadow:
+      0 30px 64px rgba(0, 0, 0, 0.5),
+      0 0 0 1px rgba(76, 205, 222, 0.13),
+      0 0 26px rgba(76, 205, 222, 0.11);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .quit30-page .phone-screen { transition: none; }
+  .quit30-page .phone-screen:hover { transform: none; }
+}
+
 /* Funktsioonid ja arenduse staatus */
 .feature-section {
   padding: 100px 0;
@@ -533,6 +579,116 @@ a:focus-visible {
 .feature-card p {
   color: #aeb3b3;
   line-height: 1.65;
+}
+
+/* QUIT30 feature matrix: compact translucent HUD cards over the shared cyber landscape. */
+.quit30-page .feature-section {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-top-color: rgba(82, 203, 209, 0.16);
+  background: transparent;
+}
+
+.quit30-page .feature-section::before {
+  content: "";
+  position: absolute;
+  inset: 0 calc(50% - 50vw);
+  z-index: -1;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(8, 9, 9, 0.86), rgba(8, 9, 9, 0.42) 48%, rgba(8, 9, 9, 0.88)),
+    url("../img/hero-cyberpunk-bg.png") center / cover no-repeat;
+  opacity: 0.34;
+  mask-image: linear-gradient(to bottom, transparent, #000 12%, #000 88%, transparent);
+}
+
+.quit30-page .feature-section > .section-label,
+.quit30-page .feature-section > h2,
+.quit30-page .feature-section > .feature-grid {
+  position: relative;
+  z-index: 1;
+}
+
+.quit30-page .feature-section .section-label {
+  color: #71dec6;
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+}
+
+.quit30-page .feature-section h2 {
+  margin: 10px 0 36px;
+  font-size: clamp(32px, 4.5vw, 50px);
+  text-shadow: 0 0 24px rgba(82, 203, 209, 0.08);
+}
+
+.quit30-page .feature-grid {
+  gap: 26px;
+}
+
+.quit30-page .feature-card {
+  --feature-accent: 80 238 190;
+  position: relative;
+  min-height: 0;
+  padding: 22px;
+  overflow: hidden;
+  background: linear-gradient(145deg, rgb(var(--feature-accent) / 0.055), rgba(5, 15, 20, 0.48) 45%, rgba(5, 15, 20, 0.62));
+  border: 1px solid rgb(var(--feature-accent) / 0.26);
+  border-radius: 14px;
+  box-shadow: inset 0 1px rgb(var(--feature-accent) / 0.035), 0 0 16px rgb(var(--feature-accent) / 0.035);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+}
+
+.quit30-page .feature-card:nth-child(3n + 2) { --feature-accent: 228 171 77; }
+.quit30-page .feature-card:nth-child(3n) { --feature-accent: 76 205 222; }
+
+.quit30-page .feature-card::after {
+  content: "";
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 18px;
+  height: 18px;
+  border-top: 1px solid rgb(var(--feature-accent) / 0.58);
+  border-right: 1px solid rgb(var(--feature-accent) / 0.58);
+  pointer-events: none;
+}
+
+.quit30-page .feature-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  margin-bottom: 16px;
+  border: 1px solid rgb(var(--feature-accent) / 0.3);
+  border-radius: 9px;
+  background: rgb(var(--feature-accent) / 0.07);
+  box-shadow: 0 0 12px rgb(var(--feature-accent) / 0.06);
+  font-size: 19px;
+}
+
+.quit30-page .feature-card h3 {
+  margin-bottom: 8px;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.quit30-page .feature-card p {
+  color: #bac7c5;
+  font-size: 14px;
+  line-height: 1.48;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .quit30-page .feature-card:hover {
+    transform: translateY(-3px);
+    border-color: rgb(var(--feature-accent) / 0.46);
+    box-shadow: inset 0 1px rgb(var(--feature-accent) / 0.05), 0 8px 22px rgb(var(--feature-accent) / 0.07);
+  }
 }
 
 .status-section {
@@ -1615,4 +1771,101 @@ a:focus-visible {
   .home-page > .site-header .brand-logo { font-size: 21px; }
   .home-page .header-actions { display: contents; }
   .home-page .main-nav { gap: 0; }
+}
+
+@media (max-width: 600px) {
+  .quit30-page .feature-grid { gap: 14px; }
+  .quit30-page .feature-card { padding: 18px; }
+  .quit30-page .feature-icon { width: 36px; height: 36px; margin-bottom: 13px; }
+  .quit30-page .feature-section h2 { margin-bottom: 28px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .quit30-page .feature-card { transition: none; }
+  .quit30-page .feature-card:hover { transform: none; }
+}
+
+/* QUIT30 uses the same visual world as the DEVILAATOR homepage. */
+.quit30-site {
+  background-color: #05090c;
+  background-image:
+    linear-gradient(180deg, rgba(3, 8, 11, 0.48), rgba(3, 8, 11, 0.72) 48%, rgba(3, 8, 11, 0.84)),
+    radial-gradient(ellipse at 78% 12%, rgba(66, 205, 220, 0.08), transparent 42%),
+    url("../img/hero-cyberpunk-bg.png");
+  background-position: center top;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.quit30-site > .site-header {
+  min-height: 76px;
+  padding: 14px clamp(28px, 4vw, 64px);
+  background: transparent;
+  border-bottom: 1px solid rgba(82, 203, 209, 0.14);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: none;
+  flex-wrap: nowrap;
+}
+
+.quit30-site > .site-header .brand-logo {
+  margin-right: auto;
+  font-size: clamp(26px, 2.3vw, 33px);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 2.2px;
+}
+
+.quit30-site .main-nav {
+  align-items: center;
+  gap: clamp(20px, 2vw, 31px);
+  flex-wrap: nowrap;
+}
+
+.quit30-site .main-nav a {
+  color: #d4dcda;
+  font-size: 14px;
+  font-weight: 650;
+  white-space: nowrap;
+}
+
+.quit30-page .project-hero h1 {
+  background: linear-gradient(90deg, #55e88a 0%, #9bea63 38%, #d8ef55 68%, #ffd45a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.quit30-page .section-label {
+  color: #83e6bd;
+  background: none;
+  -webkit-background-clip: initial;
+  background-clip: initial;
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-shadow: 0 0 12px rgba(85, 232, 138, 0.14);
+}
+
+.quit30-page .feature-section::before { display: none; }
+
+.quit30-page .btn {
+  background: linear-gradient(110deg, #74ed83, #49e5a2 65%, #4bdccc);
+  color: #06110c;
+  box-shadow: 0 0 20px rgba(73, 229, 162, 0.1), inset 0 1px rgba(230, 255, 240, 0.24);
+}
+
+.quit30-page .project-link:hover {
+  background: linear-gradient(90deg, #55e88a, #8ce6bc);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+@media (max-width: 750px) {
+  .quit30-site { background-attachment: scroll; }
+  .quit30-site > .site-header { min-height: 70px; padding: 13px 6%; flex-wrap: wrap; }
+  .quit30-site > .site-header .brand-logo { font-size: 21px; }
+  .quit30-site .main-nav { gap: 0; }
 }
