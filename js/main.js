@@ -54,6 +54,8 @@
     });
   });
   const links = menu ? [...menu.querySelectorAll('a[href^="#"]')].map(link => ({ link, section: document.getElementById(link.hash.slice(1)) })).filter(item => item.section) : [];
+  // Follow document order even when the menu lists these sections differently.
+  links.sort((a, b) => a.section === b.section ? 0 : a.section.compareDocumentPosition(b.section) & Node.DOCUMENT_POSITION_FOLLOWING ? -1 : 1);
   if (links.length) {
     let scheduled = false;
     function update() {
