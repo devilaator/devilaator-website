@@ -2069,3 +2069,23 @@ a:focus-visible {
   .steady-hand-page .phone-screen:hover,
   .steady-hand-page .feature-card:hover { transform: none; }
 }
+
+/* Refined label only; connector geometry and label position remain unchanged. */
+.home-page .hero-flow-label {
+  border-color: rgba(91, 238, 218, 0.78);
+  background: linear-gradient(180deg, rgba(6, 23, 25, 0.97), rgba(3, 12, 15, 0.98));
+  box-shadow:
+    inset 0 0 13px rgba(82, 203, 209, 0.11),
+    inset 0 1px rgba(174, 255, 239, 0.08),
+    0 0 13px rgba(58, 207, 178, 0.13),
+    0 0 3px rgba(82, 203, 209, 0.16);
+  color: #a5f8e9;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2.8px;
+  text-shadow: 0 0 7px rgba(118, 241, 218, 0.34);
+}
+
+@media (max-width: 750px) {
+  .home-page .hero-flow-label { font-size: 10px; }
+}
