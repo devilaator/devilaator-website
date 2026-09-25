@@ -13,10 +13,6 @@
       image: 'img/steady-hand.jpg', alt: 'STEADY HAND Android mäng', url: 'steady-hand.html'
     },
     {
-<<<<<<< Updated upstream
-      id: 'PROJECT_03', name: 'KILBIHALDUS', label: 'WEB • APP', status: 'TESTIMISEL',
-      description: 'Elektripaigaldise digitaalne kaart sinu taskus. Kilbid, grupid, toiteahelad, dokumendid ja hooldus ühes kohas.'
-=======
       id: 'PROJECT_03',
       name: 'KILBIHALDUS',
       label: 'WEB • APP',
@@ -24,7 +20,6 @@
       description: 'Kas ei tea, kus mis asub või kust toide tuleb? Appi võta Kilbihaldus - elektripaigaldise digitaalne kaart sinu taskus. Kilbid, grupid, toiteahelad, dokumendid ning hooldus ühes kohas. Kogu objekti elektripaigaldisest selge ülevaade otse ekraanilt.',
       image: 'img/kilbihaldus-clean.png',
       alt: 'Kilbihaldus'
->>>>>>> Stashed changes
     },
     
       {
