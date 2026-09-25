@@ -13,15 +13,25 @@
       image: 'img/steady-hand.jpg', alt: 'STEADY HAND Android mäng', url: 'steady-hand.html'
     },
     {
+<<<<<<< Updated upstream
       id: 'PROJECT_03', name: 'KILBIHALDUS', label: 'WEB • APP', status: 'TESTIMISEL',
       description: 'Elektripaigaldise digitaalne kaart sinu taskus. Kilbid, grupid, toiteahelad, dokumendid ja hooldus ühes kohas.'
+=======
+      id: 'PROJECT_03',
+      name: 'KILBIHALDUS',
+      label: 'WEB • APP',
+      status: 'TESTIMISEL',
+      description: 'Kas ei tea, kus mis asub või kust toide tuleb? Appi võta Kilbihaldus - elektripaigaldise digitaalne kaart sinu taskus. Kilbid, grupid, toiteahelad, dokumendid ning hooldus ühes kohas. Kogu objekti elektripaigaldisest selge ülevaade otse ekraanilt.',
+      image: 'img/kilbihaldus-clean.png',
+      alt: 'Kilbihaldus'
+>>>>>>> Stashed changes
     },
     
       {
         id: 'PROJECT_04',
         name: 'ELVA POKSIKLUBI',
         status: 'TULEKUL',
-        description: 'Veebileht ja klubihaldussüsteem treeningute, liikmete, broneeringute ja väikese e-poe jaoks.',
+        description: 'Veebileht ja klubihaldussüsteem treeningute, liikmete, broneeringute ning väikese e-poega.',
         image: 'img/elva-poksiklubi.png',
         alt: 'Vanad poksikindad poksiringi nurgas'
       }
@@ -38,7 +48,10 @@
   const fragment = document.createDocumentFragment();
   for (const project of projects) {
     const placeholder = !project.url;
-    const card = element('article', `project-card${placeholder ? ' project-placeholder' : ''}`);
+    const card = element(
+      'article',
+      `project-card${placeholder ? ' project-placeholder' : ''}${project.label ? ' project-has-label' : ''}`
+    );
     const top = element('div', 'project-top');
     if (project.label) top.append(element('span', 'project-badge', project.label));
     top.append(element('span', `project-status${project.status === 'TESTIMISEL' ? ' project-status-testing' : ''}${placeholder ? ' project-status-upcoming' : ''}`, project.status));

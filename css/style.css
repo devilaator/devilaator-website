@@ -281,6 +281,7 @@ a:focus-visible {
 .project-preview-area { height: 180px; margin-bottom: 20px; overflow: hidden; border-radius: 10px; background: transparent; display: flex; align-items: center; justify-content: center; }
 .project-preview-empty { background: transparent; }
 .project-placeholder .project-top { justify-content: flex-end; }
+.project-placeholder.project-has-label .project-top { justify-content: space-between; }
 .project-status-upcoming { display: inline-flex; align-items: center; min-height: 25px; padding: 4px 9px; border: 1px solid #46534b; border-radius: 999px; color: #aebdb2; background: #1a211d; line-height: 1.5; letter-spacing: 0.8px; }
 .project-placeholder .project-preview-empty { position: relative; border: 1px solid #344039; background: radial-gradient(circle at center, rgba(153, 183, 162, 0.07), transparent 64%), repeating-linear-gradient(90deg, transparent 0 29px, rgba(158, 190, 169, 0.055) 30px), repeating-linear-gradient(0deg, transparent 0 29px, rgba(158, 190, 169, 0.055) 30px), #101615; }
 .project-placeholder .project-preview-empty::before { content: ""; width: 66px; height: 66px; border: 1px solid rgba(166, 190, 175, 0.36); border-radius: 14px; transform: rotate(45deg); box-shadow: 0 0 24px rgba(166, 190, 175, 0.06); }
