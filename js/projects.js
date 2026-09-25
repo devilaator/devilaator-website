@@ -13,8 +13,8 @@
       image: 'img/steady-hand.jpg', alt: 'STEADY HAND Android mäng', url: 'steady-hand.html'
     },
     {
-      id: 'PROJECT_03', name: 'LOLL ÄPP', status: 'TULEKUL',
-      description: 'Täiesti ebavajalik äpp. Seega loomulikult tuleb see ära teha? VÕIB-OLLA juaa'
+      id: 'PROJECT_03', name: 'KILBIHALDUS', label: 'WEB • APP', status: 'TESTIMISEL',
+      description: 'Elektripaigaldise digitaalne kaart sinu taskus. Kilbid, grupid, toiteahelad, dokumendid ja hooldus ühes kohas.'
     },
     
       {
