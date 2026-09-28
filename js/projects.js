@@ -16,7 +16,7 @@
       id: 'PROJECT_03',
       name: 'KILBIHALDUS',
       label: 'WEB • APP',
-      status: 'KASUTUSTESTIS OLEV TARKVARA',
+      status: 'TESTFAASIS OLEV TARKVARA',
       statusDescription: 'Kilbihaldust testitakse praegu objektil ja tööolukorras.',
       description: 'Kas ei tea, kus mis asub või kust toide tuleb? Appi võta Kilbihaldus - elektripaigaldise digitaalne kaart sinu taskus. Kilbid, grupid, toiteahelad, dokumendid ning hooldus ühes kohas. Kogu objekti elektripaigaldisest selge ning täielik ülevaade otse ekraanilt.',
       image: 'img/kilbihaldus-logo.png',
