@@ -2090,3 +2090,42 @@ a:focus-visible {
 @media (max-width: 750px) {
   .home-page .hero-flow-label { font-size: 10px; }
 }
+
+/* Real-world testing status, only on the Kilbihaldus project card. */
+.home-page #project-grid .project-field-test > .project-link {
+  margin-top: 16px;
+  min-height: 44px;
+}
+@media (max-width: 750px) {
+  .home-page #project-grid .project-field-test > .project-link {
+    width: 100%;
+    text-align: center;
+  }
+}
+.home-page #project-grid .project-preview.kilbihaldus-project-logo {
+  display: block;
+  width: 100%;
+  max-width: 220px;
+  height: auto;
+  object-fit: contain;
+  margin-inline: auto;
+}
+@media (max-width: 750px) {
+  .home-page #project-grid .project-preview.kilbihaldus-project-logo {
+    max-width: 180px;
+  }
+}
+.home-page #project-grid .project-field-test .project-status {
+  color: #d9bf76;
+  background: #292519;
+  border-color: #51472c;
+  white-space: normal;
+}
+.home-page #project-grid .project-field-test > .project-test-note {
+  padding-left: 12px;
+  border-left: 2px solid #d9bf76;
+  color: #b8c4c8;
+  font-size: 13px;
+  line-height: 1.65;
+  margin-bottom: 0;
+}

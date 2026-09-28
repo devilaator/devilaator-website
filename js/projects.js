@@ -16,10 +16,14 @@
       id: 'PROJECT_03',
       name: 'KILBIHALDUS',
       label: 'WEB • APP',
-      status: 'TESTIMISEL',
-      description: 'Kas ei tea, kus mis asub või kust toide tuleb? Appi võta Kilbihaldus - elektripaigaldise digitaalne kaart sinu taskus. Kilbid, grupid, toiteahelad, dokumendid ning hooldus ühes kohas. Kogu objekti elektripaigaldisest selge ülevaade otse ekraanilt.',
-      image: 'img/kilbihaldus-clean.png',
-      alt: 'Kilbihaldus'
+      status: 'REAALSES KASUTUSTESTIS OLEV TARKVARA',
+      statusDescription: 'Kilbihaldust testitakse praegu päris objektidel ja päris tööolukordades.',
+      description: 'Kas ei tea, kus mis asub või kust toide tuleb? Appi võta Kilbihaldus - elektripaigaldise digitaalne kaart sinu taskus. Kilbid, grupid, toiteahelad, dokumendid ning hooldus ühes kohas. Kogu objekti elektripaigaldisest selge ning täielik ülevaade otse ekraanilt.',
+      image: 'img/kilbihaldus-logo.png',
+      imageClass: 'kilbihaldus-project-logo',
+      alt: 'Kilbihaldus',
+      url: 'kilbihaldus.html',
+      actionLabel: 'VAATA PROJEKTI'
     },
     
       {
@@ -47,12 +51,14 @@
       'article',
       `project-card${placeholder ? ' project-placeholder' : ''}${project.label ? ' project-has-label' : ''}`
     );
+    if (project.statusDescription) card.classList.add('project-field-test');
     const top = element('div', 'project-top');
     if (project.label) top.append(element('span', 'project-badge', project.label));
-    top.append(element('span', `project-status${project.status === 'TESTIMISEL' ? ' project-status-testing' : ''}${placeholder ? ' project-status-upcoming' : ''}`, project.status));
+    top.append(element('span', `project-status${(project.status === 'TESTIMISEL' || project.statusDescription) ? ' project-status-testing' : ''}${placeholder ? ' project-status-upcoming' : ''}`, project.status));
     const preview = element('div', 'project-preview-area');
     if (project.image) {
       const image = element('img', 'project-preview');
+      if (project.imageClass) image.classList.add(project.imageClass);
       image.src = project.image;
       image.alt = project.alt;
       image.loading = 'lazy';
@@ -64,8 +70,9 @@
     }
     card.append(element('span', 'project-id', project.id), top, element('h3', '', project.name), preview);
     if (project.description) card.append(element('p', '', project.description));
+    if (project.statusDescription) card.append(element('p', 'project-test-note', project.statusDescription));
     if (project.url) {
-      const action = element('a', 'project-link', 'VAATA PROJEKTI →');
+      const action = element('a', 'project-link', project.actionLabel || 'VAATA PROJEKTI →');
       action.href = project.url;
       card.append(action);
     }
