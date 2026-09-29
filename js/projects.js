@@ -10,7 +10,8 @@
     {
       id: 'PROJECT_02', name: 'STEADY HAND', label: 'ANDROID • MÄNG', status: 'TESTIMISEL',
       description: 'Telefoni liikumisanduritel põhinev stabiilsus- ja tasakaalumäng.',
-      image: 'img/steady-hand.jpg', alt: 'STEADY HAND Android mäng', url: 'steady-hand.html'
+      image: 'img/steady-hand.jpg', alt: 'STEADY HAND Android mäng', url: 'steady-hand.html',
+      cardClass: 'steady-hand-project'
     },
     {
       id: 'PROJECT_03',
@@ -51,6 +52,7 @@
       'article',
       `project-card${placeholder ? ' project-placeholder' : ''}${project.label ? ' project-has-label' : ''}`
     );
+    if (project.cardClass) card.classList.add(project.cardClass);
     if (project.statusDescription) card.classList.add('project-field-test');
     const top = element('div', 'project-top');
     if (project.label) top.append(element('span', 'project-badge', project.label));
