@@ -30,10 +30,12 @@
       {
         id: 'PROJECT_04',
         name: 'ELVA POKSIKLUBI',
-        status: 'TULEKUL',
-        description: 'Veebileht ja klubihaldussüsteem treeningute, liikmete, broneeringute ning väikese e-poega.',
+        status: 'ESMANE VERSIOON',
+        description: 'Elva Poksiklubi veebileht: klubi tutvustus, treeningud ja liitumisvormi eelvaade.',
         image: 'img/elva-poksiklubi.png',
-        alt: 'Vanad poksikindad poksiringi nurgas'
+        alt: 'Vanad poksikindad poksiringi nurgas',
+        url: 'elva-poksiklubi.html',
+        actionLabel: 'VAATA'
       }
     
   ];

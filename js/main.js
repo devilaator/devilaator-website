@@ -17,6 +17,7 @@
   const header = document.querySelector('header');
   const menu = document.querySelector('#primary-nav');
   const toggle = document.querySelector('.menu-toggle');
+  let requestedSection = null;
   function closeMenu(focus = false) {
     if (!toggle || !menu) return;
     toggle.setAttribute('aria-expanded', 'false');
@@ -49,6 +50,12 @@
       closeMenu();
       target.setAttribute('tabindex', '-1');
       target.focus({ preventScroll: true });
+      const matchingNavLink = menu ? [...menu.querySelectorAll('a[href^="#"]')].find(item => item.hash === url.hash) : null;
+      if (matchingNavLink) {
+        requestedSection = target;
+        menu.querySelectorAll('a[aria-current]').forEach(item => item.removeAttribute('aria-current'));
+        matchingNavLink.setAttribute('aria-current', 'location');
+      }
       target.scrollIntoView({ behavior: motion.matches ? 'instant' : 'smooth', block: 'start' });
       if (location.hash !== url.hash) history.pushState(null, '', url.hash);
     });
@@ -62,9 +69,16 @@
       scheduled = false;
       const scrollPadding = parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 0;
       const marker = Math.max(header.getBoundingClientRect().height + 32, scrollPadding + 2);
-      let active = links[0];
+      let active = null;
       for (const item of links) if (item.section.getBoundingClientRect().top <= marker) active = item;
-      if (innerHeight + scrollY >= document.documentElement.scrollHeight - 2) active = links[links.length - 1];
+      const atBottom = innerHeight + scrollY >= document.documentElement.scrollHeight - 2;
+      if (atBottom) active = links[links.length - 1];
+      if (requestedSection) {
+        const requestedItem = links.find(item => item.section === requestedSection);
+        if (requestedItem) active = requestedItem;
+        const reachedTarget = Math.abs(requestedSection.getBoundingClientRect().top - marker) <= 4 || atBottom;
+        if (reachedTarget) requestedSection = null;
+      }
       for (const item of links) {
         if (item === active) item.link.setAttribute('aria-current', 'location');
         else item.link.removeAttribute('aria-current');
@@ -74,6 +88,8 @@
     addEventListener('scroll', schedule, { passive: true });
     addEventListener('resize', schedule);
     addEventListener('load', schedule);
+    addEventListener('wheel', () => { requestedSection = null; }, { passive: true });
+    addEventListener('touchstart', () => { requestedSection = null; }, { passive: true });
     update();
   }
   if ('IntersectionObserver' in window && !motion.matches) {
