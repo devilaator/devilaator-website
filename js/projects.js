@@ -30,8 +30,9 @@
       {
         id: 'PROJECT_04',
         name: 'ELVA POKSIKLUBI',
-        status: 'ESMANE VERSIOON',
-        description: 'Elva Poksiklubi veebileht: klubi tutvustus, treeningud ja liitumisvormi eelvaade.',
+        label: 'WEB • APP',
+        status: 'TULEKUL',
+        description: 'Veebileht ja klubihaldussüsteem treeningute, liikmete, broneeringute ja väikese e-poe jaoks.',
         image: 'img/elva-poksiklubi.png',
         alt: 'Vanad poksikindad poksiringi nurgas',
         secretUrl: 'https://poksiklubi.pages.dev'
@@ -56,8 +57,9 @@
     if (project.cardClass) card.classList.add(project.cardClass);
     if (project.statusDescription) card.classList.add('project-field-test');
     const top = element('div', 'project-top');
-    if (project.label) top.append(element('span', 'project-badge', project.label));
-    top.append(element('span', `project-status${(project.status === 'TESTIMISEL' || project.statusDescription) ? ' project-status-testing' : ''}${placeholder ? ' project-status-upcoming' : ''}`, project.status));
+    const badge = project.label ? element('span', 'project-badge', project.label) : null;
+    if (badge) top.append(badge);
+    top.append(element('span', `project-status${(project.status === 'TESTIMISEL' || project.statusDescription) ? ' project-status-testing' : ''}${(placeholder || project.status === 'TULEKUL') ? ' project-status-upcoming' : ''}`, project.status));
     const preview = element('div', 'project-preview-area');
     if (project.image) {
       const image = element('img', 'project-preview');
@@ -77,7 +79,15 @@
       projectId.target = '_blank';
       projectId.rel = 'noopener noreferrer';
     }
-    card.append(projectId, top, element('h3', '', project.name), preview);
+    if (project.secretUrl) {
+      const secretMeta = element('div', 'project-secret-meta');
+      secretMeta.append(projectId);
+      if (badge) secretMeta.append(badge);
+      top.prepend(secretMeta);
+      card.append(top, element('h3', '', project.name), preview);
+    } else {
+      card.append(projectId, top, element('h3', '', project.name), preview);
+    }
     if (project.description) card.append(element('p', '', project.description));
     if (project.statusDescription) card.append(element('p', 'project-test-note', project.statusDescription));
     if (project.url) {
