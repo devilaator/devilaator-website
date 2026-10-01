@@ -34,8 +34,7 @@
         description: 'Elva Poksiklubi veebileht: klubi tutvustus, treeningud ja liitumisvormi eelvaade.',
         image: 'img/elva-poksiklubi.png',
         alt: 'Vanad poksikindad poksiringi nurgas',
-        url: 'elva-poksiklubi.html',
-        actionLabel: 'VAATA'
+        secretUrl: 'https://poksiklubi.pages.dev'
       }
     
   ];
@@ -49,7 +48,7 @@
   };
   const fragment = document.createDocumentFragment();
   for (const project of projects) {
-    const placeholder = !project.url;
+    const placeholder = !project.url && !project.secretUrl;
     const card = element(
       'article',
       `project-card${placeholder ? ' project-placeholder' : ''}${project.label ? ' project-has-label' : ''}`
@@ -72,7 +71,13 @@
       preview.classList.add('project-preview-empty');
       preview.setAttribute('aria-hidden', 'true');
     }
-    card.append(element('span', 'project-id', project.id), top, element('h3', '', project.name), preview);
+    const projectId = element(project.secretUrl ? 'a' : 'span', `project-id${project.secretUrl ? ' project-secret-link' : ''}`, project.id);
+    if (project.secretUrl) {
+      projectId.href = project.secretUrl;
+      projectId.target = '_blank';
+      projectId.rel = 'noopener noreferrer';
+    }
+    card.append(projectId, top, element('h3', '', project.name), preview);
     if (project.description) card.append(element('p', '', project.description));
     if (project.statusDescription) card.append(element('p', 'project-test-note', project.statusDescription));
     if (project.url) {

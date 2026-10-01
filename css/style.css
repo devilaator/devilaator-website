@@ -198,6 +198,14 @@ a:focus-visible {
 
 #project-grid .project-card { background: linear-gradient(145deg, rgba(22, 29, 26, 0.97), rgba(14, 17, 17, 0.97)); border-color: #34403a; }
 .project-id { font-family: Consolas, monospace; font-size: 11px; letter-spacing: 1.5px; color: #8d9f94; margin-bottom: 16px; }
+.project-secret-link,
+.project-secret-link:hover,
+.project-secret-link:focus,
+.project-secret-link:visited {
+  color: inherit;
+  text-decoration: none;
+  cursor: default;
+}
 #project-grid .project-status-testing::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: currentColor; margin-right: 7px; box-shadow: 0 0 7px rgba(217, 191, 118, 0.18); }
 @media (hover: hover) and (pointer: fine) {
   #project-grid .project-card:has(a):hover { border-color: #52745e; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25), 0 0 18px rgba(53, 224, 111, 0.06); }
