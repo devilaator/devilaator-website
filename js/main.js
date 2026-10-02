@@ -13,10 +13,17 @@
     key: readPublicConfig(NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY, 'NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY')
   });
   const motion = matchMedia('(prefers-reduced-motion: reduce)');
-  const mobile = matchMedia('(max-width: 750px)');
+  const mobile = matchMedia(document.body.classList.contains('home-page') ? '(max-width: 768px)' : '(max-width: 750px)');
   const header = document.querySelector('header');
   const menu = document.querySelector('#primary-nav');
   const toggle = document.querySelector('.menu-toggle');
+  const mobileHeader = document.querySelector('.home-page > header.site-header');
+  function updateMobileHeader() {
+    if (mobileHeader) {
+      mobileHeader.classList.toggle('mobile-scrolled', mobile.matches && window.scrollY > 50);
+    }
+  }
+  updateMobileHeader();
   let requestedSection = null;
   function closeMenu(focus = false) {
     if (!toggle || !menu) return;
@@ -67,6 +74,7 @@
     let scheduled = false;
     function update() {
       scheduled = false;
+      updateMobileHeader();
       const scrollPadding = parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 0;
       const marker = Math.max(header.getBoundingClientRect().height + 32, scrollPadding + 2);
       let active = null;

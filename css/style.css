@@ -2213,6 +2213,10 @@ a:focus-visible {
 }
 
 @media (max-width: 768px) {
+  .home-page > .site-header {
+    transition: border-bottom-color .3s ease;
+  }
+
   .home-page > .site-header .devilaator-text-logo {
     display: none;
   }
@@ -2225,6 +2229,51 @@ a:focus-visible {
     object-fit: contain;
     -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
     mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+    opacity: 1;
+    transition: opacity .3s ease;
+  }
+
+  .home-page > .site-header.mobile-scrolled {
+    border-bottom-color: transparent;
+  }
+
+  .home-page > .site-header.mobile-scrolled .devilaator-mobile-logo {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .home-page > .site-header.mobile-scrolled .brand-logo {
+    pointer-events: none;
+  }
+}
+
+@media (min-width: 751px) and (max-width: 768px) {
+  .home-page > .site-header.menu-ready .menu-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .home-page > .site-header.menu-ready #primary-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    padding: 0 4%;
+    background: var(--bg);
+  }
+
+  .home-page > .site-header.menu-ready #primary-nav.is-open {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .home-page > .site-header.menu-ready #primary-nav a {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
   }
 }
 
