@@ -2326,7 +2326,11 @@ a:focus-visible {
 .devilaatorist-link {
   display: inline-block;
   margin-top: 12px;
+  padding: 0;
+  border: 0;
+  background: none;
   color: #9a9a9a;
+  font-family: inherit;
   font-size: 14px;
   text-decoration: none;
   cursor: pointer;
