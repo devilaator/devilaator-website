@@ -218,3 +218,43 @@
     }
   });
 })();
+
+
+const devilaatoristLink = document.getElementById("devilaatoristLink");
+const devError = document.getElementById("devError");
+const devErrorClose = document.getElementById("devErrorClose");
+
+if (devilaatoristLink && devError && devErrorClose) {
+
+  devilaatoristLink.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    devError.classList.add("show");
+    devError.setAttribute("aria-hidden", "false");
+
+    devErrorClose.focus();
+  });
+
+  devErrorClose.addEventListener("click", () => {
+    closeDevError();
+  });
+
+  devError.addEventListener("click", (e) => {
+    if (e.target === devError) {
+      closeDevError();
+    }
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && devError.classList.contains("show")) {
+      closeDevError();
+    }
+  });
+
+  function closeDevError() {
+    devError.classList.remove("show");
+    devError.setAttribute("aria-hidden", "true");
+
+    devilaatoristLink.focus();
+  }
+}
