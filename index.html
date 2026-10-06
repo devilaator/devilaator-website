@@ -1,215 +1,634 @@
+<!--
+╔══════════════════════════════════════════════════════╗
+║  NO NII...                                           ║
+║                                                      ║
+║  Kas tõesti oli vaja siia lähtekoodi ronida? 😄      ║
+║                                                      ║
+║  Vaata rahulikult, aga ära näppe külge pane.         ║
+║                                                      ║
+║  — DEVILAATOR                                        ║
+╚══════════════════════════════════════════════════════╝
+-->
 <!DOCTYPE html>
 <html lang="et">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>DEVILAATOR | Ideedest väärtuseks</title>
-    <meta name="description" content="Äpid, tarkvara, mängud ja eksperimendid. Õpin, katsetan ja ehitan. Tutvu DEVILAATORi projektide ja QUIT30 äpiga.">
+
+    <meta
+      name="description"
+      content="Äpid, tarkvara, mängud ja eksperimendid. Õpin, katsetan ja ehitan. Tutvu DEVILAATORi projektide ja QUIT30 äpiga."
+    >
     <meta name="theme-color" content="#080909">
+
     <link rel="canonical" href="https://devilaator.ee/">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="stylesheet" href="css/style.css?v=20261003-mobile-header-2">
+
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="DEVILAATOR">
     <meta property="og:locale" content="et_EE">
     <meta property="og:title" content="DEVILAATOR | Ideedest väärtuseks">
-    <meta property="og:description" content="Äpid, tarkvara, mängud ja veebilehed. Õpin, katsetan ja ehitan. Tutvu DEVILAATORi projektide ja QUIT30 äpiga.">
+    <meta
+      property="og:description"
+      content="Äpid, tarkvara, mängud ja veebilehed. Õpin, katsetan ja ehitan. Tutvu DEVILAATORi projektide ja QUIT30 äpiga."
+    >
     <meta property="og:url" content="https://devilaator.ee/">
-    <meta property="og:image" content="https://devilaator.ee/img/hero-cyberpunk-bg.png">
-    <meta property="og:image:alt" content="DEVILAATORi futuristlik küberpunk-maastik">
-    <link rel="stylesheet" href="css/style.css?v=20261003-mobile-header-2">
+    <meta
+      property="og:image"
+      content="https://devilaator.ee/img/hero-cyberpunk-bg.png"
+    >
+    <meta
+      property="og:image:alt"
+      content="DEVILAATORi futuristlik küberpunk-maastik"
+    >
   </head>
+
   <body class="home-page">
     <header class="site-header">
       <div class="header-inner">
         <div class="brand-group">
-          <a href="#home" class="logo brand-logo"><span class="devilaator-text-logo">DEVILAATOR</span><img class="devilaator-mobile-logo" src="img/devilaator-logo.png" alt="DEVILAATOR"></a>
+          <a href="#home" class="logo brand-logo">
+            <span class="devilaator-text-logo">DEVILAATOR</span>
+
+            <img
+              class="devilaator-mobile-logo"
+              src="img/devilaator-logo.png"
+              alt="DEVILAATOR"
+            >
+          </a>
+
           <span class="brand-divider" aria-hidden="true"></span>
+
           <span class="brand-meta" aria-hidden="true">
             <span>BUILDING A BRIGHTER TOMORROW_</span>
           </span>
         </div>
+
         <div class="header-actions">
-          <button class="menu-toggle" type="button" aria-controls="primary-nav" aria-expanded="false" aria-label="Ava või sulge menüü"><span aria-hidden="true">☰</span> Menüü</button>
-          <nav id="primary-nav" class="main-nav" aria-label="Põhinavigatsioon">
+          <button
+            class="menu-toggle"
+            type="button"
+            aria-controls="primary-nav"
+            aria-expanded="false"
+            aria-label="Ava või sulge menüü"
+          >
+            <span aria-hidden="true">☰</span>
+            Menüü
+          </button>
+
+          <nav
+            id="primary-nav"
+            class="main-nav"
+            aria-label="Põhinavigatsioon"
+          >
             <a href="#home">Avaleht</a>
             <a href="#projektid">Projektid</a>
             <a href="#contact">Kontakt</a>
             <a href="#devilaatorist">DEVILAATORIST</a>
           </nav>
-          <span class="system-status status-pill" aria-hidden="true"><span class="system-dot"></span>SYSTEM ONLINE</span>
+
+          <span class="system-status status-pill" aria-hidden="true">
+            <span class="system-dot"></span>
+            SYSTEM ONLINE
+          </span>
         </div>
       </div>
     </header>
 
     <main>
       <section id="home" class="hero system-panel">
-        <!-- Decorative terrain: lightweight vector geometry, no image download or animation. -->
-        <svg class="hero-terrain" viewBox="0 0 680 520" fill="none" aria-hidden="true" focusable="false">
+        <!-- Dekoratiivne maastik: kerge vektorgraafika, ilma pildi allalaadimise ja animatsioonita. -->
+        <svg
+          class="hero-terrain"
+          viewBox="0 0 680 520"
+          fill="none"
+          aria-hidden="true"
+          focusable="false"
+        >
           <defs>
             <linearGradient id="terrain-far-fill" x2="0" y2="1">
-              <stop stop-color="#17383d"/><stop offset="1" stop-color="#091315"/>
+              <stop stop-color="#17383d"/>
+              <stop offset="1" stop-color="#091315"/>
             </linearGradient>
+
             <linearGradient id="terrain-mid-fill" x2="0" y2="1">
-              <stop stop-color="#10282d"/><stop offset="1" stop-color="#070e10"/>
+              <stop stop-color="#10282d"/>
+              <stop offset="1" stop-color="#070e10"/>
             </linearGradient>
+
             <linearGradient id="terrain-near-fill" x2="0" y2="1">
-              <stop stop-color="#0b1d21"/><stop offset="1" stop-color="#05090b"/>
+              <stop stop-color="#0b1d21"/>
+              <stop offset="1" stop-color="#05090b"/>
             </linearGradient>
-            <linearGradient id="terrain-trail" gradientUnits="userSpaceOnUse" x1="85" y1="248" x2="0" y2="486">
-              <stop stop-color="#5ce59a"/><stop offset=".5" stop-color="#d9e55d"/><stop offset="1" stop-color="#f19a42"/>
+
+            <linearGradient
+              id="terrain-trail"
+              gradientUnits="userSpaceOnUse"
+              x1="85"
+              y1="248"
+              x2="0"
+              y2="486"
+            >
+              <stop stop-color="#5ce59a"/>
+              <stop offset=".5" stop-color="#d9e55d"/>
+              <stop offset="1" stop-color="#f19a42"/>
             </linearGradient>
+
             <radialGradient id="terrain-horizon">
               <stop stop-color="#ffe17a" stop-opacity=".86"/>
-              <stop offset=".23" stop-color="#f3a23e" stop-opacity=".38"/>
-              <stop offset="1" stop-color="#ef8d36" stop-opacity="0"/>
+              <stop
+                offset=".23"
+                stop-color="#f3a23e"
+                stop-opacity=".38"
+              />
+              <stop
+                offset="1"
+                stop-color="#ef8d36"
+                stop-opacity="0"
+              />
             </radialGradient>
           </defs>
-          <ellipse class="terrain-horizon" cx="24" cy="234" rx="68" ry="60" fill="url(#terrain-horizon)"/>
-          <circle class="terrain-sun" cx="24" cy="237" r="12"/>
-          <path class="terrain-ridge terrain-ridge-far" fill="url(#terrain-far-fill)" d="M0 322 48 286 82 302 126 248 159 270 190 226 232 275 276 246 324 300 371 268 421 318 471 286 525 342 582 315 680 370V520H0Z"/>
-          <path class="terrain-ridge terrain-ridge-mid" fill="url(#terrain-mid-fill)" d="M0 374 66 292 112 340 169 254 224 342 272 292 327 368 384 314 441 391 505 346 565 411 622 376 680 420V520H0Z"/>
-          <path class="terrain-ridge terrain-ridge-near" fill="url(#terrain-near-fill)" d="M0 436 78 350 139 420 216 316 292 430 354 374 425 462 492 406 558 478 620 438 680 476V520H0Z"/>
+
+          <ellipse
+            class="terrain-horizon"
+            cx="24"
+            cy="234"
+            rx="68"
+            ry="60"
+            fill="url(#terrain-horizon)"
+          />
+
+          <circle
+            class="terrain-sun"
+            cx="24"
+            cy="237"
+            r="12"
+          />
+
+          <path
+            class="terrain-ridge terrain-ridge-far"
+            fill="url(#terrain-far-fill)"
+            d="M0 322 48 286 82 302 126 248 159 270 190 226 232 275 276 246 324 300 371 268 421 318 471 286 525 342 582 315 680 370V520H0Z"
+          />
+
+          <path
+            class="terrain-ridge terrain-ridge-mid"
+            fill="url(#terrain-mid-fill)"
+            d="M0 374 66 292 112 340 169 254 224 342 272 292 327 368 384 314 441 391 505 346 565 411 622 376 680 420V520H0Z"
+          />
+
+          <path
+            class="terrain-ridge terrain-ridge-near"
+            fill="url(#terrain-near-fill)"
+            d="M0 436 78 350 139 420 216 316 292 430 354 374 425 462 492 406 558 478 620 438 680 476V520H0Z"
+          />
+
           <g class="terrain-mesh terrain-mesh-far">
-            <path d="M0 322 48 286 82 302 126 248 159 270 190 226 232 275 276 246 324 300 371 268 421 318 471 286 525 342 582 315 680 370"/>
-            <path d="M0 351 77 333 145 314 214 307 286 323 356 328 431 346 505 355 586 377 680 397"/>
+            <path
+              d="M0 322 48 286 82 302 126 248 159 270 190 226 232 275 276 246 324 300 371 268 421 318 471 286 525 342 582 315 680 370"
+            />
+
+            <path
+              d="M0 351 77 333 145 314 214 307 286 323 356 328 431 346 505 355 586 377 680 397"
+            />
           </g>
+
           <g class="terrain-mesh terrain-mesh-near">
-            <path d="M0 374 66 292 112 340 169 254 224 342 272 292 327 368 384 314 441 391 505 346 565 411 622 376 680 420M0 436 78 350 139 420 216 316 292 430 354 374 425 462 492 406 558 478 620 438 680 476M0 488 72 430 146 469 226 406 310 480 391 438 468 504 548 470 620 510"/>
-            <path d="M66 292 78 350 72 430 0 488M112 340 139 420 146 469 72 430M169 254 216 316 224 342 226 406 292 430 310 480M272 292 354 374 327 368 391 438 425 462 468 504M384 314 492 406 441 391 548 470 558 478 620 510M505 346 620 438 565 411 680 476"/>
+            <path
+              d="M0 374 66 292 112 340 169 254 224 342 272 292 327 368 384 314 441 391 505 346 565 411 622 376 680 420M0 436 78 350 139 420 216 316 292 430 354 374 425 462 492 406 558 478 620 438 680 476M0 488 72 430 146 469 226 406 310 480 391 438 468 504 548 470 620 510"
+            />
+
+            <path
+              d="M66 292 78 350 72 430 0 488M112 340 139 420 146 469 72 430M169 254 216 316 224 342 226 406 292 430 310 480M272 292 354 374 327 368 391 438 425 462 468 504M384 314 492 406 441 391 548 470 558 478 620 510M505 346 620 438 565 411 680 476"
+            />
           </g>
-          <path class="terrain-road-surface" transform="translate(-70)" fill="url(#terrain-trail)" d="M84 247C109 270 122 284 98 303 70 324 84 338 143 352 207 368 157 394 98 414 51 431 20 450 0 469V490C29 465 64 447 111 429 181 403 235 369 150 345 103 332 92 323 112 307 141 283 110 258 87 244Z"/>
-          <path class="terrain-trail-glow" transform="translate(-70)" d="M85 247C111 271 124 285 103 304 75 328 89 339 146 353 213 370 161 398 102 418 54 435 21 456 0 480"/>
-          <path class="terrain-trail" transform="translate(-70)" d="M85 247C111 271 124 285 103 304 75 328 89 339 146 353 213 370 161 398 102 418 54 435 21 456 0 480"/>
+
+          <path
+            class="terrain-road-surface"
+            transform="translate(-70)"
+            fill="url(#terrain-trail)"
+            d="M84 247C109 270 122 284 98 303 70 324 84 338 143 352 207 368 157 394 98 414 51 431 20 450 0 469V490C29 465 64 447 111 429 181 403 235 369 150 345 103 332 92 323 112 307 141 283 110 258 87 244Z"
+          />
+
+          <path
+            class="terrain-trail-glow"
+            transform="translate(-70)"
+            d="M85 247C111 271 124 285 103 304 75 328 89 339 146 353 213 370 161 398 102 418 54 435 21 456 0 480"
+          />
+
+          <path
+            class="terrain-trail"
+            transform="translate(-70)"
+            d="M85 247C111 271 124 285 103 304 75 328 89 339 146 353 213 370 161 398 102 418 54 435 21 456 0 480"
+          />
         </svg>
+
         <div class="hero-primary">
           <div class="hero-copy">
             <p class="small-title">APPS • SOFTWARE • CREATIONS</p>
-            <h1><span>Ideedest</span> <span class="hero-title-accent">väärtuseks</span></h1>
-            <p class="intro">
-              
+
+            <h1>
+              <span>Ideedest</span>
+              <span class="hero-title-accent">väärtuseks</span>
+            </h1>
+
+            <p class="intro"></p>
+
+            <p class="hero-tagline">
+              VÄIKSED IDEED. SUURED VÕIMALUSED.
             </p>
-            <p class="hero-tagline">VÄIKSED IDEED. SUURED VÕIMALUSED.</p>
           </div>
-          <a class="button hero-project-cta" href="#projektid">Vaata projekte <span aria-hidden="true">→</span></a>
+
+          <a
+            class="button hero-project-cta"
+            href="#projektid"
+          >
+            Vaata projekte
+            <span aria-hidden="true">→</span>
+          </a>
         </div>
-        <aside class="idea-cta" aria-labelledby="idea-heading">
-            <div>
-              <h2 id="idea-heading"><span aria-hidden="true">💡</span> Sul on idee? Anna mulle märku.</h2>
-              <p>Kui sul on idee mingiks äpiks, veebileheks või millekski veidi muuks asjaks, kirjuta mulle. Ka poolikust ideest võib midagi head saada.</p>
-            </div>
-            <a class="idea-cta-link" href="#contact">VÕTA ÜHENDUST →</a>
-          </aside>
-        <div class="hero-micro-label" aria-hidden="true">IDEAS<span>&gt; CODE</span><span>&gt; PRODUCTS</span><span>&gt; IMPACT</span></div>
-        <svg class="hero-energy" viewBox="0 0 1200 720" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-          <path class="energy-orange" d="M430 686H354L278 620H260V474" />
-          <path class="energy-cyan" d="M430 698H330L258 638" />
-          <path class="energy-green" d="M718 686H866L1038 600V440" />
-          <circle class="energy-node energy-node-left" cx="260" cy="474" r="3" />
-          <circle class="energy-node energy-node-right" cx="1038" cy="440" r="3" />
+
+        <aside
+          class="idea-cta"
+          aria-labelledby="idea-heading"
+        >
+          <div>
+            <h2 id="idea-heading">
+              <span aria-hidden="true">💡</span>
+              Sul on idee? Anna mulle märku.
+            </h2>
+
+            <p>
+              Kui sul on idee mingiks äpiks, veebileheks või millekski
+              veidi muuks asjaks, kirjuta mulle. Ka poolikust ideest võib
+              midagi head saada.
+            </p>
+          </div>
+
+          <a
+            class="idea-cta-link"
+            href="#contact"
+          >
+            VÕTA ÜHENDUST →
+          </a>
+        </aside>
+
+        <div
+          class="hero-micro-label"
+          aria-hidden="true"
+        >
+          IDEAS
+          <span>&gt; CODE</span>
+          <span>&gt; PRODUCTS</span>
+          <span>&gt; IMPACT</span>
+        </div>
+
+        <svg
+          class="hero-energy"
+          viewBox="0 0 1200 720"
+          preserveAspectRatio="none"
+          aria-hidden="true"
+          focusable="false"
+        >
+          <path
+            class="energy-orange"
+            d="M430 686H354L278 620H260V474"
+          />
+
+          <path
+            class="energy-cyan"
+            d="M430 698H330L258 638"
+          />
+
+          <path
+            class="energy-green"
+            d="M718 686H866L1038 600V440"
+          />
+
+          <circle
+            class="energy-node energy-node-left"
+            cx="260"
+            cy="474"
+            r="3"
+          />
+
+          <circle
+            class="energy-node energy-node-right"
+            cx="1038"
+            cy="440"
+            r="3"
+          />
         </svg>
-        <span class="hero-flow-label" aria-hidden="true">IDEAS FLOW HERE</span>
+
+        <span
+          class="hero-flow-label"
+          aria-hidden="true"
+        >
+          IDEAS FLOW HERE
+        </span>
       </section>
 
-
-      <section id="projektid" class="section system-panel">
+      <section
+        id="projektid"
+        class="section system-panel"
+      >
         <div class="section-heading">
           <span class="section-label">PROJEKTID</span>
           <h2>Millega ma tegelen?</h2>
         </div>
-        <div id="project-grid" class="project-grid"></div>
+
+        <div
+          id="project-grid"
+          class="project-grid"
+        ></div>
+
         <noscript>
-          <p><a class="project-link" href="quit30.html">QUIT30 — Vaata projekti →</a></p>
-          <p><a class="project-link" href="steady-hand.html">STEADY HAND — Vaata projekti →</a></p>
-          <p>PROJECT_03 — KILBIHALDUS — TULEKUL</p>
-          <p><a class="project-secret-link" href="https://poksiklubi.pages.dev" target="_blank" rel="noopener noreferrer">PROJECT_04</a> — ELVA POKSIKLUBI</p>
+          <p>
+            <a
+              class="project-link"
+              href="quit30.html"
+            >
+              QUIT30 — Vaata projekti →
+            </a>
+          </p>
+
+          <p>
+            <a
+              class="project-link"
+              href="steady-hand.html"
+            >
+              STEADY HAND — Vaata projekti →
+            </a>
+          </p>
+
+          <p>
+            PROJECT_03 — KILBIHALDUS — TULEKUL
+          </p>
+
+          <p>
+            <a
+              class="project-secret-link"
+              href="https://poksiklubi.pages.dev"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              PROJECT_04
+            </a>
+            — ELVA POKSIKLUBI
+          </p>
         </noscript>
       </section>
 
-      <section class="see-also" aria-labelledby="hessy-heading">
+      <section
+        class="see-also"
+        aria-labelledby="hessy-heading"
+      >
         <div class="see-also-copy">
-          <p class="section-label">VAATA veel LISAKS</p>
-          <h2 id="hessy-heading"><span class="hessy-brand">HESSY</span> <span class="hessy-text">käsitöötooted</span></h2>
-          <p class="see-also-description">Padjad, käsitöö ning muud huvitavad tooted.</p>
-          <p class="see-also-prompt">Vaata Facebookis <span class="see-also-direction" aria-hidden="true"></span></p>
+          <p class="section-label">
+            VAATA veel LISAKS
+          </p>
+
+          <h2 id="hessy-heading">
+            <span class="hessy-brand">HESSY</span>
+            <span class="hessy-text">käsitöötooted</span>
+          </h2>
+
+          <p class="see-also-description">
+            Padjad, käsitöö ning muud huvitavad tooted.
+          </p>
+
+          <p class="see-also-prompt">
+            Vaata Facebookis
+            <span
+              class="see-also-direction"
+              aria-hidden="true"
+            ></span>
+          </p>
         </div>
-        <a class="see-also-logo" href="https://www.facebook.com/share/17jCv7hCRV/" target="_blank" rel="noopener noreferrer" aria-label="HESSY käsitöötooted Facebookis (avaneb uues tabis)">
-          <img src="hessy-handmade-logo.jpg" alt="HESSY käsitöötoodete logo" loading="lazy" decoding="async">
+
+        <a
+          class="see-also-logo"
+          href="https://www.facebook.com/share/17jCv7hCRV/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="HESSY käsitöötooted Facebookis (avaneb uues tabis)"
+        >
+          <img
+            src="hessy-handmade-logo.jpg"
+            alt="HESSY käsitöötoodete logo"
+            loading="lazy"
+            decoding="async"
+          >
         </a>
       </section>
 
-      <section id="contact" class="section system-panel">
+      <section
+        id="contact"
+        class="section system-panel"
+      >
         <p class="section-label">KONTAKT</p>
+
         <h2>Võta ühendust</h2>
-        <p class="text">Kas sul on idee, küsimus või tagasiside? Kirjuta mulle.</p>
+
+        <p class="text">
+          Kas sul on idee, küsimus või tagasiside? Kirjuta mulle.
+        </p>
+
         <br>
-        <form id="contact-form" class="contact-form" method="post" aria-describedby="contact-note">
+
+        <form
+          id="contact-form"
+          class="contact-form"
+          method="post"
+          aria-describedby="contact-note"
+        >
           <div class="contact-field">
-            <label for="contact-name">Nimi</label>
-            <input id="contact-name" aria-describedby="contact-name-error" name="name" type="text" autocomplete="name" maxlength="100" required>
-            <p id="contact-name-error" class="field-error"></p>
+            <label for="contact-name">
+              Nimi
+            </label>
+
+            <input
+              id="contact-name"
+              aria-describedby="contact-name-error"
+              name="name"
+              type="text"
+              autocomplete="name"
+              maxlength="100"
+              required
+            >
+
+            <p
+              id="contact-name-error"
+              class="field-error"
+            ></p>
           </div>
+
           <div class="contact-field">
-            <label for="contact-email">E-post</label>
-            <input id="contact-email" aria-describedby="contact-email-error" name="email" type="email" autocomplete="email" maxlength="254" required>
-            <p id="contact-email-error" class="field-error"></p>
+            <label for="contact-email">
+              E-post
+            </label>
+
+            <input
+              id="contact-email"
+              aria-describedby="contact-email-error"
+              name="email"
+              type="email"
+              autocomplete="email"
+              maxlength="254"
+              required
+            >
+
+            <p
+              id="contact-email-error"
+              class="field-error"
+            ></p>
           </div>
+
           <div class="contact-field">
-            <label for="contact-message">Sõnum</label>
-            <textarea id="contact-message" aria-describedby="contact-message-error" name="message" rows="6" maxlength="5000" required></textarea>
-            <p id="contact-message-error" class="field-error"></p>
+            <label for="contact-message">
+              Sõnum
+            </label>
+
+            <textarea
+              id="contact-message"
+              aria-describedby="contact-message-error"
+              name="message"
+              rows="6"
+              maxlength="5000"
+              required
+            ></textarea>
+
+            <p
+              id="contact-message-error"
+              class="field-error"
+            ></p>
           </div>
-          <p id="contact-note" class="contact-note">Vastus 3 tööpäeva jooksul.</p>
-          <button class="btn contact-submit" type="submit" disabled>Saada</button>
-          <p id="contact-status" class="contact-note" role="status" aria-live="polite"></p>
-          <noscript><p class="contact-note">Vormi kasutamiseks luba JavaScript.</p></noscript>
+
+          <p
+            id="contact-note"
+            class="contact-note"
+          >
+            Vastus 3 tööpäeva jooksul.
+          </p>
+
+          <button
+            class="btn contact-submit"
+            type="submit"
+            disabled
+          >
+            Saada
+          </button>
+
+          <p
+            id="contact-status"
+            class="contact-note"
+            role="status"
+            aria-live="polite"
+          ></p>
+
+          <noscript>
+            <p class="contact-note">
+              Vormi kasutamiseks luba JavaScript.
+            </p>
+          </noscript>
         </form>
       </section>
 
-      <section id="devilaatorist" class="devilaator-about system-panel" aria-labelledby="devilaator-about-heading">
-        <h2 id="devilaator-about-heading" class="section-label">DEVILAATORIST</h2>
+      <section
+        id="devilaatorist"
+        class="devilaator-about system-panel"
+        aria-labelledby="devilaator-about-heading"
+      >
+        <h2
+          id="devilaator-about-heading"
+          class="section-label"
+        >
+          DEVILAATORIST
+        </h2>
+
         <p>Lisainfo ⬇⬇⬇</p>
 
-        <button type="button" id="devilaatoristLink" class="devilaatorist-link">
+        <button
+          type="button"
+          id="devilaatoristLink"
+          class="devilaatorist-link"
+        >
           Vaata lähemalt
         </button>
 
-        <div class="devilaator-socials">
-        </div>
+        <div class="devilaator-socials"></div>
       </section>
-
     </main>
 
     <footer class="system-panel">
-      <a class="logo" href="#home">DEVILAATOR</a>
+      <a
+        class="logo"
+        href="#home"
+      >
+        DEVILAATOR
+      </a>
+
       <span>© 2026 DEVILAATOR</span>
+
       <nav aria-label="Jaluse lingid">
-        <a href="https://github.com/devilaator">GitHub</a>
-        <a href="/privacy.html">Privacy</a>
-        <a href="/index.html#contact">Kontakt</a>
+        <a href="https://github.com/devilaator">
+          GitHub
+        </a>
+
+        <a href="/privacy.html">
+          Privacy
+        </a>
+
+        <a href="/index.html#contact">
+          Kontakt
+        </a>
       </nav>
     </footer>
 
-  </nav>
-</footer>
+    <div
+      class="dev-error"
+      id="devError"
+      aria-hidden="true"
+    >
+      <div class="dev-error-box">
+        <div class="dev-error-title">
+          ERROR 404
+        </div>
 
-<div class="dev-error" id="devError" aria-hidden="true">
-  <div class="dev-error-box">
-    <div class="dev-error-title">ERROR 404</div>
+        <div class="dev-error-text">
+          Ära vajuta igale kutsuvalt suvalisele lingile!
+        </div>
 
-    <div class="dev-error-text">
-      Ära vajuta igale kutsuvalt suvalisele lingile!  
+        <button
+          type="button"
+          id="devErrorClose"
+        >
+          OK
+        </button>
+      </div>
     </div>
 
-    <button type="button" id="devErrorClose">OK</button>
-  </div>
-</div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+      defer
+    ></script>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+    <script
+      src="/js/projects.js?v=8"
+      defer
+    ></script>
 
+    <script
+      src="/js/steady-hand-eyes.js?v=2"
+      defer
+    ></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
-    <script src="/js/projects.js?v=8" defer></script>
-    <script src="/js/steady-hand-eyes.js?v=2" defer></script>
-    <script src="/js/main.js?v=20261003-mobile-header-2" defer></script>
+    <script
+      src="/js/main.js?v=20261003-mobile-header-2"
+      defer
+    ></script>
   </body>
 </html>

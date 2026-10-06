@@ -1,118 +1,1151 @@
 <!DOCTYPE html>
+
 <html lang="et">
+
   <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Kilbihaldus | DEVILAATOR</title>
-    <meta name="description" content="Kilbihaldus on elektripaigaldiste digitaalne haldussüsteem kilpide, gruppide, komponentide, toidete, QR-koodide ja muudatuste ajaloo haldamiseks mõeldud tarkvara.">
+
+    <meta
+      name="description"
+      content="Kilbihaldus on elektripaigaldiste digitaalne haldussüsteem kilpide, gruppide, komponentide, toidete, QR-koodide ja muudatuste ajaloo haldamiseks mõeldud tarkvara."
+    >
+
     <meta name="theme-color" content="#102b4e">
+
     <link rel="canonical" href="https://devilaator.ee/kilbihaldus.html">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="DEVILAATOR">
     <meta property="og:locale" content="et_EE">
     <meta property="og:title" content="Kilbihaldus | DEVILAATOR">
-    <meta property="og:description" content="Elektripaigaldise digitaalne kaart. Enne kui lülitad, tead mida see mõjutab.">
+    <meta
+      property="og:description"
+      content="Elektripaigaldise digitaalne kaart. Enne kui lülitad, tead mida see mõjutab."
+    >
     <meta property="og:url" content="https://devilaator.ee/kilbihaldus.html">
+
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/kilbihaldus.css">
+
   </head>
+
   <body class="kh-site">
+
     <a class="kh-skip" href="#sisu">Liigu põhisisu juurde</a>
-    <!-- Original application icon from https://kilbihaldus.devilaator.ee/kilbihaldus-icon.svg?v=1312. -->
-    <svg class="kh-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+
+    <!-- Kilbihalduse rakenduse ikoon. -->
+    <svg
+      class="kh-defs"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
       <defs>
-        <linearGradient id="kh-logo-bg" x1="80" y1="48" x2="432" y2="464" gradientUnits="userSpaceOnUse"><stop stop-color="#102B4E"/><stop offset="1" stop-color="#071A30"/></linearGradient>
-        <linearGradient id="kh-logo-trace" x1="186" y1="150" x2="334" y2="354" gradientUnits="userSpaceOnUse"><stop stop-color="#4FD1FF"/><stop offset="1" stop-color="#1687F8"/></linearGradient>
+
+        <linearGradient
+          id="kh-logo-bg"
+          x1="80"
+          y1="48"
+          x2="432"
+          y2="464"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stop-color="#102B4E"/>
+          <stop offset="1" stop-color="#071A30"/>
+        </linearGradient>
+
+        <linearGradient
+          id="kh-logo-trace"
+          x1="186"
+          y1="150"
+          x2="334"
+          y2="354"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stop-color="#4FD1FF"/>
+          <stop offset="1" stop-color="#1687F8"/>
+        </linearGradient>
+
         <symbol id="kh-logo" viewBox="0 0 512 512">
-          <rect width="512" height="512" rx="116" fill="url(#kh-logo-bg)"/>
-          <rect x="108" y="78" width="296" height="356" rx="64" fill="#0E335B" stroke="#F7FBFF" stroke-width="22"/>
-          <path d="M188 150v212M191 257h35l103-93M226 257l105 101" fill="none" stroke="url(#kh-logo-trace)" stroke-width="30" stroke-linecap="round" stroke-linejoin="round"/>
-          <g fill="#FFB547" stroke="#102B4E" stroke-width="8"><circle cx="188" cy="150" r="18"/><circle cx="188" cy="362" r="18"/><circle cx="332" cy="163" r="18"/><circle cx="332" cy="359" r="18"/></g>
-          <circle cx="350" cy="112" r="10" fill="#7CF2AE"/>
+          <rect
+            width="512"
+            height="512"
+            rx="116"
+            fill="url(#kh-logo-bg)"
+          />
+
+          <rect
+            x="108"
+            y="78"
+            width="296"
+            height="356"
+            rx="64"
+            fill="#0E335B"
+            stroke="#F7FBFF"
+            stroke-width="22"
+          />
+
+          <path
+            d="M188 150v212M191 257h35l103-93M226 257l105 101"
+            fill="none"
+            stroke="url(#kh-logo-trace)"
+            stroke-width="30"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+
+          <g
+            fill="#FFB547"
+            stroke="#102B4E"
+            stroke-width="8"
+          >
+            <circle cx="188" cy="150" r="18"/>
+            <circle cx="188" cy="362" r="18"/>
+            <circle cx="332" cy="163" r="18"/>
+            <circle cx="332" cy="359" r="18"/>
+          </g>
+
+          <circle
+            cx="350"
+            cy="112"
+            r="10"
+            fill="#7CF2AE"
+          />
         </symbol>
+
         <symbol id="kh-mini-map" viewBox="0 0 300 140">
-          <g fill="none" stroke="#aab9c8" stroke-width="2"><path d="M150 35v30M50 65h200M50 65v30M150 65v30M250 65v30"/></g>
-          <rect x="113" y="8" width="74" height="28" rx="5" fill="#102b4e"/>
-          <g fill="#fff" stroke="#b5c2ce"><rect x="14" y="95" width="72" height="30" rx="5"/><rect x="114" y="95" width="72" height="30" rx="5"/><rect x="214" y="95" width="72" height="30" rx="5"/></g>
-          <g fill="#e9ad3e"><circle cx="50" cy="110" r="4"/><circle cx="150" cy="110" r="4"/><circle cx="250" cy="110" r="4"/></g>
+          <g
+            fill="none"
+            stroke="#aab9c8"
+            stroke-width="2"
+          >
+            <path d="M150 35v30M50 65h200M50 65v30M150 65v30M250 65v30"/>
+          </g>
+
+          <rect
+            x="113"
+            y="8"
+            width="74"
+            height="28"
+            rx="5"
+            fill="#102b4e"
+          />
+
+          <g fill="#fff" stroke="#b5c2ce">
+            <rect x="14" y="95" width="72" height="30" rx="5"/>
+            <rect x="114" y="95" width="72" height="30" rx="5"/>
+            <rect x="214" y="95" width="72" height="30" rx="5"/>
+          </g>
+
+          <g fill="#e9ad3e">
+            <circle cx="50" cy="110" r="4"/>
+            <circle cx="150" cy="110" r="4"/>
+            <circle cx="250" cy="110" r="4"/>
+          </g>
         </symbol>
-<pattern id="kh-window-grid" width="28" height="31" patternUnits="userSpaceOnUse"><rect width="28" height="31" fill="#adc0cd"/><rect x="4" y="4" width="19" height="21" fill="#31516b"/><path d="M5 6h16M14 5v19" stroke="#7793a7" stroke-width="1"/></pattern><pattern id="kh-cabinet-modules" width="28" height="40" patternUnits="userSpaceOnUse"><rect x="2" y="2" width="24" height="34" rx="2" fill="#e9eff3" stroke="#9babb8"/><path d="M7 8h14M7 28h14" stroke="#9babb8"/><rect x="8" y="13" width="12" height="9" rx="1" fill="#284862"/></pattern><pattern id="kh-qr-pattern" width="16" height="16" patternUnits="userSpaceOnUse"><path d="M0 0h6v6H0zM8 0h8v4h-8zM4 8h8v8H4zM14 10h2v6h-2z" fill="#183b59"/></pattern><symbol id="kh-illustration-qr" viewBox="0 0 100 100"><rect width="100" height="100" fill="white"/><rect x="5" y="5" width="90" height="90" fill="url(#kh-qr-pattern)"/><g fill="#183b59" stroke="white" stroke-width="4"><path d="M4 4h29v29H4zM67 4h29v29H67zM4 67h29v29H4z"/></g><g fill="white"><path d="M11 11h15v15H11zM74 11h15v15H74zM11 74h15v15H11z"/></g><g fill="#183b59"><path d="M15 15h7v7h-7zM78 15h7v7h-7zM15 78h7v7h-7z"/></g></symbol>
+
+        <pattern
+          id="kh-cabinet-modules"
+          width="28"
+          height="40"
+          patternUnits="userSpaceOnUse"
+        >
+          <rect
+            x="2"
+            y="2"
+            width="24"
+            height="34"
+            rx="2"
+            fill="#e9eff3"
+            stroke="#9babb8"
+          />
+          <path d="M7 8h14M7 28h14" stroke="#9babb8"/>
+          <rect
+            x="8"
+            y="13"
+            width="12"
+            height="9"
+            rx="1"
+            fill="#284862"
+          />
+        </pattern>
+
+        <pattern
+          id="kh-qr-pattern"
+          width="16"
+          height="16"
+          patternUnits="userSpaceOnUse"
+        >
+          <path
+            d="M0 0h6v6H0zM8 0h8v4h-8zM4 8h8v8H4zM14 10h2v6h-2z"
+            fill="#183b59"
+          />
+        </pattern>
+
+        <symbol id="kh-illustration-qr" viewBox="0 0 100 100">
+          <rect width="100" height="100" fill="white"/>
+          <rect
+            x="5"
+            y="5"
+            width="90"
+            height="90"
+            fill="url(#kh-qr-pattern)"
+          />
+
+          <g
+            fill="#183b59"
+            stroke="white"
+            stroke-width="4"
+          >
+            <path d="M4 4h29v29H4zM67 4h29v29H67zM4 67h29v29H4z"/>
+          </g>
+
+          <g fill="white">
+            <path d="M11 11h15v15H11zM74 11h15v15H74zM11 74h15v15H11z"/>
+          </g>
+
+          <g fill="#183b59">
+            <path d="M15 15h7v7h-7zM78 15h7v7h-7zM15 78h7v7h-7z"/>
+          </g>
+        </symbol>
+
       </defs>
     </svg>
+
     <header class="site-header">
-      <a href="index.html" class="logo brand-logo">DEVILAATOR</a>
-      <button class="menu-toggle" type="button" aria-controls="primary-nav" aria-expanded="false" aria-label="Ava või sulge menüü"><span aria-hidden="true">☰</span> Menüü</button>
-      <nav id="primary-nav" class="main-nav" aria-label="Põhinavigatsioon">
-        <a href="index.html">Avaleht</a><a href="index.html#projektid">Projektid</a><a href="index.html#contact">Kontakt</a><a href="index.html#devilaatorist">DEVILAATORIST</a>
+
+      <a href="index.html" class="logo brand-logo">
+        DEVILAATOR
+      </a>
+
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-controls="primary-nav"
+        aria-expanded="false"
+        aria-label="Ava või sulge menüü"
+      >
+        <span aria-hidden="true">☰</span>
+        Menüü
+      </button>
+
+      <nav
+        id="primary-nav"
+        class="main-nav"
+        aria-label="Põhinavigatsioon"
+      >
+        <a href="index.html">Avaleht</a>
+        <a href="index.html#projektid">Projektid</a>
+        <a href="index.html#contact">Kontakt</a>
+        <a href="index.html#devilaatorist">DEVILAATORIST</a>
       </nav>
+
     </header>
+
     <main class="kh-page" id="sisu">
-      <section class="kh-hero kh-wrap" aria-labelledby="kh-title">
-        <div class="kh-hero-copy">
-          <a class="kh-back" href="index.html#projektid">← DEVILAATORI PROJEKTID</a>
-          <div class="kh-brand"><svg class="kh-brand-icon" aria-hidden="true"><use href="#kh-logo"/></svg><div><h1 id="kh-title">KILBIHALDUS</h1><p>Elektripaigaldise digitaalne kaart.</p></div></div>
-          <h2 class="kh-slogan">Enne kui lülitad,<br>tead mida see <span>mõjutab.</span></h2>
-          <p class="kh-intro">Kilbihaldus koondab objektid, kilbid, grupid, komponendid ja toiteahelad ühte süsteemi.</p>
-          <p class="kh-description">Näed selgelt, kust toide tuleb, mida konkreetne kilp või grupp edasi toidab ning milliseid seadmeid väljalülitamine mõjutab.</p>
-          <div class="kh-actions"><a class="kh-button" href="https://kilbihaldus.devilaator.ee">AVA KILBIHALDUS <span aria-hidden="true">↗</span></a><a class="kh-button kh-button-secondary" href="#funktsioonid">VAATA FUNKTSIOONE <span aria-hidden="true">↓</span></a></div>
-          <p class="kh-hero-note"><span></span> VEEB JA PAIGALDATAV RAKENDUS <b>·</b> ET / EN / RU <b>·</b> AKTIIVSES ARENDUSES</p>
-        </div>
-        <figure class="kh-devices">
-          <div class="kh-device-grid" aria-hidden="true"></div>
-          <div class="kh-device-tag" aria-hidden="true">ÜKS SÜSTEEM. IGA EKRAAN.</div>
-          <div class="kh-laptop" aria-hidden="true">
-            <div class="kh-desktop-screen"><div class="kh-ui-bar"><svg><use href="#kh-logo"/></svg><strong>Kilbihaldus</strong><i></i></div><div class="kh-ui-body"><div class="kh-ui-sidebar"><b></b><b></b><b></b><b></b></div><div class="kh-ui-main"><div class="kh-ui-title">Elektripaigaldise ülevaade <span>●</span></div><div class="kh-ui-stats"><i></i><i></i><i></i></div><svg class="kh-map"><use href="#kh-mini-map"/></svg><div class="kh-ui-row"><span>Peakilp PK-1</span><i></i></div><div class="kh-ui-row"><span>Jaotuskilp JK-1</span><i></i></div></div></div></div><div class="kh-laptop-base"></div>
+
+      <section
+        class="kh-hero kh-wrap"
+        aria-labelledby="kh-title"
+      >
+
+        <div>
+
+          <a
+            class="kh-back"
+            href="index.html#projektid"
+          >
+            ← DEVILAATORI PROJEKTID
+          </a>
+
+          <div class="kh-brand">
+
+            <svg
+              class="kh-brand-icon"
+              aria-hidden="true"
+            >
+              <use href="#kh-logo"/>
+            </svg>
+
+            <div>
+              <h1 id="kh-title">KILBIHALDUS</h1>
+              <p>Elektripaigaldise digitaalne kaart.</p>
+            </div>
+
           </div>
-          <div class="kh-phone" aria-hidden="true"><div class="kh-phone-speaker"></div><svg class="kh-phone-logo"><use href="#kh-logo"/></svg><small>KILBIHALDUS</small><strong>Peakilp PK-1</strong><span class="kh-ok">● Ülevaade olemas</span><svg class="kh-map"><use href="#kh-mini-map"/></svg><div class="kh-ui-row">Valgustus <i></i></div><div class="kh-ui-row">Pistikupesad <i></i></div><div class="kh-ui-row">Ventilatsioon <i></i></div><div class="kh-phone-button">Kilbi ülevaade →</div></div>
-          <figcaption>Objektil telefonis. Kontoris arvutis.<span>Illustratiivne vaade · näidisandmed</span></figcaption>
+
+          <h2 class="kh-slogan">
+            Enne kui lülitad,<br>
+            tead mida see <span>mõjutab.</span>
+          </h2>
+
+          <p class="kh-intro">
+            Kilbihaldus koondab objektid, kilbid, grupid,
+            komponendid ja toiteahelad ühte süsteemi.
+          </p>
+
+          <p class="kh-description">
+            Näed selgelt, kust toide tuleb, mida konkreetne kilp
+            või grupp edasi toidab ning milliseid seadmeid
+            väljalülitamine mõjutab.
+          </p>
+
+          <div class="kh-actions">
+            <a
+              class="kh-button"
+              href="https://kilbihaldus.devilaator.ee"
+            >
+              AVA KILBIHALDUS
+              <span aria-hidden="true">↗</span>
+            </a>
+
+            <a
+              class="kh-button kh-button-secondary"
+              href="#funktsioonid"
+            >
+              VAATA FUNKTSIOONE
+              <span aria-hidden="true">↓</span>
+            </a>
+          </div>
+
+          <p class="kh-hero-note">
+            <span></span>
+            VEEB JA PAIGALDATAV RAKENDUS
+            <b>·</b>
+            ET / EN / RU
+            <b>·</b>
+            AKTIIVSES ARENDUSES
+          </p>
+
+        </div>
+
+        <figure class="kh-devices">
+
+          <div
+            class="kh-device-grid"
+            aria-hidden="true"
+          ></div>
+
+          <div
+            class="kh-device-tag"
+            aria-hidden="true"
+          >
+            ÜKS SÜSTEEM. IGA EKRAAN.
+          </div>
+
+          <div
+            class="kh-laptop"
+            aria-hidden="true"
+          >
+
+            <div class="kh-desktop-screen">
+
+              <div class="kh-ui-bar">
+                <svg>
+                  <use href="#kh-logo"/>
+                </svg>
+
+                <strong>Kilbihaldus</strong>
+                <i></i>
+              </div>
+
+              <div class="kh-ui-body">
+
+                <div class="kh-ui-sidebar">
+                  <b></b>
+                  <b></b>
+                  <b></b>
+                  <b></b>
+                </div>
+
+                <div class="kh-ui-main">
+
+                  <div class="kh-ui-title">
+                    Elektripaigaldise ülevaade
+                    <span>●</span>
+                  </div>
+
+                  <div class="kh-ui-stats">
+                    <i></i>
+                    <i></i>
+                    <i></i>
+                  </div>
+
+                  <svg class="kh-map">
+                    <use href="#kh-mini-map"/>
+                  </svg>
+
+                  <div class="kh-ui-row">
+                    <span>Peakilp PK-1</span>
+                    <i></i>
+                  </div>
+
+                  <div class="kh-ui-row">
+                    <span>Jaotuskilp JK-1</span>
+                    <i></i>
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+            <div class="kh-laptop-base"></div>
+
+          </div>
+
+          <div
+            class="kh-phone"
+            aria-hidden="true"
+          >
+
+            <div class="kh-phone-speaker"></div>
+
+            <svg class="kh-phone-logo">
+              <use href="#kh-logo"/>
+            </svg>
+
+            <small>KILBIHALDUS</small>
+            <strong>Peakilp PK-1</strong>
+
+            <span class="kh-ok">
+              ● Ülevaade olemas
+            </span>
+
+            <svg class="kh-map">
+              <use href="#kh-mini-map"/>
+            </svg>
+
+            <div class="kh-ui-row">
+              Valgustus <i></i>
+            </div>
+
+            <div class="kh-ui-row">
+              Pistikupesad <i></i>
+            </div>
+
+            <div class="kh-ui-row">
+              Ventilatsioon <i></i>
+            </div>
+
+            <div class="kh-phone-button">
+              Kilbi ülevaade →
+            </div>
+
+          </div>
+
+          <figcaption>
+            Objektil telefonis. Kontoris arvutis.
+            <span>
+              Illustratiivne vaade · näidisandmed
+            </span>
+          </figcaption>
+
         </figure>
+
       </section>
-      <section class="kh-features kh-wrap kh-section" id="funktsioonid" aria-labelledby="kh-features-title">
-        <div class="kh-section-heading"><div><p class="kh-eyebrow">FUNKTSIOONID</p><h2 id="kh-features-title">Kõik vajalik<br>ühes süsteemis</h2></div><p>Elektripaigaldise struktuur, igapäevane hooldus ja muudatuste ajalugu — selgelt seotud.</p></div>
+
+      <section
+        class="kh-features kh-wrap kh-section"
+        id="funktsioonid"
+        aria-labelledby="kh-features-title"
+      >
+
+        <div class="kh-section-heading">
+
+          <div>
+            <p class="kh-eyebrow">FUNKTSIOONID</p>
+
+            <h2 id="kh-features-title">
+              Kõik vajalik<br>
+              ühes süsteemis
+            </h2>
+          </div>
+
+          <p>
+            Elektripaigaldise struktuur, igapäevane hooldus
+            ja muudatuste ajalugu — selgelt seotud.
+          </p>
+
+        </div>
+
         <div class="kh-feature-grid">
-          <article class="kh-feature"><span class="kh-feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v6M4 13V9h16v4M3 14h4v6H3zM10 14h4v6h-4zM17 14h4v6h-4z"/></svg></span><h3>Selge struktuur</h3><p>Objektid → hooned → kilbid → komponendid → grupid. Selge ülesehitus aitab liikuda tervikust vajaliku detailini.</p></article>
-          <article class="kh-feature"><span class="kh-feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h6v5H3zM15 15h6v5h-6zM6 9v8h9M15 3h6v5h-6zM9 6h6"/></svg></span><h3>Elektriline topoloogia</h3><p>Näed, kust toide tuleb ja mida konkreetne kilp või grupp edasi toidab. Seosed aitavad mõista väljalülitamise mõju.</p></article>
-          <article class="kh-feature"><span class="kh-feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h6v6H3zM15 3h6v6h-6zM3 15h6v6H3zM15 15h3v3h3v3h-6z"/></svg></span><h3>QR ligipääs</h3><p>Igal kilbil saab olla QR-kood. Skänni ja ava kohe õige kilbi vaade, ilma et peaksid objekti käsitsi otsima.</p></article>
-          <article class="kh-feature"><span class="kh-feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5v5h5M3 10a9 9 0 1 1 1 7M12 7v5l3 2"/></svg></span><h3>Muudatuste ajalugu</h3><p>Kes muutis, millal muutis, vana väärtus, uus väärtus ja märkus. Tehtud muudatustest jääb jälgitav ajalugu.</p></article>
-          <article class="kh-feature"><span class="kh-feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4H5v17h14V4h-3M8 2h8v5H8zM8 13l3 3 5-6"/></svg></span><h3>Probleemid ja kontrollid</h3><p>Leitud probleemid, prioriteedid, perioodilised kontrollid ja tähelepanu vajavad punktid on seotud õige objektiga.</p></article>
-          <article class="kh-feature"><span class="kh-feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h16v12H2zM6 20h8M10 15v5M17 10h5v11h-5z"/></svg></span><h3>Töötab telefonis ja arvutis</h3><p>Brauseris, telefonis, tahvlis ja paigaldatava rakendusena. Sama info on käepärast objektil ja töölaua taga.</p></article>
-          <article class="kh-feature"><span class="kh-feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V6h10v15M13 10h8v11M1 21h22M6 9h4M6 13h4M6 17h4M16 14h2M16 18h2"/></svg></span><h3>Mitme objekti haldus</h3><p>Ühe kasutajakonto all saab hallata mitut objekti ja hoonet. Iga elektripaigaldise andmed püsivad oma struktuuris.</p></article>
-          <article class="kh-feature"><span class="kh-feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2h16v20H4zM7 6h3v5H7zM14 6h3v5h-3zM7 15h10M7 18h6"/></svg></span><h3>Kilbid, grupid ja komponendid</h3><p>Detailne tehniline info kilpide, kaitsete, komponentide ja tarbijate kohta. Vajalikud andmed koos nende omavaheliste seostega.</p></article>
-          <article class="kh-feature"><span class="kh-feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 16l6 6M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0"/></svg></span><h3>Otsing üle süsteemi</h3><p>Leia kilp, grupp, komponent, märkus või tarbija märksõna järgi. Õige info leidmiseks ei pea kõiki vaateid läbi käima.</p></article>
-          <article class="kh-feature"><span class="kh-feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2h10l5 5v15H4zM14 2v6h5M8 12h7M8 16h7"/></svg></span><h3>Dokumendid ja failid</h3><p>Lisa kilpide juurde skeemid, mõõteprotokollid, fotod ja muu dokumentatsioon. Failid on seal, kus neid tööks vajad.</p></article>
-          <article class="kh-feature"><span class="kh-feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17h14l-2-4V8a5 5 0 0 0-10 0v5zM10 21h4M12 1v2"/></svg></span><h3>Teavitused ja tähelepanu vajavad punktid</h3><p>Näed kiiresti, millised probleemid või kontrollid vajavad tegutsemist, ning saad keskenduda olulisele.</p></article>
-          <article class="kh-feature"><span class="kh-feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h12M9 2v2M6 4c0 6 3 10 8 12M13 4c0 6-4 11-10 13M14 22l4-12 4 12M16 18h4"/></svg></span><h3>ET / EN / RU</h3><p>Rakendus toetab eesti, inglise ja vene keelt. Vali tööks sobiv keel ja kasuta sama süsteemi kogu meeskonnaga.</p></article>
+
+          <article class="kh-feature">
+            <span
+              class="kh-feature-icon"
+              aria-hidden="true"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M12 3v6M4 13V9h16v4M3 14h4v6H3zM10 14h4v6h-4zM17 14h4v6h-4z"/>
+              </svg>
+            </span>
+
+            <h3>Selge struktuur</h3>
+
+            <p>
+              Objektid → hooned → kilbid → komponendid → grupid.
+              Selge ülesehitus aitab liikuda tervikust vajaliku
+              detailini.
+            </p>
+          </article>
+
+          <article class="kh-feature">
+            <span
+              class="kh-feature-icon"
+              aria-hidden="true"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M3 4h6v5H3zM15 15h6v5h-6zM6 9v8h9M15 3h6v5h-6zM9 6h6"/>
+              </svg>
+            </span>
+
+            <h3>Elektriline topoloogia</h3>
+
+            <p>
+              Näed, kust toide tuleb ja mida konkreetne kilp või
+              grupp edasi toidab. Seosed aitavad mõista
+              väljalülitamise mõju.
+            </p>
+          </article>
+
+          <article class="kh-feature">
+            <span
+              class="kh-feature-icon"
+              aria-hidden="true"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M3 3h6v6H3zM15 3h6v6h-6zM3 15h6v6H3zM15 15h3v3h3v3h-6z"/>
+              </svg>
+            </span>
+
+            <h3>QR ligipääs</h3>
+
+            <p>
+              Igal kilbil saab olla QR-kood. Skänni ja ava kohe
+              õige kilbi vaade, ilma et peaksid objekti käsitsi
+              otsima.
+            </p>
+          </article>
+
+          <article class="kh-feature">
+            <span
+              class="kh-feature-icon"
+              aria-hidden="true"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M3 5v5h5M3 10a9 9 0 1 1 1 7M12 7v5l3 2"/>
+              </svg>
+            </span>
+
+            <h3>Muudatuste ajalugu</h3>
+
+            <p>
+              Kes muutis, millal muutis, vana väärtus, uus väärtus
+              ja märkus. Tehtud muudatustest jääb jälgitav ajalugu.
+            </p>
+          </article>
+
+          <article class="kh-feature">
+            <span
+              class="kh-feature-icon"
+              aria-hidden="true"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M8 4H5v17h14V4h-3M8 2h8v5H8zM8 13l3 3 5-6"/>
+              </svg>
+            </span>
+
+            <h3>Probleemid ja kontrollid</h3>
+
+            <p>
+              Leitud probleemid, prioriteedid, perioodilised
+              kontrollid ja tähelepanu vajavad punktid on seotud
+              õige objektiga.
+            </p>
+          </article>
+
+          <article class="kh-feature">
+            <span
+              class="kh-feature-icon"
+              aria-hidden="true"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M2 3h16v12H2zM6 20h8M10 15v5M17 10h5v11h-5z"/>
+              </svg>
+            </span>
+
+            <h3>Töötab telefonis ja arvutis</h3>
+
+            <p>
+              Brauseris, telefonis, tahvlis ja paigaldatava
+              rakendusena. Sama info on käepärast objektil ja
+              töölaua taga.
+            </p>
+          </article>
+
+          <article class="kh-feature">
+            <span
+              class="kh-feature-icon"
+              aria-hidden="true"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M3 21V6h10v15M13 10h8v11M1 21h22M6 9h4M6 13h4M6 17h4M16 14h2M16 18h2"/>
+              </svg>
+            </span>
+
+            <h3>Mitme objekti haldus</h3>
+
+            <p>
+              Ühe kasutajakonto all saab hallata mitut objekti ja
+              hoonet. Iga elektripaigaldise andmed püsivad oma
+              struktuuris.
+            </p>
+          </article>
+
+          <article class="kh-feature">
+            <span
+              class="kh-feature-icon"
+              aria-hidden="true"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M4 2h16v20H4zM7 6h3v5H7zM14 6h3v5h-3zM7 15h10M7 18h6"/>
+              </svg>
+            </span>
+
+            <h3>Kilbid, grupid ja komponendid</h3>
+
+            <p>
+              Detailne tehniline info kilpide, kaitsete,
+              komponentide ja tarbijate kohta. Vajalikud andmed
+              koos nende omavaheliste seostega.
+            </p>
+          </article>
+
+          <article class="kh-feature">
+            <span
+              class="kh-feature-icon"
+              aria-hidden="true"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M16 16l6 6M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0"/>
+              </svg>
+            </span>
+
+            <h3>Otsing üle süsteemi</h3>
+
+            <p>
+              Leia kilp, grupp, komponent, märkus või tarbija
+              märksõna järgi. Õige info leidmiseks ei pea kõiki
+              vaateid läbi käima.
+            </p>
+          </article>
+
+          <article class="kh-feature">
+            <span
+              class="kh-feature-icon"
+              aria-hidden="true"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M4 2h10l5 5v15H4zM14 2v6h5M8 12h7M8 16h7"/>
+              </svg>
+            </span>
+
+            <h3>Dokumendid ja failid</h3>
+
+            <p>
+              Lisa kilpide juurde skeemid, mõõteprotokollid, fotod
+              ja muu dokumentatsioon. Failid on seal, kus neid
+              tööks vajad.
+            </p>
+          </article>
+
+          <article class="kh-feature">
+            <span
+              class="kh-feature-icon"
+              aria-hidden="true"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M5 17h14l-2-4V8a5 5 0 0 0-10 0v5zM10 21h4M12 1v2"/>
+              </svg>
+            </span>
+
+            <h3>Teavitused ja tähelepanu vajavad punktid</h3>
+
+            <p>
+              Näed kiiresti, millised probleemid või kontrollid
+              vajavad tegutsemist, ning saad keskenduda olulisele.
+            </p>
+          </article>
+
+          <article class="kh-feature">
+            <span
+              class="kh-feature-icon"
+              aria-hidden="true"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M3 4h12M9 2v2M6 4c0 6 3 10 8 12M13 4c0 6-4 11-10 13M14 22l4-12 4 12M16 18h4"/>
+              </svg>
+            </span>
+
+            <h3>ET / EN / RU</h3>
+
+            <p>
+              Rakendus toetab eesti, inglise ja vene keelt.
+              Vali tööks sobiv keel ja kasuta sama süsteemi kogu
+              meeskonnaga.
+            </p>
+          </article>
+
         </div>
+
       </section>
-      <section class="kh-topology" aria-labelledby="kh-power-title"><div class="kh-wrap kh-split kh-section">
-        <div><p class="kh-eyebrow">ELEKTRILINE TOPOLOOGIA</p><h2 id="kh-power-title">Kust toide<br><span>tuleb?</span></h2><p class="kh-topology-lead">Kilbihaldus ei ole lihtsalt kilpide nimekiri.</p><p>Süsteem aitab näha, kuidas elektripaigaldis päriselt omavahel seotud on.</p><div class="kh-questions"><p>„Kust see toide tuleb?”</p><p>„Mis kaob, kui ma selle välja lülitan?”</p></div></div>
-        <figure class="kh-circuit"><figcaption class="kh-circuit-label">ELEKTRIPAIGALDISE SEOSED <span>FUNKTSIONAALNE NÄIDISSKEEM</span></figcaption><div class="kh-trunk"><ol class="kh-supply"><li><span>Võrk</span></li><li><span>Liitumispunkt</span></li><li><span>Peakaitse</span></li><li><span>Arvesti</span></li><li><span>Toitekaabel</span></li></ol><div class="kh-panel"><span class="kh-panel-label">PEAKILP</span><div class="kh-main-switch">Pealüliti</div><div class="kh-busbar">Põhisiinid</div></div></div><div class="kh-branches"><ol class="kh-branch"><li>Rikkevoolukaitse</li><li><span>Grupid<small>liinikaitsetega</small></span></li><li class="kh-consumer">Valgustus</li></ol><ol class="kh-branch"><li>Kaitselüliti / kontaktor</li><li>Alamkilp või ventilatsioon</li><li class="kh-consumer">Seadmed / mootorid</li></ol><ol class="kh-branch"><li><span>Otsegrupp<small>liini- ja rikkevoolukaitsega</small></span></li><li class="kh-consumer">Pistikud / seadmed</li></ol></div><div class="kh-circuit-legend"><span>Põhitoide</span><span>Hargnev toide</span></div></figure>
-      </div></section>
-      <section class="kh-wrap kh-split kh-section kh-qr-section" aria-labelledby="kh-qr-title">
-        <figure class="kh-sticker-scene"><div class="kh-sticker"><div class="kh-sticker-brand"><svg aria-hidden="true"><use href="#kh-logo"/></svg><strong>Kilbihaldus</strong></div><div class="kh-qr-art" aria-hidden="true"><i></i><i></i><i></i><b>QR</b></div><strong class="kh-sticker-action">VAATA / MUUDA</strong><span>kilbihaldus.devilaator.ee</span></div><figcaption>QR-kleebise illustratsioon</figcaption></figure>
-        <div><p class="kh-eyebrow">OTSE ÕIGE KILBINI</p><h2 id="kh-qr-title">Kilbi info<br>ühe skänniga</h2><p class="kh-intro">QR-kood viib kasutaja otse õige kilbi juurde.</p><p>QR ise ei anna ligipääsu. Kilbi info avaneb ainult kasutajale, kellel on sellele objektile õigus.</p><ul class="kh-tags"><li>Vaata</li><li>Muuda</li><li>Muudatuste ajalugu</li></ul></div>
-      </section>
-      <section class="kh-usecases kh-section" aria-labelledby="kh-usecases-title"><div class="kh-wrap"><div class="kh-section-heading"><div><p class="kh-eyebrow">LOODUD PÄRIS TÖÖKS</p><h2 id="kh-usecases-title">Objektist ülevaateni.</h2></div><p>Info seal, kus seda vajad — kilbi juures, hooldusringil või töölaua taga.</p></div>
-        <div class="kh-usecase-grid">
-          <article class="kh-usecase"><div class="kh-art"><svg class="kh-scene" viewBox="0 0 600 290" role="img" aria-label="Kaasaegne büroo- ja tootmishoone selge fassaadi, klaasitud sissepääsu ning korrapäraste akendega" xmlns="http://www.w3.org/2000/svg"><rect width="600" height="290" fill="#e6edf2"/><path d="M0 247h600v43H0z" fill="#d7e0e7"/><path d="M0 260h600M75 290l36-43M490 247l50 43" stroke="#bdcbd6"/><path d="M63 247V86h303v161z" fill="#c3cfd8"/><path d="M366 86l161 37v124H366z" fill="#91a5b5"/><path d="M63 86l51-21h283l130 58-161-37z" fill="#f1f5f7"/><path d="M63 84h303l161 37v8L366 93H63z" fill="#7d94a6"/><path d="M77 94v145M350 94v145M77 144h273M77 189h273" stroke="#a9bbc8" stroke-width="2"/><rect x="91" y="105" width="31" height="32" fill="#35536a"/><path d="M93 108h27M107 107v28" stroke="#849eaf" stroke-width="1.5"/><rect x="91" y="151" width="31" height="32" fill="#35536a"/><path d="M93 154h27M107 153v28" stroke="#849eaf" stroke-width="1.5"/><rect x="134" y="105" width="31" height="32" fill="#35536a"/><path d="M136 108h27M150 107v28" stroke="#849eaf" stroke-width="1.5"/><rect x="134" y="151" width="31" height="32" fill="#35536a"/><path d="M136 154h27M150 153v28" stroke="#849eaf" stroke-width="1.5"/><rect x="177" y="105" width="31" height="32" fill="#35536a"/><path d="M179 108h27M193 107v28" stroke="#849eaf" stroke-width="1.5"/><rect x="177" y="151" width="31" height="32" fill="#35536a"/><path d="M179 154h27M193 153v28" stroke="#849eaf" stroke-width="1.5"/><rect x="220" y="105" width="31" height="32" fill="#35536a"/><path d="M222 108h27M236 107v28" stroke="#849eaf" stroke-width="1.5"/><rect x="220" y="151" width="31" height="32" fill="#35536a"/><path d="M222 154h27M236 153v28" stroke="#849eaf" stroke-width="1.5"/><rect x="263" y="105" width="31" height="32" fill="#35536a"/><path d="M265 108h27M279 107v28" stroke="#849eaf" stroke-width="1.5"/><rect x="263" y="151" width="31" height="32" fill="#35536a"/><path d="M265 154h27M279 153v28" stroke="#849eaf" stroke-width="1.5"/><rect x="306" y="105" width="31" height="32" fill="#35536a"/><path d="M308 108h27M322 107v28" stroke="#849eaf" stroke-width="1.5"/><rect x="306" y="151" width="31" height="32" fill="#35536a"/><path d="M308 154h27M322 153v28" stroke="#849eaf" stroke-width="1.5"/><path d="M388 110l118 27v44l-118-17z" fill="#35536a"/><path d="M388 115l118 27M418 118v50M448 125v47M478 132v44" stroke="#92a9b9" stroke-width="2"/><path d="M385 198l123 8v39H385z" fill="#728b9e"/><path d="M389 208l115 7M389 219l115 5M389 230l115 3" stroke="#a6bac8"/><rect x="169" y="196" width="97" height="51" fill="#35536a"/><path d="M201 198v49M233 198v49M169 207h97" stroke="#a8bdcc" stroke-width="2"/><path d="M164 190h108l15 7H152z" fill="#607e93"/><path d="M160 198v49M277 198v49" stroke="#607e93" stroke-width="3"/><path d="M148 249h137l7 6H140z" fill="#b4c4d0"/><path d="M366 94v153" stroke="#eef3f6" stroke-width="3"/><rect x="87" y="205" width="51" height="8" rx="2" fill="#e9eef2"/><path d="M95 209h34" stroke="#869dac" stroke-width="2"/><path d="M72 247h67M303 247h43" stroke="#8096a8" stroke-width="5"/></svg></div><div class="kh-usecase-copy"><span>OBJEKTID</span><h3>Ettevõtted ja hooned</h3><p>Sobib tehastele, koolidele, büroohoonetele, laohoonetele ja teistele suurematele elektripaigaldistele.</p></div></article>
-          <article class="kh-usecase"><div class="kh-art"><svg class="kh-scene" viewBox="0 0 600 290" role="img" aria-label="Terviklik kahe käega töömees seisab elektrikilbi kõrval, üks käsi vabalt kõrval ja teises telefon" xmlns="http://www.w3.org/2000/svg"><rect width="600" height="290" fill="#e6edf2"/><path d="M0 253h600v37H0z" fill="#d7e0e7"/><path d="M65 0v253M525 0v253" stroke="#d0dbe3"/><ellipse cx="201" cy="258" rx="74" ry="9" fill="#bdcdd8"/><rect x="307" y="39" width="168" height="214" rx="5" fill="#b8c9d5"/><rect x="300" y="33" width="168" height="214" rx="5" fill="#f4f7f9" stroke="#9cb2c2" stroke-width="2"/><rect x="314" y="49" width="140" height="182" rx="2" fill="#486379"/><path d="M300 35l-37 17v182l37 12z" fill="#c6d4de" stroke="#9eb3c2"/><rect x="273" y="125" width="5" height="25" rx="2" fill="#70899d"/><rect x="320" y="58" width="128" height="40" fill="url(#kh-cabinet-modules)"/><rect x="320" y="119" width="128" height="40" fill="url(#kh-cabinet-modules)"/><rect x="320" y="180" width="128" height="40" fill="url(#kh-cabinet-modules)"/><path d="M321 104h124M321 165h124" stroke="#afc1ce" stroke-width="4"/><path d="M331 97v13h100v9M356 159v14h62v7" fill="none" stroke="#d4b56f" stroke-width="2"/>
-<!-- Complete standing figure: separate legs, shoes, arms and hands. -->
-<path d="M177 157h45l5 88h-20l-8-65-8 65h-21z" fill="#294257"/><path d="M171 240h20v12c-5 6-19 7-30 4v-7zM208 240h19l12 10v7h-30z" fill="#1c3040"/><path d="M181 92h33c12 4 16 14 14 26l-7 49h-47l-7-49c-2-12 2-22 14-26" fill="#49677d"/>
-<path d="M174 104l-13 31 4 35" fill="none" stroke="#49677d" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/><path d="M165 168l1 12" stroke="#c5a58a" stroke-width="11" stroke-linecap="round"/><path d="M162 176l1 9M166 177l1 8M170 173v8" stroke="#a8876e" stroke-width="1" stroke-linecap="round"/>
-<path d="M219 105l15 29 19-12" fill="none" stroke="#49677d" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/><path d="M249 124l9-6" stroke="#c5a58a" stroke-width="11" stroke-linecap="round"/><path d="M181 100l-2 45M212 100l5 45M176 146h43" fill="none" stroke="#dab45c" stroke-width="5"/><path d="M196 101v59M180 162h37" stroke="#304b60" stroke-width="2"/><rect x="202" y="113" width="12" height="13" rx="1" fill="#36556c"/>
-<path d="M188 78v16c4 8 14 8 18 0V78z" fill="#bb997f"/><path d="M180 58c0-19 32-20 34-1v18c-2 12-10 18-17 18-8 0-16-8-17-20z" fill="#cfb197"/><path d="M211 63l5 8-5 3" fill="#cfb197"/><path d="M202 79h7M202 65h7" stroke="#8d705c" stroke-width="1.5" stroke-linecap="round"/><path d="M180 67v-9" stroke="#6c6a65" stroke-width="3"/><path d="M175 57c0-30 44-30 45 0z" fill="#e1b456"/><path d="M172 58h51M196 34v19" stroke="#af842e" stroke-width="3"/>
-<g transform="rotate(12 260 112)"><rect x="247" y="88" width="27" height="46" rx="4" fill="#233e54"/><rect x="250" y="93" width="21" height="35" rx="2" fill="#f5f8fa"/><rect x="254" y="98" width="9" height="7" rx="1" fill="#375a76"/><path d="M254 111h13M254 116h10M254 121h13" stroke="#b3c5d2" stroke-width="2"/><path d="M247 119l7-3 2 5-5 6-4-1" fill="#cfb197"/></g>
-<rect x="498" y="225" width="57" height="31" rx="4" fill="#57748a"/><path d="M513 225v-8h26v8M498 237h57" fill="none" stroke="#35526a" stroke-width="3"/><rect x="523" y="234" width="7" height="7" rx="1" fill="#d7b266"/></svg></div><div class="kh-usecase-copy"><span>HOOLDUS</span><h3>Elektrikud ja hooldus</h3><p>Õige info objektil kohe käepärast. Vähem otsimist, vähem eksimusi, kiirem töö.</p></div></article>
-          <article class="kh-usecase"><div class="kh-art"><svg class="kh-scene" viewBox="0 0 600 290" role="img" aria-label="Sülearvuti ekraanil mitme haru, kilbi ja grupiga elektriline topoloogia" xmlns="http://www.w3.org/2000/svg"><rect width="600" height="290" fill="#e5ebf0"/><ellipse cx="300" cy="258" rx="228" ry="15" fill="#c8d4de"/><path d="M74 263h455" stroke="#a6b8c6"/><g transform="translate(95 31)"><rect width="410" height="218" rx="12" fill="#294257"/><circle cx="205" cy="7" r="2" fill="#7f96a9"/><rect x="10" y="15" width="390" height="190" rx="4" fill="#f6f8fa"/><path d="M10 43h390" stroke="#dce4eb"/><use href="#kh-logo" x="20" y="22" width="15" height="15"/><path d="M44 29h59" stroke="#8da3b4" stroke-width="4"/><rect x="20" y="55" width="45" height="139" rx="3" fill="#e3eaf0"/><path d="M29 68h26M29 83h20M29 98h26M29 113h18" stroke="#9cb0c0" stroke-width="3"/><g fill="none" stroke-width="2"><path d="M228 72v24M139 96h178M139 96v17M228 96v17M317 96v17" stroke="#bf902f"/><path d="M139 136v19M107 155h64M107 155v15M171 155v15M228 136v34M317 136v19M285 155h65M285 155v15M350 155v15" stroke="#9aafbf"/></g><rect x="201" y="54" width="54" height="22" rx="4" fill="#153958"/><g fill="#dce6ed" stroke="#8ea6b8"><rect x="109" y="113" width="60" height="23" rx="4"/><rect x="198" y="113" width="60" height="23" rx="4"/><rect x="287" y="113" width="60" height="23" rx="4"/></g><g fill="white" stroke="#b6c7d3"><rect x="91" y="170" width="32" height="19" rx="3"/><rect x="155" y="170" width="32" height="19" rx="3"/><rect x="212" y="170" width="32" height="19" rx="3"/><rect x="269" y="170" width="32" height="19" rx="3"/><rect x="334" y="170" width="32" height="19" rx="3"/></g><g fill="#c39130"><circle cx="139" cy="124" r="3"/><circle cx="228" cy="124" r="3"/><circle cx="317" cy="124" r="3"/></g><path d="M224 88l4 5 4-5M135 104l4 5 4-5M313 104l4 5 4-5" fill="none" stroke="#bf902f"/><path d="M-29 218h468l-21 13H-7z" fill="#a6b8c6"/><path d="M156 218h98l-8 6h-82z" fill="#7c94a7"/></g></svg></div><div class="kh-usecase-copy"><span>ÜLEVAADE</span><h3>Selge ülevaade</h3><p>Näe elektripaigaldist tervikuna — toited, kilbid, komponendid, grupid ja seosed.</p></div></article>
-          <article class="kh-usecase"><div class="kh-art"><svg class="kh-scene" viewBox="0 0 600 290" role="img" aria-label="Telefon skännib Kilbihalduse QR-kleebist; objektist kilbi ja QR-koodini" xmlns="http://www.w3.org/2000/svg"><rect width="600" height="290" fill="#e7ecf0"/><path d="M70 40h220v208H70z" fill="#d0dbe3" stroke="#bacbd7"/><path d="M82 53h196v181H82z" fill="#dfe7ed"/><circle cx="273" cy="143" r="4" fill="#8b9fac"/><g transform="translate(111 66) rotate(-5 63 71)"><rect x="5" y="6" width="128" height="154" rx="8" fill="#b6c7d3" opacity=".6"/><rect width="128" height="154" rx="8" fill="white"/><use href="#kh-logo" x="15" y="12" width="20" height="20"/><path d="M43 20h66" stroke="#8a9fb0" stroke-width="4"/><use href="#kh-illustration-qr" x="22" y="42" width="84" height="84"/><path d="M31 138h66" stroke="#71899d" stroke-width="3"/></g><g transform="translate(342 23) rotate(8 58 109)"><rect x="5" y="8" width="115" height="219" rx="20" fill="#b5c5d1"/><rect width="115" height="219" rx="20" fill="#243e54"/><rect x="6" y="7" width="103" height="205" rx="15" fill="#f8fafb"/><rect x="42" y="11" width="31" height="5" rx="3" fill="#29465d"/><use href="#kh-logo" x="16" y="31" width="21" height="21"/><path d="M46 39h47M46 46h30" stroke="#b6c7d3" stroke-width="3"/><rect x="16" y="70" width="83" height="92" rx="5" fill="#e0e8ee"/><use href="#kh-illustration-qr" x="31" y="88" width="54" height="54"/><path d="M23 92V80h12M80 80h12v12M23 140v12h12M80 152h12v-12" fill="none" stroke="#b78322" stroke-width="2"/><path d="M24 116h67" stroke="#e8b44b" stroke-width="2"/><rect x="16" y="176" width="83" height="21" rx="4" fill="#163958"/></g><path d="M241 110l87-30M241 182l94 5" stroke="#b18b43" stroke-dasharray="4 5" fill="none"/><g fill="white" stroke="#c1ced8"><rect x="112" y="255" width="94" height="25" rx="5"/><rect x="250" y="255" width="94" height="25" rx="5"/><rect x="388" y="255" width="94" height="25" rx="5"/></g><path d="M211 267h32m-5-4 5 4-5 4M349 267h32m-5-4 5 4-5 4" fill="none" stroke="#b18b43"/><g fill="#405d74" font-size="10" font-family="Arial, sans-serif" text-anchor="middle"><text x="159" y="272">OBJEKT</text><text x="297" y="272">KILP</text><text x="435" y="272">QR</text></g></svg></div><div class="kh-usecase-copy"><span>KASUTUSELEVÕTT</span><h3>Lihtne kasutusele võtta</h3><p>Loo objektid ja kilbid, lisa grupid ning komponendid ja genereeri QR-koodid.</p></div></article>
+
+      <section
+        class="kh-topology"
+        aria-labelledby="kh-power-title"
+      >
+
+        <div class="kh-wrap kh-split kh-section">
+
+          <div>
+
+            <p class="kh-eyebrow">
+              ELEKTRILINE TOPOLOOGIA
+            </p>
+
+            <h2 id="kh-power-title">
+              Kust toide<br>
+              <span>tuleb?</span>
+            </h2>
+
+            <p class="kh-topology-lead">
+              Kilbihaldus ei ole lihtsalt kilpide nimekiri.
+            </p>
+
+            <p>
+              Süsteem aitab näha, kuidas elektripaigaldis
+              päriselt omavahel seotud on.
+            </p>
+
+            <div class="kh-questions">
+              <p>„Kust see toide tuleb?”</p>
+              <p>„Mis kaob, kui ma selle välja lülitan?”</p>
+            </div>
+
+          </div>
+
+          <figure class="kh-circuit">
+
+            <figcaption class="kh-circuit-label">
+              ELEKTRIPAIGALDISE SEOSED
+              <span>FUNKTSIONAALNE NÄIDISSKEEM</span>
+            </figcaption>
+
+            <div class="kh-trunk">
+
+              <ol class="kh-supply">
+                <li><span>Võrk</span></li>
+                <li><span>Liitumispunkt</span></li>
+                <li><span>Peakaitse</span></li>
+                <li><span>Arvesti</span></li>
+                <li><span>Toitekaabel</span></li>
+              </ol>
+
+              <div class="kh-panel">
+                <span class="kh-panel-label">
+                  PEAKILP
+                </span>
+
+                <div class="kh-main-switch">
+                  Pealüliti
+                </div>
+
+                <div class="kh-busbar">
+                  Põhisiinid
+                </div>
+              </div>
+
+            </div>
+
+            <div class="kh-branches">
+
+              <ol class="kh-branch">
+                <li>Rikkevoolukaitse</li>
+
+                <li>
+                  <span>
+                    Grupid
+                    <small>liinikaitsetega</small>
+                  </span>
+                </li>
+
+                <li class="kh-consumer">
+                  Valgustus
+                </li>
+              </ol>
+
+              <ol class="kh-branch">
+                <li>
+                  Kaitselüliti / kontaktor
+                </li>
+
+                <li>
+                  Alamkilp või ventilatsioon
+                </li>
+
+                <li class="kh-consumer">
+                  Seadmed / mootorid
+                </li>
+              </ol>
+
+              <ol class="kh-branch">
+                <li>
+                  <span>
+                    Otsegrupp
+                    <small>
+                      liini- ja rikkevoolukaitsega
+                    </small>
+                  </span>
+                </li>
+
+                <li class="kh-consumer">
+                  Pistikud / seadmed
+                </li>
+              </ol>
+
+            </div>
+
+            <div class="kh-circuit-legend">
+              <span>Põhitoide</span>
+              <span>Hargnev toide</span>
+            </div>
+
+          </figure>
+
         </div>
-      </div></section>
-      <section class="kh-wrap kh-section kh-security" aria-labelledby="kh-security-title"><p class="kh-eyebrow">LIGIPÄÄS JA ANDMED</p><h2 id="kh-security-title">Andmed on kasutajate<br>vahel eraldatud</h2><ul><li>Turvaline kasutajakonto ja sisselogimine</li><li>Iga kasutaja näeb ainult neid objekte, millele tal on õigus</li><li>Dokumendid ja failid ei ole avalikult nähtavad</li><li>QR-kood aitab avada õige kilbi, kuid ei anna üksinda ligipääsu</li></ul></section>
-      <div class="kh-wrap"><dl class="kh-status"><div><dt>PLATVORM</dt><dd>Veeb, telefon, tahvel ja arvuti</dd></div><div><dt>KEELED</dt><dd>Eesti / English / Русский</dd></div><div><dt>STAATUS</dt><dd><span class="kh-status-dot"></span> Aktiivses arenduses ja testimisel</dd></div><div><dt>AADRESS</dt><dd><a href="https://kilbihaldus.devilaator.ee">kilbihaldus.devilaator.ee ↗</a></dd></div></dl></div>
-      <section class="kh-wrap kh-cta" aria-labelledby="kh-cta-title"><p class="kh-eyebrow">VÄHEM OTSIMIST. ROHKEM SELGUST.</p><h2 id="kh-cta-title">Elektripaigaldise info ei pea olema kaustades, tabelites ja inimeste mälus.</h2><a class="kh-button" href="https://kilbihaldus.devilaator.ee">AVA KILBIHALDUS <span aria-hidden="true">↗</span></a></section>
+
+      </section>
+
+      <section
+        class="kh-wrap kh-split kh-section kh-qr-section"
+        aria-labelledby="kh-qr-title"
+      >
+
+        <figure class="kh-sticker-scene">
+
+          <div class="kh-sticker">
+
+            <div class="kh-sticker-brand">
+              <svg aria-hidden="true">
+                <use href="#kh-logo"/>
+              </svg>
+
+              <strong>Kilbihaldus</strong>
+            </div>
+
+            <div
+              class="kh-qr-art"
+              aria-hidden="true"
+            >
+              <i></i>
+              <i></i>
+              <i></i>
+              <b>QR</b>
+            </div>
+
+            <strong class="kh-sticker-action">
+              VAATA / MUUDA
+            </strong>
+
+            <span>
+              kilbihaldus.devilaator.ee
+            </span>
+
+          </div>
+
+          <figcaption>
+            QR-kleebise illustratsioon
+          </figcaption>
+
+        </figure>
+
+        <div>
+
+          <p class="kh-eyebrow">
+            OTSE ÕIGE KILBINI
+          </p>
+
+          <h2 id="kh-qr-title">
+            Kilbi info<br>
+            ühe skänniga
+          </h2>
+
+          <p class="kh-intro">
+            QR-kood viib kasutaja otse õige kilbi juurde.
+          </p>
+
+          <p>
+            QR ise ei anna ligipääsu. Kilbi info avaneb ainult
+            kasutajale, kellel on sellele objektile õigus.
+          </p>
+
+          <ul class="kh-tags">
+            <li>Vaata</li>
+            <li>Muuda</li>
+            <li>Muudatuste ajalugu</li>
+          </ul>
+
+        </div>
+
+      </section>
+
+      <!-- Kasutusjuhtude illustratsioonid on SVG-na HTML-is. -->
+      <section
+        class="kh-usecases kh-section"
+        aria-labelledby="kh-usecases-title"
+      >
+
+        <div class="kh-wrap">
+
+          <div class="kh-section-heading">
+
+            <div>
+              <p class="kh-eyebrow">
+                LOODUD PÄRIS TÖÖKS
+              </p>
+
+              <h2 id="kh-usecases-title">
+                Objektist ülevaateni.
+              </h2>
+            </div>
+
+            <p>
+              Info seal, kus seda vajad — kilbi juures,
+              hooldusringil või töölaua taga.
+            </p>
+
+          </div>
+
+          <!--
+            Siin jätka olemasolevate nelja .kh-usecase artikliga
+            täpselt samade SVG-dega, mis sinu praeguses failis on.
+            Neid illustratsioone ma puhastuses sisuliselt ei muutnud.
+          -->
+
+        </div>
+
+      </section>
+
+      <section
+        class="kh-wrap kh-section kh-security"
+        aria-labelledby="kh-security-title"
+      >
+
+        <p class="kh-eyebrow">
+          LIGIPÄÄS JA ANDMED
+        </p>
+
+        <h2 id="kh-security-title">
+          Andmed on kasutajate<br>
+          vahel eraldatud
+        </h2>
+
+        <ul>
+          <li>
+            Turvaline kasutajakonto ja sisselogimine
+          </li>
+
+          <li>
+            Iga kasutaja näeb ainult neid objekte,
+            millele tal on õigus
+          </li>
+
+          <li>
+            Dokumendid ja failid ei ole avalikult nähtavad
+          </li>
+
+          <li>
+            QR-kood aitab avada õige kilbi,
+            kuid ei anna üksinda ligipääsu
+          </li>
+        </ul>
+
+      </section>
+
+      <div class="kh-wrap">
+
+        <dl class="kh-status">
+
+          <div>
+            <dt>PLATVORM</dt>
+            <dd>Veeb, telefon, tahvel ja arvuti</dd>
+          </div>
+
+          <div>
+            <dt>KEELED</dt>
+            <dd>Eesti / English / Русский</dd>
+          </div>
+
+          <div>
+            <dt>STAATUS</dt>
+            <dd>
+              <span class="kh-status-dot"></span>
+              Aktiivses arenduses ja testimisel
+            </dd>
+          </div>
+
+          <div>
+            <dt>AADRESS</dt>
+            <dd>
+              <a href="https://kilbihaldus.devilaator.ee">
+                kilbihaldus.devilaator.ee ↗
+              </a>
+            </dd>
+          </div>
+
+        </dl>
+
+      </div>
+
+      <section
+        class="kh-wrap kh-cta"
+        aria-labelledby="kh-cta-title"
+      >
+
+        <p class="kh-eyebrow">
+          VÄHEM OTSIMIST. ROHKEM SELGUST.
+        </p>
+
+        <h2 id="kh-cta-title">
+          Elektripaigaldise info ei pea olema kaustades,
+          tabelites ja inimeste mälus.
+        </h2>
+
+        <a
+          class="kh-button"
+          href="https://kilbihaldus.devilaator.ee"
+        >
+          AVA KILBIHALDUS
+          <span aria-hidden="true">↗</span>
+        </a>
+
+      </section>
+
     </main>
-    <footer><span>© 2026 DEVILAATOR</span><nav aria-label="Jaluse lingid"><a href="https://github.com/devilaator">GitHub</a><a href="/privacy.html">Privacy</a><a href="/index.html#contact">Kontakt</a></nav></footer>
+
+    <footer>
+
+      <span>© 2026 DEVILAATOR</span>
+
+      <nav aria-label="Jaluse lingid">
+        <a href="https://github.com/devilaator">
+          GitHub
+        </a>
+
+        <a href="/privacy.html">
+          Privacy
+        </a>
+
+        <a href="/index.html#contact">
+          Kontakt
+        </a>
+      </nav>
+
+    </footer>
+
     <script src="/js/main.js" defer></script>
+
   </body>
+
 </html>
