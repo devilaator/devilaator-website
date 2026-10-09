@@ -3,7 +3,7 @@
   // Tulevastele projektidele lisa lehe link alles siis, kui projektileht on olemas.
   const projects = [
     {
-      id: 'PROJECT_01', name: 'QUIT30', label: 'ANDROID • APP', status: 'TESTIMISEL',
+      id: 'PROJECT_01', name: 'QUIT30', label: 'ANDROID • APP', status: 'UUENDAMISEL',
       description: 'Nutikas 30-päevane loobumisäpp, mis aitab sul püsida suitsuvabal rajal. Reaalajas ülevaade säästudest, edusammudest ja igapäevasest toest.',
       image: 'img/quit30.jpg', alt: 'QUIT30 äpi ekraanipilt', url: 'quit30.html'
     },
@@ -18,7 +18,7 @@
       name: 'KILBIHALDUS',
       label: 'WEB • APP',
       status: 'TESTFAASIS OLEV TARKVARA',
-      statusDescription: 'Kilbihaldust testitakse praegu objektil ja tööolukorras.',
+      statusDescription: 'Kilbihaldust testitakse hetkel veel objektil ja tööolukorras.',
       description: 'Kas ei tea, kus mis asub või kust toide tuleb? Appi võta Kilbihaldus - elektripaigaldise digitaalne kaart sinu taskus. Kilbid, grupid, toiteahelad, dokumendid ning hooldus ühes kohas. Kogu objekti elektripaigaldisest selge ning täielik ülevaade otse ekraanilt.',
       image: 'img/kilbihaldus-logo.png',
       imageClass: 'kilbihaldus-project-logo',
@@ -31,8 +31,8 @@
         id: 'PROJECT_04',
         name: 'ELVA POKSIKLUBI',
         label: 'WEB • APP',
-        status: 'TULEKUL',
-        description: 'Veebileht ja klubihaldussüsteem treeningute, liikmete, broneeringute ja väikese e-poe jaoks.',
+        status: 'TEGEMISEL',
+        description: 'Veebileht ja klubihaldussüsteem koos multimeedia, treeningute, liikmete, broneeringute ja kalendri ning väikese e-poe jaoks.',
         image: 'img/elva-poksiklubi.png',
         alt: 'Vanad poksikindad poksiringi nurgas',
         secretUrl: 'https://poksiklubi.pages.dev'
