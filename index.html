@@ -196,12 +196,12 @@
           />
         </svg>
 
-        <span
-          class="hero-flow-label"
-          aria-hidden="true"
-        >
-          IDEAS FLOW HERE
-        </span>
+        <!-- Mobiilis ühenduvad neoonjuhtmed otse IDEAS FLOW HERE sildiga. -->
+        <div class="hero-flow-row" aria-hidden="true">
+          <span class="hero-flow-wire hero-flow-wire-left"></span>
+          <span class="hero-flow-label">IDEAS FLOW HERE</span>
+          <span class="hero-flow-wire hero-flow-wire-right"></span>
+        </div>
       </section>
 
       <section
@@ -213,10 +213,24 @@
           <h2>Millega ma tegelen?</h2>
         </div>
 
-        <div
-          id="project-grid"
-          class="project-grid"
-        ></div>
+        <button
+          id="project-folder-toggle"
+          class="project-folder-toggle"
+          type="button"
+          aria-controls="project-folder-content"
+          aria-expanded="false"
+        >
+          <span class="project-folder-icon" aria-hidden="true"></span>
+          <span class="project-folder-label">Ava projektikaust</span>
+          <span class="project-folder-chevron" aria-hidden="true">⌄</span>
+        </button>
+
+        <div id="project-folder-content" class="project-folder-content">
+          <div class="project-folder-inner">
+            <div
+              id="project-grid"
+              class="project-grid"
+            ></div>
 
         <noscript>
           <p>
@@ -253,6 +267,8 @@
             — ELVA POKSIKLUBI
           </p>
         </noscript>
+          </div>
+        </div>
       </section>
 
       <section
@@ -591,7 +607,7 @@
     ></script>
 
     <script
-      src="/js/main.js?v=20261010-clean-contact-v5"
+      src="/js/main.js?v=20261010-mobile-folder-v11"
       defer
     ></script>
   </body>

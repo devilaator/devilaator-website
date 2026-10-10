@@ -4404,3 +4404,448 @@ body.home-page,
       ),
       rgba(4, 11, 13, 0.76) !important;
   }
+
+/* ===========================================================================
+   DEVILAATOR — mobiili avalehe viimistlus (2026-10-10)
+   Ainult kuni 768px: desktop, projektid ja kontaktivorm jäävad muutmata.
+   Desktopil ei lisa voosildi ümbris ühtegi nähtavat elementi.
+   =========================================================================== */
+.home-page .hero-flow-row { display: contents; }
+.home-page .hero-flow-wire { display: none; }
+
+@media (max-width: 768px) {
+  /* Telefonile loodud portree-taust: säilitab proportsioonid.
+     Üks pildikiht (ka heros), kerib lehega kaasa ega kasuta fixed-i.
+     Pildi alumine osa sulandub järk-järgult lehe tumedasse tausta. */
+  body.home-page {
+    background-color: #02090d !important;
+    background-image:
+      linear-gradient(to bottom,
+        rgba(2, 7, 10, 0.10) 0px,
+        rgba(2, 7, 10, 0.10) 340px,
+        rgba(2, 7, 10, 0.14) 580px,
+        rgba(2, 7, 10, 0.22) 760px,
+        rgba(2, 7, 10, 0.48) 920px,
+        rgba(2, 7, 10, 0.85) 1100px,
+        #02090d 1230px),
+      url("../img/hero-mobile-bg.png") !important;
+    background-size: 100% 100%, auto 1230px !important;
+    background-position: center top, center top !important;
+    background-repeat: no-repeat, no-repeat !important;
+    background-attachment: scroll, scroll !important;
+  }
+
+  /* Vanad pseudo-pildid ja eraldi hero pilt ei tekita enam katkist liitekohta. */
+  body.home-page::before,
+  body.home-page::after {
+    content: none !important;
+    display: none !important;
+  }
+  body.home-page .hero.system-panel {
+    width: 100%;
+    min-height: 0;
+    margin: 0 auto;
+    padding: 50px clamp(16px, 4.6vw, 24px) 32px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "copy" "action" "idea" "flow";
+    gap: 0;
+    background: transparent !important;
+    background-image: none !important;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  /* Pealkiri ja slogan: selged vahed ning nähtavad dekoratiivjooned. */
+  .home-page .hero-copy {
+    grid-area: copy;
+    max-width: 100%;
+    margin: 0 0 30px;
+    transform: none;
+    translate: none;
+  }
+  .home-page .hero h1 {
+    margin: 0 0 32px;
+    font-size: clamp(36px, 9.6vw, 46px);
+    line-height: 1.055;
+    transform: none;
+  }
+  .home-page .hero-tagline {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    color: #bbdfd5;
+    font-size: clamp(9.5px, 2.6vw, 11px);
+    line-height: 1.5;
+    letter-spacing: .7px;
+    white-space: nowrap;
+    text-shadow: 0 0 7px rgba(91, 232, 209, .3);
+  }
+  .home-page .hero-tagline::before,
+  .home-page .hero-tagline::after {
+    content: "";
+    flex: 1 1 10px;
+    min-width: 8px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(246, 170, 78, .75));
+    box-shadow: 0 0 7px rgba(86, 223, 203, .24);
+  }
+  .home-page .hero-tagline::after {
+    background: linear-gradient(90deg, rgba(78, 229, 201, .85), transparent);
+  }
+
+  /* CTA ei ole enam peaaegu kogu ekraani laiune suur plokk. */
+  .home-page .hero-project-cta {
+    grid-area: action;
+    display: inline-flex;
+    justify-self: center;
+    align-self: start;
+    align-items: center;
+    justify-content: center;
+    width: min(100%, 298px);
+    min-height: 50px;
+    margin: 0 auto 28px;
+    padding: 10px 20px;
+    gap: 16px;
+    border-radius: 12px;
+    font-size: 16px;
+    line-height: 1.25;
+    translate: none;
+  }
+
+  /* Kompaktsem, loetav tumeda klaasiga ideekast. */
+  .home-page .hero .idea-cta {
+    grid-area: idea;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: stretch;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    margin: 0;
+    padding: 21px 21px 23px;
+    translate: none;
+    transform: none;
+    background: linear-gradient(135deg,
+      rgba(7, 24, 24, .87), rgba(3, 13, 16, .89)) !important;
+  }
+  .home-page .hero .idea-cta h2 {
+    margin: 0 0 11px;
+    padding: 0 0 12px;
+    font-size: clamp(17px, 4.65vw, 20px);
+    line-height: 1.32;
+  }
+  .home-page .hero .idea-cta p {
+    margin: 0;
+    font-size: 13.5px;
+    line-height: 1.58;
+  }
+  .home-page .hero .idea-cta-link {
+    min-height: 43px;
+    padding: 10px 14px;
+    font-size: 12px;
+  }
+
+  /* Kaks nähtavat juhet puudutavad voosilti; keskjuhe viib ideekastist sildini. */
+  .home-page .hero-flow-row {
+    position: relative;
+    z-index: 2;
+    grid-area: flow;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 33px 0 0;
+    min-height: 42px;
+    gap: 0;
+    isolation: isolate;
+  }
+  .home-page .hero-flow-row::before {
+    content: "";
+    position: absolute;
+    bottom: calc(100% - 2px);
+    left: 50%;
+    width: 1px;
+    height: 33px;
+    background: linear-gradient(to bottom,
+      rgba(87, 223, 190, .2), rgba(87, 223, 190, .85));
+    box-shadow: 0 0 7px rgba(87, 223, 190, .42);
+  }
+  .home-page .hero-flow-wire {
+    display: block;
+    flex: 1 1 0;
+    height: 2px;
+    min-width: 0;
+    background: linear-gradient(90deg,
+      transparent 0%, rgba(70, 215, 202, .32) 25%,
+      rgba(127, 255, 226, 1) 50%, rgba(67, 219, 211, .6) 75%,
+      transparent 100%);
+    background-size: 220% 100%;
+    box-shadow: 0 0 5px rgba(70, 229, 200, .45);
+    animation: devilaator-mobile-flow 5s linear infinite;
+  }
+  .home-page .hero-flow-wire-right {
+    transform: scaleX(-1);
+    animation-delay: -2.5s;
+  }
+  .home-page .hero-flow-row .hero-flow-label {
+    position: relative;
+    inset: auto;
+    bottom: auto;
+    left: auto;
+    display: inline-block;
+    flex: 0 0 auto;
+    min-width: 0;
+    width: auto;
+    margin: 0;
+    padding: 11px 14px;
+    font-size: clamp(9px, 2.3vw, 10px);
+    line-height: 1.4;
+    letter-spacing: 1.8px;
+    white-space: nowrap;
+    transform: none;
+    background: linear-gradient(180deg, rgba(4, 27, 29, .98), rgba(3, 13, 18, .98));
+    border-color: rgba(85, 239, 214, .8);
+  }
+  @keyframes devilaator-mobile-flow {
+    from { background-position: 100% 0; }
+    to { background-position: -120% 0; }
+  }
+
+  /* Pehmendame ka hero ja projektide vahelist ruumi. */
+  body.home-page #projektid {
+    margin-top: 0;
+    padding-top: 50px;
+  }
+}
+@media (max-width: 360px) {
+  .home-page .hero-tagline { font-size: 8px; letter-spacing: 0.3px; gap: 5px; }
+  .home-page .hero .idea-cta { padding-inline: 17px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-page .hero-flow-wire { animation: none; }
+}
+
+/* ========================================================================
+   DEVILAATOR v11 — MOBIIL: sulanduv logo, loetav menüü ja projektikaust.
+   Kõik reeglid on ainult <=768px; desktopi ei muudeta.
+   ======================================================================== */
+.project-folder-toggle { display: none; }
+
+@media (max-width: 768px) {
+  /* Logo hõljub kosmosetausta kohal — ei ole eraldi tumedat päiseristkülikut. */
+  .home-page > .site-header {
+    position: sticky;
+    z-index: 100;
+    overflow: visible;
+    isolation: isolate;
+    background: linear-gradient(180deg,
+      rgba(2, 9, 17, 0.94) 0%,
+      rgba(3, 11, 20, 0.72) 60%,
+      rgba(3, 11, 20, 0.03) 100%) !important;
+    border-bottom-color: transparent !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+  .home-page > .site-header .header-inner {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    min-height: 82px;
+    padding: 9px 16px 13px;
+  }
+  .home-page > .site-header .brand-group { min-width: 0; flex: 0 1 auto; }
+  .home-page > .site-header .devilaator-mobile-logo {
+    width: min(47vw, 190px);
+    max-width: 100%;
+    height: auto;
+    /* Hajutab pildis oleva taustariba ääred, jätab värvilise logo alles. */
+    -webkit-mask-image: radial-gradient(ellipse 78% 85% at 50% 50%,
+      #000 53%, rgba(0,0,0,.90) 67%, transparent 100%);
+    mask-image: radial-gradient(ellipse 78% 85% at 50% 50%,
+      #000 53%, rgba(0,0,0,.90) 67%, transparent 100%);
+    filter: drop-shadow(0 0 9px rgba(69, 199, 224, .18));
+  }
+  .home-page > .site-header .header-actions { margin-left: auto; }
+  .home-page > .site-header.menu-ready .menu-toggle {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+    z-index: 202;
+    min-height: 44px;
+    flex-shrink: 0;
+    background: rgba(4, 14, 23, .88);
+    border: 1px solid rgba(115, 188, 189, .53);
+    border-radius: 12px;
+    color: #effbf8;
+    box-shadow: 0 0 14px rgba(56, 196, 194, .08);
+  }
+  .home-page > .site-header.menu-ready .menu-toggle[aria-expanded="true"] {
+    background: rgba(9, 31, 39, .98);
+    border-color: rgba(100, 240, 209, .75);
+  }
+  /* Menüü avaneb läbipaistva tausta asemel selge tumeda juhtpaneelina. */
+  .home-page > .site-header.menu-ready #primary-nav {
+    display: none;
+    position: absolute;
+    z-index: 201;
+    top: calc(100% - 3px);
+    right: 14px;
+    left: auto;
+    width: min(315px, calc(100vw - 28px));
+    padding: 10px;
+    background: rgba(3, 12, 23, .97) !important;
+    border: 1px solid rgba(92, 224, 213, .65);
+    border-radius: 14px;
+    box-shadow: 0 16px 42px rgba(0,0,0,.64), 0 0 23px rgba(54,215,193,.14),
+      inset 0 1px rgba(185,255,243,.07);
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+  .home-page > .site-header.menu-ready #primary-nav.is-open {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .home-page > .site-header.menu-ready #primary-nav a {
+    display: flex;
+    align-items: center;
+    padding: 11px 15px;
+    min-height: 47px;
+    width: 100%;
+    border-radius: 8px;
+    color: #eefbf8;
+    font-size: 15px;
+    font-weight: 650;
+    background: rgba(22, 58, 67, .30);
+    text-decoration: none;
+    text-shadow: none;
+  }
+  .home-page > .site-header.menu-ready #primary-nav a:active,
+  .home-page > .site-header.menu-ready #primary-nav a:focus-visible,
+  .home-page > .site-header.menu-ready #primary-nav a[aria-current] {
+    color: #91fbd4;
+    background: rgba(45, 115, 116, .40);
+  }
+
+  /* Pealkiri kuulub kosmosetausta juurde, mitte eraldi kõvasse kasti. */
+  .home-page #projektid .section-heading {
+    position: relative;
+    margin: 0 0 22px;
+    padding: 12px 0 14px 15px;
+    border-left: 2px solid rgba(108, 226, 219, .55);
+    background: linear-gradient(90deg,
+      rgba(28, 37, 65, .28), rgba(4, 18, 30, .09) 70%, transparent);
+  }
+  .home-page #projektid .section-heading h2 {
+    margin-top: 8px;
+    color: #f3f7ff;
+    font-size: clamp(29px, 7.4vw, 35px);
+    font-weight: 800;
+    line-height: 1.13;
+    letter-spacing: -.025em;
+    text-shadow: 0 0 17px rgba(110, 197, 236, .23),
+      0 0 31px rgba(158, 108, 238, .14);
+  }
+  .home-page #projektid .section-heading::after {
+    content: "";
+    position: absolute;
+    bottom: 1px;
+    left: 16px;
+    width: 94px;
+    height: 1px;
+    background: linear-gradient(90deg, #8cf9d4, rgba(153, 111, 255, .35), transparent);
+    box-shadow: 0 0 8px rgba(92, 239, 219, .32);
+  }
+
+  /* Kaust on mõeldud ainult telefonile; sees on senised suured kaardid. */
+  .home-page #projektid.project-folder-ready .project-folder-toggle {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-height: 61px;
+    gap: 14px;
+    padding: 12px 17px;
+    border: 1px solid rgba(92, 234, 201, .62);
+    border-radius: 12px;
+    background: linear-gradient(115deg,
+      rgba(7, 27, 36, .95), rgba(10, 27, 47, .92) 64%, rgba(10, 37, 35, .92));
+    box-shadow: inset 0 1px rgba(188, 255, 240, .1),
+      0 0 20px rgba(63, 212, 201, .12);
+    color: #c6ffe7;
+    text-align: left;
+    font: 700 14px/1.25 Consolas, 'Courier New', monospace;
+    letter-spacing: .075em;
+    cursor: pointer;
+  }
+  .home-page .project-folder-toggle:focus-visible {
+    outline: 2px solid #88f8dd;
+    outline-offset: 3px;
+  }
+  .home-page .project-folder-icon {
+    position: relative;
+    flex: 0 0 28px;
+    height: 20px;
+    border: 1.5px solid #7df3d3;
+    border-radius: 3px;
+    box-shadow: 0 0 8px rgba(74, 223, 193, .2);
+    transform: translateY(2px);
+  }
+  .home-page .project-folder-icon::before {
+    content: "";
+    position: absolute;
+    left: 2px;
+    top: -6px;
+    width: 12px;
+    height: 5px;
+    border: 1.5px solid #7df3d3;
+    border-bottom: 0;
+    border-radius: 3px 3px 0 0;
+  }
+  .home-page .project-folder-label { flex: 1 1 auto; min-width: 0; }
+  .home-page .project-folder-chevron {
+    font-size: 24px;
+    line-height: 1;
+    color: #89efda;
+    transition: transform .3s ease;
+  }
+  .home-page #projektid.is-folder-open .project-folder-chevron { transform: rotate(180deg); }
+  .home-page #projektid .project-folder-content { display: block; }
+  .home-page #projektid.project-folder-ready .project-folder-content {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    margin-top: 0;
+    transition: grid-template-rows .38s ease, opacity .24s ease, margin-top .38s ease;
+  }
+  .home-page #projektid.project-folder-ready.is-folder-open .project-folder-content {
+    grid-template-rows: 1fr;
+    opacity: 1;
+    margin-top: 22px;
+  }
+  .home-page #projektid .project-folder-inner {
+    min-height: 0;
+    overflow: hidden;
+  }
+}
+@media (max-width: 360px) {
+  .home-page #projektid.project-folder-ready .project-folder-toggle {
+    padding-inline: 12px;
+    font-size: 13px;
+    gap: 10px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-page #projektid .project-folder-content,
+  .home-page .project-folder-chevron { transition: none !important; }
+}

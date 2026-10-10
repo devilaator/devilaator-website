@@ -143,6 +143,55 @@
     });
   }
 
+  // Projektikaust on mobiilis suletav; desktopil jäävad suured kaardid alati nähtavaks.
+  const projectSection = document.getElementById('projektid');
+  const projectFolderToggle = document.getElementById('project-folder-toggle');
+  const projectFolderContent = document.getElementById('project-folder-content');
+  const projectFolderLabel = projectFolderToggle?.querySelector('.project-folder-label');
+  let projectFolderOpen = location.hash === '#projektid';
+
+  function syncProjectFolder() {
+    if (!projectSection || !projectFolderToggle || !projectFolderContent) return;
+
+    const useFolder = mobile.matches;
+    const expanded = !useFolder || projectFolderOpen;
+    projectSection.classList.toggle('project-folder-ready', useFolder);
+    projectSection.classList.toggle('is-folder-open', expanded);
+    projectFolderToggle.setAttribute('aria-expanded', String(expanded));
+    if (projectFolderLabel) {
+      projectFolderLabel.textContent = expanded ? 'Sulge projektikaust' : 'Ava projektikaust';
+    }
+    projectFolderContent.inert = !expanded;
+    projectFolderContent.setAttribute('aria-hidden', String(!expanded));
+  }
+
+  function openProjectFolder() {
+    if (!mobile.matches || !projectSection) return;
+    projectFolderOpen = true;
+    syncProjectFolder();
+  }
+
+  function setupProjectFolder() {
+    if (!projectSection || !projectFolderToggle || !projectFolderContent) return;
+
+    syncProjectFolder();
+    projectFolderToggle.addEventListener('click', () => {
+      if (!mobile.matches) return;
+      projectFolderOpen = !projectFolderOpen;
+      syncProjectFolder();
+      if (!projectFolderOpen && projectSection.getBoundingClientRect().top < -90) {
+        projectSection.scrollIntoView({
+          behavior: motion.matches ? 'instant' : 'smooth',
+          block: 'start'
+        });
+      }
+    });
+    mobile.addEventListener('change', syncProjectFolder);
+    window.addEventListener('hashchange', () => {
+      if (location.hash === '#projektid') openProjectFolder();
+    });
+  }
+
   function setupAnchorNavigation() {
     document
       .querySelectorAll('a[href*="#"]')
@@ -183,6 +232,7 @@
 
           event.preventDefault();
           closeMenu();
+          if (targetId === 'projektid') openProjectFolder();
 
           target.setAttribute('tabindex', '-1');
           target.focus({
@@ -601,6 +651,7 @@
 
   updateMobileHeader();
   setupMobileMenu();
+  setupProjectFolder();
   setupAnchorNavigation();
 
   const navigationSections =
