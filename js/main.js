@@ -459,34 +459,17 @@
   }
 
   function setupContactForm() {
-    const form =
-      document.querySelector(
-        '#contact-form'
-      );
+    const form = document.querySelector('#contact-form');
+    if (!form) return;
 
-    if (!form) {
-      return;
-    }
+    const fields = [...form.querySelectorAll('input, textarea')];
+    const status = form.querySelector('#contact-status');
+    const submitButton = form.querySelector('button[type="submit"]');
+    const submitLabel = submitButton?.querySelector('.contact-submit-label');
 
-    const fields = [
-      ...form.querySelectorAll(
-        'input, textarea'
-      )
-    ];
+    if (!status || !submitButton || !submitLabel) return;
 
-    const status =
-      document.querySelector(
-        '#contact-status'
-      );
-
-    const submitButton =
-      form.querySelector(
-        'button[type="submit"]'
-      );
-
-    const submitLabel =
-      submitButton.textContent;
-
+    const defaultSubmitText = submitLabel.textContent;
     let sending = false;
     let contactClient;
 
@@ -494,262 +477,126 @@
     submitButton.disabled = false;
 
     function validate(field) {
-      const value =
-        field.value.trim();
-
+      const value = field.value.trim();
       let error = '';
 
       if (!value) {
         error = {
-          name: 'Palun sisesta nimi.',
-          email: 'Palun sisesta e-post.',
-          message: 'Palun kirjuta sõnum.'
-        }[field.name];
+          name: 'Sisestage nimi.',
+          email: 'Sisestage e-post.',
+          message: 'Kirjutage sõnum.'
+        }[field.name] || 'Palun täida väli.';
       } else if (
         field.type === 'email' &&
-        (
-          field.validity.typeMismatch ||
-          !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(
-            value
-          )
-        )
+        (field.validity.typeMismatch || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value))
       ) {
-        error =
-          'Palun sisesta korrektne e-posti aadress.';
-      } else if (
-        field.maxLength > 0 &&
-        value.length > field.maxLength
-      ) {
-        error =
-          `Lubatud on kuni ${field.maxLength} märki.`;
+        error = 'Palun sisesta korrektne e-posti aadress.';
+      } else if (field.maxLength > 0 && value.length > field.maxLength) {
+        error = `Lubatud on kuni ${field.maxLength} märki.`;
       }
 
-      const errorElement =
-        document.getElementById(
-          `${field.id}-error`
-        );
-
-      errorElement.textContent =
-        error;
-
-      field.setAttribute(
-        'aria-invalid',
-        String(Boolean(error))
-      );
-
+      const errorElement = document.getElementById(`${field.id}-error`);
+      if (errorElement) errorElement.textContent = error;
+      field.setAttribute('aria-invalid', String(Boolean(error)));
       return !error;
     }
 
     fields.forEach(field => {
-      field.addEventListener(
-        'blur',
-        () => validate(field)
-      );
-
-      field.addEventListener(
-        'input',
-        () => {
-          status.textContent = '';
-
-          if (
-            field.getAttribute(
-              'aria-invalid'
-            ) === 'true'
-          ) {
-            validate(field);
-          }
-        }
-      );
+      field.addEventListener('blur', () => validate(field));
+      field.addEventListener('input', () => {
+        status.textContent = '';
+        if (field.getAttribute('aria-invalid') === 'true') validate(field);
+      });
     });
 
-    form.addEventListener(
-      'submit',
-      async event => {
-        event.preventDefault();
+    form.addEventListener('submit', async event => {
+      event.preventDefault();
+      if (sending) return;
 
-        if (sending) {
-          return;
-        }
+      const invalidFields = fields.filter(field => !validate(field));
+      if (invalidFields.length) {
+        status.textContent = 'Palun paranda märgitud väljad.';
+        invalidFields[0].focus();
+        return;
+      }
 
-        const invalid =
-          fields.filter(
-            field => !validate(field)
-          );
+      const payload = {
+        name: form.elements.name.value.trim(),
+        email: form.elements.email.value.trim(),
+        message: form.elements.message.value.trim()
+      };
 
-        if (invalid.length) {
-          status.textContent =
-            'Palun paranda märgitud väljad.';
+      sending = true;
+      submitButton.disabled = true;
+      submitLabel.textContent = 'Saadan…';
+      form.setAttribute('aria-busy', 'true');
+      fields.forEach(field => { field.readOnly = true; });
+      status.textContent = 'Sõnumi saatmine…';
 
-          invalid[0].focus();
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 15000);
 
-          return;
-        }
-
-        const payload = {
-          name:
-            form.elements.name
-              .value
-              .trim(),
-
-          email:
-            form.elements.email
-              .value
-              .trim(),
-
-          message:
-            form.elements.message
-              .value
-              .trim()
-        };
-
-        sending = true;
-
-        submitButton.disabled = true;
-        submitButton.textContent =
-          'Saadan…';
-
-        form.setAttribute(
-          'aria-busy',
-          'true'
+      try {
+        const supabaseUrl = readPublicConfig(
+          NEXT_PUBLIC_SUPABASE_URL,
+          'NEXT_PUBLIC_SUPABASE_URL'
+        );
+        const supabaseKey = readPublicConfig(
+          NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY,
+          'NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY'
         );
 
-        fields.forEach(field => {
-          field.readOnly = true;
+        if (!supabaseUrl || !supabaseKey) {
+          throw new Error('Supabase public URL or publishable key is missing.');
+        }
+
+        if (!URL.canParse(supabaseUrl) || new URL(supabaseUrl).protocol !== 'https:') {
+          throw new Error('Supabase URL must be a valid HTTPS project URL.');
+        }
+
+        if (typeof window.supabase?.createClient !== 'function') {
+          throw new Error('Supabase CDN client did not load. Check the CDN script in Network.');
+        }
+
+        contactClient ??= window.supabase.createClient(supabaseUrl, supabaseKey, {
+          db: { schema: 'public' },
+          auth: {
+            persistSession: false,
+            autoRefreshToken: false,
+            detectSessionInUrl: false
+          }
         });
 
-        status.textContent =
-          'Sõnumi saatmine…';
+        // Ainult INSERT; id/status/created_at tulevad andmebaasist.
+        const { error } = await contactClient
+          .from('contact_messages')
+          .insert(payload)
+          .abortSignal(controller.signal);
 
-        const controller =
-          new AbortController();
+        if (error) throw error;
 
-        const timeout =
-          setTimeout(
-            () => controller.abort(),
-            15000
-          );
+        form.reset();
+        fields.forEach(field => {
+          field.removeAttribute('aria-invalid');
+          const errorElement = document.getElementById(`${field.id}-error`);
+          if (errorElement) errorElement.textContent = '';
+        });
 
-        try {
-          const supabaseUrl =
-            readPublicConfig(
-              NEXT_PUBLIC_SUPABASE_URL,
-              'NEXT_PUBLIC_SUPABASE_URL'
-            );
-
-          const supabaseKey =
-            readPublicConfig(
-              NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY,
-              'NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY'
-            );
-
-          if (
-            !supabaseUrl ||
-            !supabaseKey
-          ) {
-            throw new Error(
-              'Supabase public URL or publishable key is missing.'
-            );
-          }
-
-          if (
-            !URL.canParse(supabaseUrl) ||
-            new URL(
-              supabaseUrl
-            ).protocol !== 'https:'
-          ) {
-            throw new Error(
-              'Supabase URL must be a valid HTTPS project URL.'
-            );
-          }
-
-          if (
-            typeof window.supabase
-              ?.createClient !==
-            'function'
-          ) {
-            throw new Error(
-              'Supabase CDN client did not load. Check the CDN script in Network.'
-            );
-          }
-
-          contactClient ??=
-            window.supabase.createClient(
-              supabaseUrl,
-              supabaseKey,
-              {
-                db: {
-                  schema: 'public'
-                },
-
-                auth: {
-                  persistSession: false,
-                  autoRefreshToken: false,
-                  detectSessionInUrl: false
-                }
-              }
-            );
-
-          // Teeme ainult INSERT-päringu ega küsi ridu tagasi.
-          // status, id ja created_at tulevad andmebaasist.
-          const { error } =
-            await contactClient
-              .from(
-                'contact_messages'
-              )
-              .insert(payload)
-              .abortSignal(
-                controller.signal
-              );
-
-          if (error) {
-            throw error;
-          }
-
-          form.reset();
-
-          fields.forEach(field => {
-            field.removeAttribute(
-              'aria-invalid'
-            );
-
-            document.getElementById(
-              `${field.id}-error`
-            ).textContent = '';
-          });
-
-          status.textContent =
-            'Sõnum saadetud. Aitäh!';
-        } catch (error) {
-          console.error(
-            'Supabase contact error:',
-            error
-          );
-
-          status.textContent =
-            controller.signal.aborted
-              ? 'Saatmise kinnitust ei saabunud õigel ajal. Sõnum võis kohale jõuda; palun oota enne uuesti saatmist.'
-              : 'Sõnumi saatmine ei õnnestunud. Palun kontrolli internetiühendust ja proovi hiljem uuesti.';
-        } finally {
-          clearTimeout(timeout);
-
-          sending = false;
-
-          submitButton.disabled =
-            false;
-
-          submitButton.textContent =
-            submitLabel;
-
-          form.removeAttribute(
-            'aria-busy'
-          );
-
-          fields.forEach(field => {
-            field.readOnly = false;
-          });
-        }
+        status.textContent = 'Sõnum saadetud. Aitäh!';
+      } catch (error) {
+        console.error('Supabase contact error:', error);
+        status.textContent = controller.signal.aborted
+          ? 'Saatmise kinnitust ei saabunud õigel ajal. Sõnum võis kohale jõuda; palun oota enne uuesti saatmist.'
+          : 'Sõnumi saatmine ei õnnestunud. Palun kontrolli internetiühendust ja proovi hiljem uuesti.';
+      } finally {
+        clearTimeout(timeout);
+        sending = false;
+        submitButton.disabled = false;
+        submitLabel.textContent = defaultSubmitText;
+        form.removeAttribute('aria-busy');
+        fields.forEach(field => { field.readOnly = false; });
       }
-    );
+    });
   }
 
   updateMobileHeader();
@@ -771,87 +618,34 @@
 (() => {
   'use strict';
 
-  // DEVILAATORIST nalja-popup.
-  const devilaatoristLink =
-    document.getElementById(
-      'devilaatoristLink'
-    );
+  const trigger = document.getElementById('devilaatoristLink');
+  const dialog = document.getElementById('devError');
+  const closeButton = document.getElementById('devErrorClose');
 
-  const devError =
-    document.getElementById(
-      'devError'
-    );
+  if (!trigger || !dialog || !closeButton) return;
 
-  const devErrorClose =
-    document.getElementById(
-      'devErrorClose'
-    );
-
-  if (
-    !devilaatoristLink ||
-    !devError ||
-    !devErrorClose
-  ) {
-    return;
+  function openDialog() {
+    dialog.classList.add('show');
+    dialog.setAttribute('aria-hidden', 'false');
+    closeButton.focus();
   }
 
-  function closeDevError() {
-    devError.classList.remove(
-      'show'
-    );
-
-    devError.setAttribute(
-      'aria-hidden',
-      'true'
-    );
-
-    devilaatoristLink.focus();
+  function closeDialog() {
+    dialog.classList.remove('show');
+    dialog.setAttribute('aria-hidden', 'true');
+    trigger.focus();
   }
 
-  devilaatoristLink.addEventListener(
-    'click',
-    () => {
-      devError.classList.add(
-        'show'
-      );
+  trigger.addEventListener('click', openDialog);
+  closeButton.addEventListener('click', closeDialog);
 
-      devError.setAttribute(
-        'aria-hidden',
-        'false'
-      );
+  dialog.addEventListener('click', event => {
+    if (event.target === dialog) closeDialog();
+  });
 
-      devErrorClose.focus();
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && dialog.classList.contains('show')) {
+      closeDialog();
     }
-  );
-
-  devErrorClose.addEventListener(
-    'click',
-    closeDevError
-  );
-
-  devError.addEventListener(
-    'click',
-    event => {
-      if (event.target === devError) {
-        closeDevError();
-      }
-    }
-  );
-
-  document.addEventListener(
-    'keydown',
-    event => {
-      const isOpen =
-        devError.classList.contains(
-          'show'
-        );
-
-      if (
-        event.key === 'Escape' &&
-        isOpen
-      ) {
-        closeDevError();
-      }
-    }
-  );
+  });
 })();

@@ -1072,7 +1072,7 @@ a:focus-visible {
   }
 }
 
-/* Avalehe kontaktivorm */
+/* Jagatud vormi baas; avalehe kontaktipaneel on eraldi #contact all. */
 
 .contact-github {
   margin-bottom: 28px;
@@ -1736,12 +1736,6 @@ a:focus-visible {
   grid-area: copy;
 }
 
-/* Vana avalehe SVG-maastik on peidetud. */
-
-.hero-terrain {
-  display: none;
-}
-
 .home-page .hero h1 {
   font-size: clamp(42px, 4.4vw, 70px);
   line-height: 1.06;
@@ -2375,14 +2369,628 @@ a:focus-visible {
   border-color: rgba(101, 231, 165, 0.4);
 }
 
-.home-page #contact .contact-form {
-  max-width: 800px;
+/* =========================================================
+   AVALEHE KONTAKT
+   Üks scoped plokk: pealkiri, futuristlik SVG-paneel, vorm ja
+   DEVILAATORIST tegevus. SVG teeb raami, CSS ei joonista enam
+   1 px diagonaale clip-path'i servale.
+   ========================================================= */
+
+.home-page #contact {
+  --contact-gradient: linear-gradient(
+    105deg,
+    #ff443d 0%,
+    #ff921d 24%,
+    #ffe65a 48%,
+    #66ee98 74%,
+    #24d9dc 100%
+  );
+  padding: clamp(48px, 7vw, 90px) clamp(0px, 2vw, 24px);
 }
 
-.home-page #contact input, .home-page #contact textarea {
-  border-color: var(--border);
-  background: rgba(3, 10, 13, 0.8);
-  border-radius: 4px;
+.home-page #contact .contact-heading {
+  width: min(100%, 900px);
+  margin-inline: auto;
+  text-align: center;
+}
+
+.home-page #contact .contact-title {
+  margin: 0 0 12px;
+  color: #f5f7f6;
+  font-size: clamp(44px, 5vw, 72px);
+  font-weight: 850;
+  line-height: 1;
+  letter-spacing: -0.05em;
+}
+
+.home-page #contact .contact-title span {
+  color: transparent;
+  background: var(--contact-gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  filter: drop-shadow(0 0 16px rgba(97, 239, 159, 0.13));
+}
+
+.home-page #contact .contact-description {
+  width: min(100%, 760px);
+  margin: 0 auto;
+  color: #c5cecf;
+  font-size: clamp(16px, 1.4vw, 19px);
+  line-height: 1.55;
+  text-wrap: balance;
+}
+
+.home-page #contact .contact-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin: 18px auto 26px;
+  color: #ffe274;
+  font-size: 16px;
+  text-shadow: 0 0 12px rgba(255, 198, 55, 0.5);
+}
+
+.home-page #contact .contact-divider::before,
+.home-page #contact .contact-divider::after {
+  content: "";
+  width: clamp(80px, 13vw, 170px);
+  height: 1px;
+}
+
+.home-page #contact .contact-divider::before {
+  background: linear-gradient(90deg, transparent, #ec7a42 52%, #f0d15f);
+}
+
+.home-page #contact .contact-divider::after {
+  background: linear-gradient(90deg, #d8dd70, #55d6ae 48%, transparent);
+}
+
+.home-page #contact .contact-panel {
+  position: relative;
+  isolation: isolate;
+  width: min(100%, 900px);
+  margin-inline: auto;
+  filter:
+    drop-shadow(0 22px 42px rgba(0, 0, 0, 0.5))
+    drop-shadow(0 0 16px rgba(50, 217, 189, 0.1));
+}
+
+.home-page #contact .contact-panel::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: -10px;
+  pointer-events: none;
+  background: linear-gradient(
+    110deg,
+    rgba(255, 70, 57, 0.14),
+    rgba(255, 220, 82, 0.07) 43%,
+    rgba(87, 239, 158, 0.08) 70%,
+    rgba(35, 218, 220, 0.14)
+  );
+  filter: blur(20px);
+  opacity: 0.42;
+}
+
+.home-page #contact .contact-panel-frame {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.home-page #contact .contact-panel-frame path {
+  vector-effect: non-scaling-stroke;
+  shape-rendering: geometricPrecision;
+  stroke-linecap: square;
+  stroke-linejoin: miter;
+}
+
+.home-page #contact .contact-frame-fill {
+  fill: rgba(4, 12, 15, 0.965);
+  stroke: none;
+}
+
+.home-page #contact .contact-frame-outline {
+  fill: none;
+  stroke: url(#contact-frame-gradient);
+  stroke-width: 1.7;
+  opacity: 0.92;
+  filter: drop-shadow(0 0 2px rgba(61, 220, 196, 0.25));
+}
+
+.home-page #contact .contact-frame-inner {
+  fill: none;
+  stroke: url(#contact-frame-gradient);
+  stroke-width: 0.9;
+  opacity: 0.32;
+}
+
+.home-page #contact .contact-frame-edge {
+  fill: none;
+  stroke: url(#contact-edge-gradient);
+  stroke-width: 3.2;
+  opacity: 1;
+  filter:
+    drop-shadow(0 0 3px rgba(255, 133, 54, 0.55))
+    drop-shadow(0 0 6px rgba(65, 232, 198, 0.5));
+}
+
+.home-page #contact .contact-frame-detail {
+  fill: none;
+  stroke: url(#contact-frame-gradient);
+  stroke-width: 1.15;
+  opacity: 0.7;
+}
+
+.home-page #contact .contact-form {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: clamp(38px, 5vw, 54px) clamp(30px, 5vw, 58px) clamp(34px, 4vw, 46px);
+  border: 0;
+  border-radius: 0;
+  background:
+    radial-gradient(circle at 0 18%, rgba(255, 76, 52, 0.085), transparent 38%),
+    radial-gradient(circle at 100% 20%, rgba(31, 224, 217, 0.09), transparent 40%),
+    radial-gradient(ellipse at 50% 0, rgba(255, 220, 78, 0.045), transparent 36%);
+  box-shadow: none;
+  overflow: visible;
+}
+
+.home-page #contact .contact-form::before,
+.home-page #contact .contact-form::after {
+  content: none;
+}
+
+.home-page #contact .contact-field {
+  position: relative;
+  margin-bottom: 22px;
+}
+
+.home-page #contact .contact-field label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+  color: #f0f4f3;
+  font-size: 15px;
+  font-weight: 750;
+}
+
+.home-page #contact .contact-icon {
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  padding: 6px;
+  border: 1px solid color-mix(in srgb, currentColor 42%, transparent);
+  border-radius: 8px;
+  background: color-mix(in srgb, currentColor 6%, transparent);
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 5px color-mix(in srgb, currentColor 27%, transparent));
+}
+
+.home-page #contact .contact-icon-name { color: #ff8051; }
+.home-page #contact .contact-icon-email { color: #ffd15a; }
+.home-page #contact .contact-icon-message { color: #35dfba; }
+
+.home-page #contact .contact-field input,
+.home-page #contact .contact-field textarea {
+  display: block;
+  width: 100%;
+  min-height: 58px;
+  padding: 14px 18px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  background:
+    linear-gradient(rgba(4, 12, 15, 0.94), rgba(4, 12, 15, 0.94)) padding-box,
+    linear-gradient(
+      100deg,
+      rgba(255, 88, 58, 0.94),
+      rgba(246, 191, 68, 0.65) 25%,
+      rgba(127, 172, 163, 0.45) 54%,
+      rgba(52, 229, 168, 0.94)
+    ) border-box;
+  color: #edf4f2;
+  font: inherit;
+  font-size: 16px;
+  line-height: 1.45;
+  box-shadow:
+    inset 0 1px rgba(255, 255, 255, 0.02),
+    0 0 12px rgba(43, 218, 176, 0.04);
+  transition: box-shadow 0.2s ease, filter 0.2s ease, transform 0.2s ease;
+}
+
+.home-page #contact .contact-field textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.home-page #contact .contact-field input::placeholder,
+.home-page #contact .contact-field textarea::placeholder {
+  color: #819195;
+  opacity: 1;
+}
+
+.home-page #contact .contact-field input:focus,
+.home-page #contact .contact-field textarea:focus {
+  outline: none;
+  filter: brightness(1.06) saturate(1.08);
+  transform: translateY(-1px);
+  box-shadow:
+    0 0 0 2px rgba(81, 227, 194, 0.11),
+    0 0 20px rgba(61, 221, 184, 0.12);
+}
+
+.home-page #contact .contact-field [aria-invalid="true"] {
+  background:
+    linear-gradient(rgba(4, 12, 15, 0.94), rgba(4, 12, 15, 0.94)) padding-box,
+    linear-gradient(100deg, #ec665a, #e17a64) border-box;
+}
+
+.home-page #contact .field-error {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.home-page #contact .contact-note {
+  color: #a8b6b7;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.home-page #contact #contact-note {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 18px;
+}
+
+.home-page #contact .contact-info-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 20px;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #4ee0cf;
+  border-radius: 50%;
+  color: #4ee0cf;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1;
+  box-shadow: 0 0 8px rgba(78, 224, 207, 0.14);
+}
+
+.home-page #contact .contact-submit {
+  position: relative;
+  display: grid;
+  grid-template-columns: 32px auto 32px;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  width: 100%;
+  min-height: 64px;
+  padding: 14px 24px;
+  overflow: hidden;
+  border: 0;
+  border-radius: 10px;
+  clip-path: polygon(
+    13px 0,
+    calc(100% - 13px) 0,
+    100% 13px,
+    100% calc(100% - 13px),
+    calc(100% - 13px) 100%,
+    13px 100%,
+    0 calc(100% - 13px),
+    0 13px
+  );
+  background: var(--contact-gradient);
+  background-size: 165% 100%;
+  color: #07110d;
+  font: inherit;
+  font-size: 18px;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow:
+    inset 0 0 0 2px rgba(255, 255, 255, 0.14),
+    inset 0 0 26px rgba(255, 255, 255, 0.12),
+    0 0 18px rgba(38, 221, 170, 0.13);
+  transition: transform 0.2s ease, filter 0.2s ease, box-shadow 0.2s ease;
+  animation: contact-button-gradient 7s ease-in-out infinite alternate;
+}
+
+.home-page #contact .contact-submit::before {
+  content: "";
+  position: absolute;
+  top: -45%;
+  bottom: -45%;
+  left: -30%;
+  width: 20%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.38), transparent);
+  transform: skewX(-18deg) translateX(-250%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.home-page #contact .contact-submit-icon,
+.home-page #contact .contact-submit-label,
+.home-page #contact .contact-submit-arrow {
+  position: relative;
+  z-index: 1;
+}
+
+.home-page #contact .contact-submit-icon {
+  width: 25px;
+  height: 25px;
+  justify-self: end;
+  stroke: currentColor;
+  stroke-width: 1.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.home-page #contact .contact-submit-arrow {
+  justify-self: start;
+  font-size: 25px;
+  line-height: 1;
+}
+
+.home-page #contact .contact-submit:disabled {
+  cursor: not-allowed;
+  opacity: 0.58;
+}
+
+.home-page #contact .contact-submit:focus-visible {
+  outline: none;
+  box-shadow:
+    inset 0 0 0 3px rgba(236, 255, 243, 0.75),
+    0 0 22px rgba(52, 225, 175, 0.22);
+}
+
+.home-page #contact .contact-status {
+  min-height: 1.5em;
+  margin: 10px 0 0;
+  text-align: center;
+}
+
+@keyframes contact-button-gradient {
+  from { background-position: 0% center; }
+  to { background-position: 100% center; }
+}
+
+@keyframes contact-button-shine {
+  from { transform: skewX(-18deg) translateX(-250%); }
+  to { transform: skewX(-18deg) translateX(700%); }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .home-page #contact .contact-field input:hover,
+  .home-page #contact .contact-field textarea:hover {
+    filter: brightness(1.06);
+    box-shadow: 0 0 16px rgba(48, 206, 168, 0.08);
+  }
+
+  .home-page #contact .contact-submit:hover:not(:disabled) {
+    transform: translateY(-2px);
+    filter: brightness(1.08) saturate(1.06);
+    box-shadow:
+      inset 0 0 0 2px rgba(255, 255, 255, 0.2),
+      inset 0 0 28px rgba(255, 255, 255, 0.16),
+      0 10px 28px rgba(0, 0, 0, 0.25),
+      0 0 28px rgba(37, 222, 171, 0.18);
+  }
+
+  .home-page #contact .contact-submit:hover:not(:disabled)::before {
+    opacity: 1;
+    animation: contact-button-shine 0.75s ease forwards;
+  }
+}
+
+/* DEVILAATORIST — sama süsteemi visuaalne lõpetus, käitumine ei muutu. */
+.home-page #devilaatorist {
+  padding-top: clamp(56px, 7vw, 90px);
+  padding-bottom: clamp(56px, 7vw, 90px);
+}
+
+.home-page #devilaatorist .devilaator-about-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  width: min(100%, 900px);
+  margin-inline: auto;
+  padding: 24px 26px;
+  border: 1px solid rgba(94, 215, 175, 0.2);
+  border-radius: 4px 18px 4px 18px;
+  background:
+    linear-gradient(120deg, rgba(101, 231, 165, 0.055), transparent 45%),
+    rgba(5, 12, 14, 0.72);
+  box-shadow:
+    inset 0 1px rgba(255, 255, 255, 0.025),
+    0 14px 30px rgba(0, 0, 0, 0.16);
+}
+
+.home-page #devilaatorist .devilaator-about-copy {
+  min-width: 0;
+}
+
+.home-page #devilaatorist .section-label {
+  margin: 0;
+  color: #9ee6c0;
+}
+
+.home-page #devilaatorist .devilaator-about-hint {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 9px 0 0;
+  color: #83928d;
+  font: 11px/1.5 Consolas, "Courier New", monospace;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.home-page #devilaatorist .devilaator-about-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #57e79a;
+  box-shadow: 0 0 9px rgba(87, 231, 154, 0.55);
+}
+
+.home-page #devilaatorist .devilaatorist-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  min-height: 46px;
+  margin: 0;
+  padding: 10px 16px 10px 18px;
+  border: 1px solid rgba(83, 220, 174, 0.42);
+  border-radius: 3px 12px 3px 12px;
+  background: linear-gradient(110deg, rgba(68, 215, 158, 0.08), rgba(45, 195, 193, 0.035));
+  color: #d6e9df;
+  font: 700 12px/1.4 Consolas, "Courier New", monospace;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.025);
+  transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.home-page #devilaatorist .devilaatorist-link-arrow {
+  color: #60e8ad;
+  font-size: 18px;
+  line-height: 1;
+  transition: transform 0.2s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .home-page #devilaatorist .devilaatorist-link:hover {
+    transform: translateY(-1px);
+    border-color: rgba(97, 237, 181, 0.7);
+    color: #ffffff;
+    box-shadow: 0 0 18px rgba(72, 224, 171, 0.08);
+  }
+
+  .home-page #devilaatorist .devilaatorist-link:hover .devilaatorist-link-arrow {
+    transform: translateX(3px);
+  }
+}
+
+@media (max-width: 650px) {
+  .home-page #contact {
+    padding: 34px 0 46px;
+  }
+
+  .home-page #contact .contact-title {
+    font-size: clamp(36px, 10vw, 48px);
+  }
+
+  .home-page #contact .contact-description {
+    padding-inline: 10px;
+    font-size: 15px;
+  }
+
+  .home-page #contact .contact-divider {
+    margin: 14px auto 20px;
+  }
+
+  .home-page #contact .contact-panel {
+    width: 100%;
+    filter: drop-shadow(0 14px 24px rgba(0, 0, 0, 0.42));
+  }
+
+  .home-page #contact .contact-panel::before {
+    inset: -4px;
+    filter: blur(12px);
+    opacity: 0.25;
+  }
+
+  .home-page #contact .contact-form {
+    padding: 28px 20px 26px;
+  }
+
+  .home-page #contact .contact-field {
+    margin-bottom: 17px;
+  }
+
+  .home-page #contact .contact-icon {
+    width: 31px;
+    height: 31px;
+    flex-basis: 31px;
+  }
+
+  .home-page #contact .contact-field input,
+  .home-page #contact .contact-field textarea {
+    padding-inline: 15px;
+    font-size: 16px;
+  }
+
+  .home-page #contact .contact-field textarea {
+    min-height: 140px;
+  }
+
+  .home-page #contact #contact-note {
+    align-items: flex-start;
+    margin-bottom: 16px;
+  }
+
+  .home-page #contact .contact-submit {
+    min-height: 60px;
+    grid-template-columns: 28px auto 28px;
+    gap: 10px;
+    animation: none;
+    background-size: 100% 100%;
+  }
+
+  .home-page #contact .contact-submit::before {
+    display: none;
+  }
+
+  .home-page #devilaatorist .devilaator-about-card {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 18px;
+    padding: 22px;
+  }
+
+  .home-page #devilaatorist .devilaatorist-link {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-page #contact .contact-submit {
+    animation: none;
+  }
+
+  .home-page #contact .contact-submit,
+  .home-page #contact .contact-field input,
+  .home-page #contact .contact-field textarea,
+  .home-page #devilaatorist .devilaatorist-link,
+  .home-page #devilaatorist .devilaatorist-link-arrow {
+    transition: none;
+  }
 }
 
 .home-page #devilaatorist {
@@ -3342,27 +3950,6 @@ a:focus-visible {
   }
 }
 
-/* DEVILAATORIST – link „Vaata lähemalt“ */
-
-.devilaatorist-link {
-  display: inline-block;
-  margin-top: 12px;
-  padding: 0;
-  border: 0;
-  background: none;
-  color: #9a9a9a;
-  font-family: inherit;
-  font-size: 14px;
-  text-decoration: none;
-  cursor: pointer;
-  transition: color 0.2s ease;
-}
-
-.devilaatorist-link:hover {
-  color: #ffffff;
-  text-decoration: underline;
-}
-
 /* DEVILAATORI veateate hüpikaken */
 
 .dev-error {
@@ -3420,3 +4007,400 @@ a:focus-visible {
 .dev-error-box button:hover {
   background: #333;
 }
+
+/* ==========================================================
+   DEVILAATOR avaleht — paneelid ja taust v4
+   2026-10-10
+   ========================================================== */
+
+/* DESKTOP: üks püsiv taust. Hele -> tumedam -> jälle heledam. */
+body.home-page {
+  position: relative;
+  isolation: isolate;
+  background: #020709 !important;
+}
+
+body.home-page::before {
+  content: "";
+  position: fixed;
+  z-index: -2;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("../img/hero-cyberpunk-bg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 24% center;
+  filter: brightness(1.00) saturate(1.20) contrast(1,15);
+}
+
+body.home-page::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  min-height: 100%;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    rgba(2, 7, 9, 0.03) 0%,
+    rgba(2, 7, 9, 0.15) 15%,
+    rgba(2, 7, 9, 0.56) 35%,
+    rgba(2, 7, 9, 0.66) 47%,
+    rgba(2, 7, 9, 0.34) 59%,
+    rgba(2, 7, 9, 0.10) 72%,
+    rgba(2, 7, 9, 0.08) 86%,
+    rgba(2, 7, 9, 0.20) 100%
+  );
+}
+
+body.home-page,
+.home-page .hero,
+.home-page .hero.system-panel,
+.home-page #projektid,
+.home-page #contact,
+.home-page #devilaatorist,
+.home-page .see-also {
+  background-image: none !important;
+}
+
+.home-page #projektid,
+.home-page #contact,
+.home-page #devilaatorist {
+  background-color: transparent !important;
+}
+
+.home-page > footer.system-panel {
+  background: rgba(2, 8, 10, 0.18) !important;
+}
+
+.home-page .hero {
+  background: transparent !important;
+}
+
+/* Sul on idee? — taust jääb nähtavaks, kuid tekst ei uju pildi sees. */
+.home-page .hero .idea-cta {
+  background:
+    linear-gradient(135deg, rgba(10, 28, 27, 0.62), rgba(3, 12, 15, 0.68)) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  box-shadow:
+    0 14px 30px rgba(0, 0, 0, 0.24),
+    inset 0 1px rgba(148, 223, 190, 0.04);
+}
+
+/* Projektikaardid: mitte läbipaistvad, vaid umbes pooleldi tumedad. */
+.home-page #project-grid .project-card {
+  background:
+    linear-gradient(145deg, rgb(var(--panel-accent) / 0.075), transparent 48%),
+    rgba(4, 10, 12, 0.66) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  box-shadow:
+    0 14px 30px rgba(0, 0, 0, 0.24),
+    inset 0 1px rgb(var(--panel-accent) / 0.05);
+}
+
+/* Kontakt: hall udukiht jääb eemaldatuks, kuid paneel ise on tumedam klaas. */
+.home-page #contact .contact-panel {
+  background: transparent !important;
+  filter:
+    drop-shadow(0 18px 34px rgba(0, 0, 0, 0.34))
+    drop-shadow(0 0 10px rgba(50, 217, 189, 0.08));
+}
+
+.home-page #contact .contact-panel::before {
+  content: none !important;
+  display: none !important;
+}
+
+.home-page #contact .contact-frame-fill {
+  fill: rgba(3, 10, 13, 0.70) !important;
+}
+
+.home-page #contact .contact-panel-frame path {
+  vector-effect: non-scaling-stroke;
+  shape-rendering: geometricPrecision;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.home-page #contact .contact-frame-outline {
+  stroke-width: 1.8;
+  opacity: 0.96;
+}
+
+.home-page #contact .contact-frame-inner {
+  stroke-width: 0.95;
+  opacity: 0.42;
+}
+
+.home-page #contact .contact-frame-edge {
+  stroke-width: 2.6;
+  opacity: 0.95;
+  filter:
+    drop-shadow(0 0 2px rgba(255, 133, 54, 0.42))
+    drop-shadow(0 0 4px rgba(65, 232, 198, 0.36));
+}
+
+.home-page #contact .contact-frame-detail {
+  stroke-width: 1.1;
+  opacity: 0.62;
+}
+
+/* Värvilised sujuvad üleminekud jäävad alles. Puudub eraldi hall kast. */
+.home-page #contact .contact-form {
+  background:
+    radial-gradient(circle at 0 18%, rgba(255, 76, 52, 0.085), transparent 38%),
+    radial-gradient(circle at 100% 20%, rgba(31, 224, 217, 0.09), transparent 40%),
+    radial-gradient(ellipse at 50% 0, rgba(255, 220, 78, 0.045), transparent 36%) !important;
+}
+
+.home-page #contact .contact-field input,
+.home-page #contact .contact-field textarea {
+  background:
+    linear-gradient(rgba(4, 11, 14, 0.88), rgba(4, 11, 14, 0.88)) padding-box,
+    linear-gradient(
+      100deg,
+      rgba(255, 88, 58, 0.94),
+      rgba(246, 191, 68, 0.62) 25%,
+      rgba(127, 172, 163, 0.42) 54%,
+      rgba(52, 229, 168, 0.94)
+    ) border-box;
+}
+
+/* Saada: ainult tekst. */
+.home-page #contact .contact-submit {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 0 !important;
+  grid-template-columns: none !important;
+}
+
+.home-page #contact .contact-submit-icon,
+.home-page #contact .contact-submit-arrow {
+  display: none !important;
+}
+
+/* DEVILAATORIST: sama tume klaas, mitte täiesti läbipaistev. */
+.home-page #devilaatorist .devilaator-about-card {
+  background:
+    linear-gradient(120deg, rgba(101, 231, 165, 0.055), transparent 46%),
+    rgba(4, 11, 13, 0.66) !important;
+  box-shadow:
+    inset 0 1px rgba(255, 255, 255, 0.03),
+    0 14px 30px rgba(0, 0, 0, 0.22);
+}
+
+.home-page #devilaatorist .devilaator-about-hint {
+  flex-wrap: nowrap;
+}
+
+.home-page #devilaatorist .devilaator-about-hint-arrow {
+  color: #60e8ad;
+  font-size: 18px;
+  line-height: 1;
+  margin-left: 6px;
+}
+
+.home-page #devilaatorist .hint-arrow-mobile {
+  display: none;
+}
+
+.home-page #devilaatorist .hint-arrow-desktop {
+  display: inline;
+}
+
+/* MOBIIL: väldi fixed + filter tausta, mis tekitab Chrome'is kerimisel jõnksu.
+   Taust liigub nüüd lehega kaasa ja on kerimiseks palju parem. */
+@media (max-width: 768px) {
+  body.home-page::before {
+    position: absolute;
+    inset: 0;
+    min-height: 100%;
+    background-position: 18% 0;
+    background-size: auto 980px;
+    background-repeat: repeat-y;
+    filter: none;
+    transform: none;
+  }
+
+  body.home-page::after {
+    background:
+      linear-gradient(
+        to bottom,
+        rgba(2, 7, 9, 0.00) 0%,
+        rgba(2, 7, 9, 0.10) 15%,
+        rgba(2, 7, 9, 0.36) 34%,
+        rgba(2, 7, 9, 0.44) 47%,
+        rgba(2, 7, 9, 0.26) 59%,
+        rgba(2, 7, 9, 0.08) 72%,
+        rgba(2, 7, 9, 0.07) 88%,
+        rgba(2, 7, 9, 0.16) 100%
+      );
+  }
+
+  .home-page .hero,
+  .home-page .hero.system-panel {
+    background: transparent !important;
+  }
+
+  .home-page .hero .idea-cta {
+    background:
+      linear-gradient(135deg, rgba(10, 28, 27, 0.66), rgba(3, 12, 15, 0.72)) !important;
+  }
+
+  .home-page #project-grid .project-card {
+    background:
+      linear-gradient(145deg, rgb(var(--panel-accent) / 0.075), transparent 48%),
+      rgba(4, 10, 12, 0.70) !important;
+  }
+
+  .home-page #contact .contact-frame-fill {
+    fill: rgba(3, 10, 13, 0.73) !important;
+  }
+
+  .home-page #contact .contact-panel {
+    filter: drop-shadow(0 12px 20px rgba(0, 0, 0, 0.32));
+  }
+
+  .home-page #devilaatorist .devilaator-about-card {
+    background:
+      linear-gradient(120deg, rgba(101, 231, 165, 0.055), transparent 46%),
+      rgba(4, 11, 13, 0.70) !important;
+  }
+
+  /* Telefonis Lisainfo nool alla. */
+  .home-page #devilaatorist .devilaator-about-hint {
+    align-items: center;
+  }
+
+  .home-page #devilaatorist .hint-arrow-desktop {
+    display: none;
+  }
+
+  .home-page #devilaatorist .hint-arrow-mobile {
+    display: inline;
+    margin-left: 5px;
+  }
+}
+
+/* v5: vormi neoonvärvide ristkülik ei tohi SVG raami ülanurkadest läbi paista.
+   Üksainus täpne SVG lõige jätab alles tumeda poolläbipaistva täite,
+   kõik radiaalsed gradiendid ja ka raami välised dekoratiivjooned. */
+.home-page #contact .contact-form {
+  border-radius: 24px; /* varuvariant, kui SVG clip-path pole toetatud */
+  -webkit-clip-path: url(#contact-glass-clip);
+  clip-path: url(#contact-glass-clip);
+}
+
+/* Hoia kasutaja soovitud desktopi asukoht, mobiili mõjutamata. */
+@media (min-width: 1200px) {
+  .home-page .hero .idea-cta {
+    translate: -42px -15px;
+  }
+}
+
+
+/* V8: ainult telefonis vana v2 hero taastamine. Desktop ja uus kontaktivorm puutumata. */
+@media (max-width: 768px) {
+  /* Varem lisatud kogu lehe taustakihid ei tohi hero pilti topeldada. */
+  body.home-page::before,
+  body.home-page::after {
+    content: none !important;
+    display: none !important;
+  }
+
+  /* v2 algne telefoni maastik ning tumeduse astmeline üleminek. */
+  body.home-page {
+    background-image:
+      linear-gradient(to bottom,
+        rgba(3,8,11,.12) 0 580px,
+        rgba(3,8,11,.72) 950px,
+        rgba(3,8,11,.92) 1450px,
+        rgba(3,8,11,.94) 100%),
+      url("../img/hero-cyberpunk-bg.png") !important;
+    background-size: 100% 100%, auto 820px !important;
+    background-position: center top, 31% 72px !important;
+    background-repeat: no-repeat !important;
+    background-attachment: scroll !important;
+  }
+
+  /* Vana v2 hero pilt. Ülimuslik ka uue CSS-i background:none !important ees. */
+  body.home-page .hero.system-panel {
+    background-image:
+      linear-gradient(90deg,
+        rgba(3,7,9,.34), rgba(3,7,9,.08) 48%, rgba(3,7,9,.20)),
+      linear-gradient(to bottom, transparent 68%, rgba(3,8,10,.30)),
+      url("../img/hero-cyberpunk-bg.png") !important;
+    background-size: cover, cover, contain !important;
+    background-position: center, center, center top !important;
+    background-repeat: no-repeat !important;
+    background-color: transparent !important;
+  }
+}
+
+
+/* =========================================
+   DEVILAATOR — KNIGHT RIDER NEON RUNNER
+   Pidev liikumine, ainult desktopil
+   ========================================= */
+
+   .home-page #contact .contact-frame-runner {
+    display: none;
+  }
+  
+  @media (min-width: 1024px) {
+  
+    .home-page #contact .contact-frame-outline {
+      stroke-dasharray: none;
+      animation: none;
+    }
+  
+    .home-page #contact .contact-frame-runner {
+      display: block;
+  
+      fill: none;
+      stroke: url(#contact-edge-gradient);
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+  
+      path-length: 1000;
+      stroke-dasharray: 45 955;
+      stroke-dashoffset: 0;
+  
+      filter:
+        drop-shadow(0 0 3px rgba(255, 255, 255, 0.9))
+        drop-shadow(0 0 8px rgba(255, 185, 65, 0.85))
+        drop-shadow(0 0 16px rgba(40, 230, 210, 0.6));
+  
+      animation: contact-neon-runner 14s linear infinite;
+    }
+  
+    @keyframes contact-neon-runner {
+      from {
+        stroke-dashoffset: 0;
+      }
+  
+      to {
+        stroke-dashoffset: -1000;
+      }
+    }
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    .home-page #contact .contact-frame-runner {
+      animation: none;
+    }
+  }
+
+  .home-page #devilaatorist .devilaator-about-card {
+    background:
+      linear-gradient(
+        120deg,
+        rgba(101, 231, 165, 0.055),
+        transparent 46%
+      ),
+      rgba(4, 11, 13, 0.76) !important;
+  }
