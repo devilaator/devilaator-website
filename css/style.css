@@ -4849,3 +4849,319 @@ body.home-page,
   .home-page #projektid .project-folder-content,
   .home-page .project-folder-chevron { transition: none !important; }
 }
+
+
+/* ================================================================
+   DEVILAATOR v12 — mobiili logo sulandumine ja sujuvam kerimine.
+   Muudatused on piiratud kuni 768px vaatega.
+   ================================================================ */
+@media (max-width: 768px) {
+  /* Ekraani ülaosas sama kosmosetaust, kuid kompaktse WebP failina.
+     Ei venitata tumedat gradienti üle terve pika dokumendi. */
+  body.home-page {
+    background-image:
+      linear-gradient(to bottom,
+        rgba(2, 7, 10, 0.10) 0px,
+        rgba(2, 7, 10, 0.10) 340px,
+        rgba(2, 7, 10, 0.14) 580px,
+        rgba(2, 7, 10, 0.22) 760px,
+        rgba(2, 7, 10, 0.48) 920px,
+        rgba(2, 7, 10, 0.85) 1100px,
+        #02090d 1230px),
+      url("../img/hero-mobile-bg.webp") !important;
+    background-size: 100% 1230px, auto 1230px !important;
+  }
+
+  /* Logo tumedad pikslid sulanduvad päise tausta sisse.
+     Värvilised tähed ja neoonjoon jäävad nähtavaks. */
+  .home-page > .site-header .devilaator-mobile-logo {
+    mix-blend-mode: screen;
+    -webkit-mask-image: radial-gradient(ellipse 83% 92% at 50% 50%,
+      #000 48%, rgba(0, 0, 0, .96) 64%, rgba(0, 0, 0, .72) 80%, transparent 100%);
+    mask-image: radial-gradient(ellipse 83% 92% at 50% 50%,
+      #000 48%, rgba(0, 0, 0, .96) 64%, rgba(0, 0, 0, .72) 80%, transparent 100%);
+    filter: none;
+  }
+
+  /* Valgusimpulss liigub transformiga, et mitte taustagradienti
+     igal animatsioonikaadril uuesti joonistada. */
+  .home-page .hero-flow-wire {
+    position: relative;
+    overflow: hidden;
+    background-size: 100% 100%;
+    animation: none;
+  }
+  .home-page .hero-flow-wire::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 34%;
+    background: linear-gradient(90deg, transparent, #bcfff2 50%, transparent);
+    box-shadow: 0 0 6px rgba(127, 255, 226, .6);
+    transform: translateX(-120%);
+    animation: devilaator-wire-transform 5s linear infinite;
+  }
+  .home-page .hero-flow-wire-right::after { animation-delay: -2.5s; }
+  @keyframes devilaator-wire-transform {
+    from { transform: translateX(-120%); }
+    to   { transform: translateX(400%); }
+  }
+}
+@media (max-width: 768px) and (prefers-reduced-motion: reduce) {
+  .home-page .hero-flow-wire::after { animation: none; }
+}
+
+
+/* ======================================================================
+   DEVILAATOR — DESKTOPI LASERKARDIN / PROJEKTIKAUST
+   Telefon (<=768px) jääb täpselt senise avatava kausta peale.
+   Laser on ainult avamisel ja sulgemisel, mitte pidev animatsioon.
+   ====================================================================== */
+@media (min-width: 769px) {
+  .home-page #projektid.project-folder-ready .project-folder-toggle {
+    display: flex;
+    width: min(100%, 920px);
+    min-height: 72px;
+    margin: 0 auto;
+    padding: 17px 24px;
+    gap: 17px;
+    align-items: center;
+    border: 1px solid rgba(83, 235, 196, .58);
+    border-radius: 15px;
+    color: #ccfff1;
+    background: linear-gradient(105deg,
+      rgba(5, 23, 32, .94), rgba(8, 29, 43, .93) 52%, rgba(8, 34, 33, .94));
+    box-shadow: inset 0 1px 0 rgba(200, 255, 242, .11),
+      0 0 28px rgba(35, 216, 193, .10), 0 12px 35px rgba(0, 0, 0, .19);
+    font: 700 15px/1.25 Consolas, 'Courier New', monospace;
+    letter-spacing: .085em;
+    text-align: left;
+    cursor: pointer;
+    transition: border-color .2s, box-shadow .2s, background .2s;
+  }
+  .home-page #projektid.project-folder-ready .project-folder-toggle:hover {
+    border-color: rgba(131, 255, 224, .88);
+    box-shadow: inset 0 1px rgba(210, 255, 245, .16),
+      0 0 27px rgba(56, 241, 194, .17), 0 10px 30px rgba(0, 0, 0, .20);
+  }
+  .home-page #projektid.project-folder-ready .project-folder-toggle:focus-visible {
+    outline: 2px solid #c1fff1;
+    outline-offset: 4px;
+  }
+  .home-page #projektid .project-folder-icon {
+    position: relative;
+    display: block;
+    flex: 0 0 29px;
+    width: 29px;
+    height: 22px;
+    margin-top: 4px;
+    border: 1.5px solid #8afbe0;
+    border-radius: 4px;
+    box-shadow: 0 0 9px rgba(78, 246, 209, .25);
+  }
+  .home-page #projektid .project-folder-icon::before {
+    content: '';
+    position: absolute;
+    width: 13px;
+    height: 6px;
+    left: 2px;
+    top: -7px;
+    border: 1.5px solid #8afbe0;
+    border-bottom: 0;
+    border-radius: 4px 4px 0 0;
+  }
+  .home-page #projektid .project-folder-label {
+    flex: 1 1 auto;
+  }
+  .home-page #projektid .project-folder-chevron {
+    font-size: 26px;
+    line-height: 1;
+    color: #a4ffdf;
+    transition: transform .35s ease;
+  }
+  .home-page #projektid.is-folder-open .project-folder-chevron {
+    transform: rotate(180deg);
+  }
+
+  /* Kausta kõrguse kasvuga liigub täpselt samas tempos ka laserkiirte alumine serv. */
+  .home-page #projektid.project-folder-ready .project-folder-content {
+    position: relative;
+    display: grid;
+    grid-template-rows: 0fr;
+    margin-top: 0;
+    isolation: isolate;
+    transition:
+      grid-template-rows 1.28s cubic-bezier(.45, .08, .25, 1),
+      margin-top 1.28s cubic-bezier(.45, .08, .25, 1);
+  }
+  .home-page #projektid.project-folder-ready.is-folder-open .project-folder-content {
+    grid-template-rows: 1fr;
+    margin-top: 24px;
+  }
+  .home-page #projektid.project-folder-ready .project-folder-inner {
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  /* Lavavalguse vertikaalsed laserkiired. Pärast avamist kaovad ära. */
+  .home-page #projektid.project-folder-ready .project-folder-content::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    pointer-events: none;
+    opacity: 0;
+    background:
+      linear-gradient(180deg,
+        rgba(45, 255, 203, .14), rgba(33, 218, 210, .09) 48%,
+        rgba(39, 232, 191, .22) 95%, rgba(133, 255, 229, .48)),
+      repeating-linear-gradient(90deg,
+        transparent 0 12px, rgba(16, 209, 188, .06) 14px,
+        rgba(118, 255, 228, .42) 16px, rgba(20, 210, 227, .12) 19px,
+        transparent 25px 48px);
+    -webkit-mask-image: linear-gradient(180deg, rgba(0,0,0,.28), #000 100%);
+    mask-image: linear-gradient(180deg, rgba(0,0,0,.28), #000 100%);
+  }
+  /* Sädelev skaneerimisserv — kinnitatud alati avaneva kausta põhja. */
+  .home-page #projektid.project-folder-ready .project-folder-content::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 6;
+    pointer-events: none;
+    height: 4px;
+    border-radius: 50%;
+    opacity: 0;
+    background: linear-gradient(90deg, transparent, #8798dc 8%,
+      #39e5c9 16%, #caffee 35%, #f2fff9 50%, #7dfbe1 70%,
+      #909ff0 83%, #2bcbe5 92%, transparent);
+    box-shadow: 0 -6px 20px rgba(78, 255, 213, .70),
+      0 4px 18px rgba(40, 230, 218, .75), 0 0 34px rgba(110, 255, 211, .58);
+  }
+  .home-page #projektid.is-laser-opening .project-folder-content::before {
+    animation: dev-laser-sheet-open 1.28s ease-out both;
+  }
+  .home-page #projektid.is-laser-opening .project-folder-content::after {
+    animation: dev-laser-edge-open 1.28s linear both;
+  }
+  .home-page #projektid.is-laser-closing .project-folder-content::before {
+    animation: dev-laser-sheet-close 1.28s ease-out both;
+  }
+  .home-page #projektid.is-laser-closing .project-folder-content::after {
+    animation: dev-laser-edge-close 1.28s linear both;
+  }
+}
+
+@keyframes dev-laser-sheet-open {
+  0% { opacity: .85; }
+  70% { opacity: .82; }
+  100% { opacity: 0; }
+}
+@keyframes dev-laser-edge-open {
+  0% { opacity: .7; }
+  88% { opacity: 1; }
+  100% { opacity: 0; }
+}
+@keyframes dev-laser-sheet-close {
+  0% { opacity: .0; }
+  15% { opacity: .85; }
+  100% { opacity: .65; }
+}
+@keyframes dev-laser-edge-close {
+  0% { opacity: .75; }
+  85% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@media (min-width: 769px) and (prefers-reduced-motion: reduce) {
+  .home-page #projektid .project-folder-content {
+    transition: none !important;
+  }
+  .home-page #projektid .project-folder-content::before,
+  .home-page #projektid .project-folder-content::after {
+    animation: none !important;
+    opacity: 0 !important;
+  }
+}
+
+
+/* ===============================================================
+   DEVILAATOR v14 — projektide olekud: neli ühesugust neoonmärgist
+   Erinevad ainult värvid; tekstid ja kaartide kujundus säilivad.
+   =============================================================== */
+.home-page #project-grid .project-card .project-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 1 auto;
+  max-width: 100%;
+  min-height: 29px;
+  padding: 5px 11px;
+  gap: 7px;
+  border: 1px solid var(--status-border, rgba(126, 211, 172, .48));
+  border-radius: 999px;
+  background: var(--status-bg, rgba(9, 34, 29, .70));
+  color: var(--status-text, #a4e5c6);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.035),
+    0 0 13px var(--status-glow, rgba(85, 224, 163, .07));
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1.45;
+  letter-spacing: .075em;
+  text-align: center;
+  white-space: normal;
+}
+
+.home-page #project-grid .project-card .project-status::before {
+  content: '';
+  display: block;
+  flex: 0 0 5px;
+  width: 5px;
+  height: 5px;
+  margin: 0;
+  border: 0;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 7px currentColor;
+}
+
+/* QUIT30 — roheline, uuendamisel */
+.home-page #project-grid .project-status--quit30 {
+  --status-text: #8ef2b0;
+  --status-bg: rgba(12, 60, 35, .67);
+  --status-border: rgba(95, 223, 137, .52);
+  --status-glow: rgba(75, 226, 133, .12);
+}
+
+/* STEADY HAND — punakas, testimisel */
+.home-page #project-grid .project-status--steady {
+  --status-text: #ff9b9a;
+  --status-bg: rgba(75, 28, 37, .67);
+  --status-border: rgba(246, 112, 114, .52);
+  --status-glow: rgba(245, 93, 111, .11);
+}
+
+/* KILBIHALDUS — valkjas, testfaasis */
+.home-page #project-grid .project-status--kilbihaldus {
+  --status-text: #e1edf4;
+  --status-bg: rgba(89, 109, 120, .24);
+  --status-border: rgba(210, 230, 239, .50);
+  --status-glow: rgba(207, 231, 241, .09);
+}
+
+/* ELVA POKSIKLUBI — neutraalne hall, tegemisel */
+.home-page #project-grid .project-status--poksiklubi {
+  --status-text: #c4cbd1;
+  --status-bg: rgba(53, 62, 69, .62);
+  --status-border: rgba(164, 178, 185, .43);
+  --status-glow: rgba(164, 180, 190, .07);
+}
+
+/* Kilbihalduse lisamärkus järgib valkjat olekumärgist. */
+.home-page #project-grid .project-field-test > .project-test-note {
+  border-left-color: rgba(210, 230, 239, .65);
+}

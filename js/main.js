@@ -143,19 +143,20 @@
     });
   }
 
-  // Projektikaust on mobiilis suletav; desktopil jäävad suured kaardid alati nähtavaks.
+  // Projektikaust: mobiilis senine avamine, desktopil lavalaseri kardin.
+  // Eri vaadete olekut hoiame eraldi, et suuruse muutmine avamist ei segaks.
   const projectSection = document.getElementById('projektid');
   const projectFolderToggle = document.getElementById('project-folder-toggle');
   const projectFolderContent = document.getElementById('project-folder-content');
   const projectFolderLabel = projectFolderToggle?.querySelector('.project-folder-label');
-  let projectFolderOpen = location.hash === '#projektid';
+  let mobileProjectFolderOpen = location.hash === '#projektid';
+  let desktopProjectFolderOpen = location.hash === '#projektid';
 
   function syncProjectFolder() {
     if (!projectSection || !projectFolderToggle || !projectFolderContent) return;
 
-    const useFolder = mobile.matches;
-    const expanded = !useFolder || projectFolderOpen;
-    projectSection.classList.toggle('project-folder-ready', useFolder);
+    const expanded = mobile.matches ? mobileProjectFolderOpen : desktopProjectFolderOpen;
+    projectSection.classList.add('project-folder-ready');
     projectSection.classList.toggle('is-folder-open', expanded);
     projectFolderToggle.setAttribute('aria-expanded', String(expanded));
     if (projectFolderLabel) {
@@ -166,8 +167,13 @@
   }
 
   function openProjectFolder() {
-    if (!mobile.matches || !projectSection) return;
-    projectFolderOpen = true;
+    if (!projectSection) return;
+    if (mobile.matches) mobileProjectFolderOpen = true;
+    else desktopProjectFolderOpen = true;
+    if (!mobile.matches && !motion.matches) {
+      projectSection.classList.remove('is-laser-closing');
+      projectSection.classList.add('is-laser-opening');
+    }
     syncProjectFolder();
   }
 
@@ -176,17 +182,36 @@
 
     syncProjectFolder();
     projectFolderToggle.addEventListener('click', () => {
-      if (!mobile.matches) return;
-      projectFolderOpen = !projectFolderOpen;
+      const previouslyOpen = mobile.matches ? mobileProjectFolderOpen : desktopProjectFolderOpen;
+      if (mobile.matches) {
+        mobileProjectFolderOpen = !mobileProjectFolderOpen;
+      } else {
+        desktopProjectFolderOpen = !desktopProjectFolderOpen;
+        projectSection.classList.remove('is-laser-opening', 'is-laser-closing');
+        // Animatsioon kestab vaid avamise / sulgemise ajal.
+        if (!motion.matches) {
+          projectSection.classList.add(previouslyOpen ? 'is-laser-closing' : 'is-laser-opening');
+        }
+      }
       syncProjectFolder();
-      if (!projectFolderOpen && projectSection.getBoundingClientRect().top < -90) {
+      if (previouslyOpen && projectSection.getBoundingClientRect().top < -90) {
         projectSection.scrollIntoView({
           behavior: motion.matches ? 'instant' : 'smooth',
           block: 'start'
         });
       }
     });
-    mobile.addEventListener('change', syncProjectFolder);
+
+    projectFolderContent.addEventListener('transitionend', event => {
+      if (event.propertyName === 'grid-template-rows') {
+        projectSection.classList.remove('is-laser-opening', 'is-laser-closing');
+      }
+    });
+
+    mobile.addEventListener('change', () => {
+      projectSection.classList.remove('is-laser-opening', 'is-laser-closing');
+      syncProjectFolder();
+    });
     window.addEventListener('hashchange', () => {
       if (location.hash === '#projektid') openProjectFolder();
     });

@@ -4,11 +4,13 @@
   const projects = [
     {
       id: 'PROJECT_01', name: 'QUIT30', label: 'ANDROID • APP', status: 'UUENDAMISEL',
+      statusTone: 'quit30',
       description: 'Nutikas 30-päevane loobumisäpp, mis aitab sul püsida suitsuvabal rajal. Reaalajas ülevaade säästudest, edusammudest ja igapäevasest toest.',
       image: 'img/quit30.jpg', alt: 'QUIT30 äpi ekraanipilt', url: 'quit30.html'
     },
     {
       id: 'PROJECT_02', name: 'STEADY HAND', label: 'ANDROID • MÄNG', status: 'TESTIMISEL',
+      statusTone: 'steady',
       description: 'Telefoni liikumisanduritel põhinev stabiilsus- ja tasakaalumäng.',
       image: 'img/steady-hand.jpg', alt: 'STEADY HAND Android mäng', url: 'steady-hand.html',
       cardClass: 'steady-hand-project'
@@ -18,6 +20,7 @@
       name: 'KILBIHALDUS',
       label: 'WEB • APP',
       status: 'TESTFAASIS OLEV TARKVARA',
+      statusTone: 'kilbihaldus',
       statusDescription: 'Kilbihaldust testitakse hetkel veel objektil ja tööolukorras.',
       description: 'Kas ei tea, kus mis asub või kust toide tuleb? Appi võta Kilbihaldus - elektripaigaldise digitaalne kaart sinu taskus. Kilbid, grupid, toiteahelad, dokumendid ning hooldus ühes kohas. Kogu objekti elektripaigaldisest selge ning täielik ülevaade otse ekraanilt.',
       image: 'img/kilbihaldus-logo.png',
@@ -32,6 +35,7 @@
         name: 'ELVA POKSIKLUBI',
         label: 'WEB • APP',
         status: 'TEGEMISEL',
+        statusTone: 'poksiklubi',
         description: 'Veebileht ja klubihaldussüsteem koos multimeedia, treeningute, liikmete, broneeringute ja kalendri ning väikese e-poe jaoks.',
         image: 'img/elva-poksiklubi.png',
         alt: 'Vanad poksikindad poksiringi nurgas',
@@ -59,7 +63,7 @@
     const top = element('div', 'project-top');
     const badge = project.label ? element('span', 'project-badge', project.label) : null;
     if (badge) top.append(badge);
-    top.append(element('span', `project-status${(project.status === 'TESTIMISEL' || project.statusDescription) ? ' project-status-testing' : ''}${(placeholder || project.status === 'TULEKUL') ? ' project-status-upcoming' : ''}`, project.status));
+    top.append(element('span', `project-status${(project.status === 'TESTIMISEL' || project.statusDescription) ? ' project-status-testing' : ''}${(placeholder || project.status === 'TULEKUL') ? ' project-status-upcoming' : ''}${project.statusTone ? ` project-status--${project.statusTone}` : ''}`, project.status));
     const preview = element('div', 'project-preview-area');
     if (project.image) {
       const image = element('img', 'project-preview');
