@@ -41,7 +41,21 @@
         alt: 'Vanad poksikindad poksiringi nurgas',
         secretUrl: 'https://poksiklubi.pages.dev'
       }
-    
+    ,
+    {
+      id: 'PROJECT_05', name: 'DEVIHALDUR', label: 'WINDOWS • TARKVARA', status: 'VALMIS',
+      statusTone: 'finished',
+      description: 'Kohalik finantskeskus müügiarvete, kulude ja laekumiste haldamiseks. Toetab pangatehingute importi ja raamatupidamiskandeid.',
+      image: 'img/devihaldur-logo.webp', imageClass: 'devi-project-logo',
+      alt: 'DeviHalduri logo', url: 'devihaldur.html'
+    },
+    {
+      id: 'PROJECT_06', name: 'DEVIARVE', label: 'WINDOWS • TARKVARA', status: 'VALMIS',
+      statusTone: 'finished',
+      description: 'Isiklik finantsjuht, mis koondab arved, sissetulekud, igakuised kulud ja rahaplaani ühte kohta. Näed, mis on makstud, mis ootab tasumist ja kui palju kuuks raha alles jääb.',
+      image: 'img/deviarve-logo.webp', imageClass: 'devi-project-logo',
+      alt: 'DeviArve logo', url: 'deviarve.html'
+    }
   ];
   const grid = document.querySelector('#project-grid');
   if (!grid) return;

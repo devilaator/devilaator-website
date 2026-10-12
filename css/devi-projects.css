@@ -1,0 +1,99 @@
+
+/* DeviHaldur ja DeviArve – olemasoleva projektilehe stiili edasiarendus */
+.devi-product{--devi-a:#299ffe;--devi-b:#2fe6bd;--devi-glow:rgba(33,184,218,.18);margin:0;background:#040d1c;color:#e8f4ff;min-height:100vh}
+.devi-deviarve{--devi-a:#1dbbfa;--devi-b:#55eddb;--devi-glow:rgba(45,153,244,.2)}
+.devi-product:before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at 85% 4%,var(--devi-glow),transparent 54%),radial-gradient(ellipse at 3% 72%,rgba(23,59,131,.15),transparent 55%);z-index:0}
+.devi-product>.site-header{position:relative;z-index:2;min-height:76px;padding:14px clamp(22px,4vw,64px);background:rgba(3,13,28,.75);border-bottom:1px solid rgba(75,196,241,.18);display:flex;flex-wrap:wrap;align-items:center;gap:18px}
+.devi-product>.site-header .brand-logo{margin-right:auto;font-size:clamp(25px,2.3vw,33px);font-weight:900;line-height:1;letter-spacing:2px}
+.devi-product>.site-header .main-nav{display:flex;align-items:center;gap:clamp(14px,2vw,30px)}
+.devi-product>.site-header .main-nav a{color:#c2d9e6;text-decoration:none;font-size:14px;font-weight:650}
+.devi-product>.site-header .main-nav a:hover{color:var(--devi-b)}
+.devi-page{position:relative;z-index:1;max-width:1360px;margin:auto;padding:clamp(38px,5vw,76px) clamp(20px,4.5vw,65px) 90px}
+.devi-hero{display:grid;grid-template-columns:minmax(0,0.9fr) minmax(0,1.1fr);gap:clamp(28px,4vw,64px);align-items:center}
+.devi-kicker{color:var(--devi-b);font-size:.82rem;font-weight:800;letter-spacing:.17em}
+.devi-copy h1{font-size:clamp(3rem,6.5vw,6rem);letter-spacing:-.05em;line-height:1.07;margin:15px 0 8px;background:linear-gradient(95deg,var(--devi-a),var(--devi-b) 76%,#d4faff);color:transparent;background-clip:text;-webkit-background-clip:text;filter:drop-shadow(0 3px 19px var(--devi-glow))}
+.devi-subtitle{font-size:1rem;font-weight:750;letter-spacing:.16em;color:#8fdde9;margin:0 0 27px}
+.devi-intro{font-size:clamp(1rem,1.35vw,1.12rem);color:#c2d8ea;line-height:1.85;margin:0 0 16px;max-width:610px}
+.devi-back{display:inline-flex;margin-top:22px;font-weight:750;color:var(--devi-b)!important;text-decoration:none;border-bottom:1px solid rgba(65,205,226,.38);padding-bottom:7px}
+.devi-visual img{width:100%;height:auto;display:block;border-radius:14px;border:1px solid rgba(69,207,255,.39);box-shadow:0 0 36px var(--devi-glow),0 30px 70px rgba(0,0,0,.5)}
+.devi-features{margin-top:65px;border-top:1px solid rgba(70,206,247,.2);padding-top:35px}
+.devi-features h2{color:#e6f7ff;font-size:clamp(1.55rem,3vw,2.15rem);margin:12px 0 25px}
+.devi-feature-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px}
+.devi-feature{background:linear-gradient(145deg,rgba(11,44,70,.78),rgba(7,24,48,.95));border:1px solid rgba(58,160,213,.3);border-radius:14px;padding:23px 19px}
+.devi-feature h3{color:var(--devi-b);font-size:1.08rem;margin:0 0 12px}
+.devi-feature p{color:#b7cedf;line-height:1.65;margin:0;font-size:.96rem}
+.devi-private{color:#8daec2;font-size:.95rem;margin:26px 0 0}
+.devi-product>footer{position:relative;z-index:1}
+@media(max-width:980px){.devi-hero{grid-template-columns:1fr}.devi-visual{max-width:850px}.devi-feature-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:650px){.devi-product>.site-header{padding:16px 20px}.devi-product>.site-header .main-nav{flex-wrap:wrap}.devi-feature-grid{grid-template-columns:1fr}.devi-page{padding-top:38px}.devi-copy h1{font-size:clamp(2.8rem,13vw,4rem)}}
+
+/* Ühtne avalehe päis, ilma uute projektilehtede eraldi kitsendusteta */
+.devi-product > .site-header.devi-site-header { min-height:76px; padding:0; background:rgba(3,13,28,.62); border-bottom:1px solid rgba(82,203,209,.14); box-shadow:none; backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); display:block; }
+.devi-product > .site-header .header-inner { width:100%; min-height:76px; padding:0 clamp(24px,4vw,64px); margin:0; display:flex; flex-wrap:nowrap; align-items:center; gap:24px; }
+.devi-product > .site-header .brand-group { display:flex; align-items:center; min-width:0; margin-right:auto; gap:20px; }
+.devi-product > .site-header .brand-logo { font-size:clamp(26px,2.3vw,33px); letter-spacing:2.2px; margin:0; white-space:nowrap; }
+.devi-product > .site-header .brand-divider { flex:0 0 1px; }
+.devi-product > .site-header .brand-meta { display:flex; }
+.devi-product > .site-header .header-actions { display:flex; flex-shrink:0; align-items:center; gap:clamp(16px,2vw,32px); }
+.devi-product > .site-header .main-nav { display:flex; flex-wrap:nowrap; align-items:center; gap:clamp(16px,1.8vw,30px); }
+.devi-product > .site-header .main-nav a { white-space:nowrap; }
+.devi-product > .site-header .system-status { white-space:nowrap; }
+.devi-product > .site-header .devilaator-mobile-logo { display:none; }
+/* Kaks eraldi veergu: rohkem ruumi ekraanipildile ja mitte ühtegi kattumist. */
+.devi-product .devi-page { width:100%; max-width:1700px; margin:0 auto; padding:clamp(42px,5vw,78px) clamp(24px,4vw,72px) 90px; }
+.devi-product .devi-hero { display:grid; grid-template-columns:minmax(0, .78fr) minmax(0, 1.22fr); gap:clamp(44px,4.5vw,85px); align-items:center; }
+.devi-product .devi-copy, .devi-product .devi-visual { min-width:0; }
+.devi-product .devi-copy h1 { font-size:clamp(3.15rem,5vw,5.7rem); overflow-wrap:normal; white-space:normal; }
+.devi-product .devi-visual { width:100%; justify-self:stretch; }
+.devi-product .devi-visual img { width:100%; height:auto; object-fit:contain; border-radius:16px; }
+@media(max-width:1100px) {
+ .devi-product .devi-hero { grid-template-columns:1fr; gap:34px; }
+ .devi-product .devi-visual { max-width:980px; }
+ .devi-product > .site-header .brand-meta, .devi-product > .site-header .brand-divider, .devi-product > .site-header .system-status { display:none; }
+}
+@media(max-width:750px) {
+ .devi-product > .site-header .header-inner { padding:0 18px; min-height:70px; gap:12px; }
+ .devi-product > .site-header .header-actions { margin-left:auto; }
+ .devi-product > .site-header .menu-toggle { display:inline-flex; }
+ .devi-product > .site-header .main-nav { display:none; position:absolute; top:calc(100% - 1px); left:0; right:0; background:rgba(3,13,28,.98); padding:18px 22px; flex-direction:column; align-items:flex-start; gap:18px; border-bottom:1px solid rgba(82,203,209,.35); }
+ .devi-product > .site-header .main-nav.is-open { display:flex; }
+ .devi-product .devi-page { padding:36px 20px 65px; }
+ .devi-product .devi-copy h1 { font-size:clamp(2.8rem,11.5vw,4.5rem); }
+}
+
+/* Projektide nimes kasuta samasuguseid toone nagu päris logodel. */
+.devi-product .devi-copy h1 { background:none; color:inherit; filter:none; letter-spacing:-.045em; }
+.devi-product .devi-title-first,.devi-product .devi-title-last { display:inline; -webkit-background-clip:text; background-clip:text; color:transparent; }
+.devi-devihaldur .devi-title-first { background-image:linear-gradient(110deg,#298fff 0%,#18baf6 65%,#07d9e5); }
+.devi-devihaldur .devi-title-last { background-image:linear-gradient(115deg,#04dbe8,#34ecc3 60%,#1ee4ab); }
+.devi-deviarve .devi-title-first { background-image:linear-gradient(100deg,#38edbd 0%,#10d7ec 40%,#337dff 78%,#b48aff 100%); }
+.devi-deviarve .devi-title-last { background-image:linear-gradient(105deg,#ecf7ff,#bddaff 85%); }
+.devi-product .devi-intro { max-width:670px; line-height:1.75; }
+.devi-product .devi-private { margin:20px 0 0; line-height:1.6; }
+.devi-product .devi-back { margin-top:22px; }
+
+/* Logopiltide järgi täpsustatud nimegradiendid: Arve ei ole valge. */
+.devi-deviarve .devi-title-last { background-image:linear-gradient(105deg,#b5a5ff 0%,#98b9ff 38%,#83d6fa 73%,#c6d8ff 100%); }
+.devi-devihaldur .devi-title-last { background-image:linear-gradient(110deg,#07c6ea 0%,#00e2c3 48%,#34ebaf 100%); }
+
+
+/* 2026-10-12: projektide päris ekraanipiltide värvidega kooskõlas olevad pealkirjad. */
+.devi-deviarve .devi-title-first { background:none; -webkit-text-fill-color:initial; color:inherit; }
+.devi-deviarve .devi-arve-de,
+.devi-deviarve .devi-arve-vi { -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:transparent; }
+.devi-deviarve .devi-arve-de { background-image:linear-gradient(105deg,#2de4d4,#38cafa); }
+.devi-deviarve .devi-arve-vi { background-image:linear-gradient(105deg,#638fff,#a68bf3 68%,#c5adff); }
+.devi-deviarve .devi-title-last { background-image:linear-gradient(105deg,#b5d6ff 0%,#72c9fc 55%,#36c5f4 100%); }
+.devi-devihaldur .devi-title-first { background-image:linear-gradient(110deg,#278efe 0%,#23a9ff 65%,#22d1ec 100%); }
+.devi-devihaldur .devi-title-last { background-image:linear-gradient(105deg,#20d9df 0%,#2debb9 70%,#43f0a6 100%); }
+/* Pildid pealkirjale lähemale ja ülaservast kõrgemale. */
+@media (min-width:1101px) {
+ .devi-product .devi-hero { align-items:start; }
+ .devi-product .devi-visual { margin-top:22px; }
+}
+@media (max-width:1100px) { .devi-product .devi-visual { margin-top:0; } }
+
+/* Ekraanipildi ülaserv algab esimese tutvustava lõiguga samalt kõrguselt. */
+@media (min-width:1101px) {
+  .devi-product .devi-visual { margin-top:var(--devi-intro-offset, 170px); }
+}

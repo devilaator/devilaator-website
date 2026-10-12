@@ -5165,3 +5165,31 @@ body.home-page,
 .home-page #project-grid .project-field-test > .project-test-note {
   border-left-color: rgba(210, 230, 239, .65);
 }
+
+/* Devi projektide logod avalehel */
+#project-grid .devi-project-logo { width: 100%; height: 100%; object-fit: contain; }
+#project-grid .project-status--finished { color: #48e7b9; border-color: rgba(72,231,185,.45); }
+
+/* DeviHalduri ja DeviArve logo servad sulanduvad projektikaardi taustaga. */
+.home-page #project-grid .project-preview img.devi-project-logo {
+  border-radius:22px;
+  -webkit-mask-image:radial-gradient(ellipse 76% 77% at 50% 50%,#000 48%,rgba(0,0,0,.92) 66%,transparent 100%);
+  mask-image:radial-gradient(ellipse 76% 77% at 50% 50%,#000 48%,rgba(0,0,0,.92) 66%,transparent 100%);
+}
+
+/* Logo pildi pehme, hajuv äär ilma nähtava nelinurkse piirita. */
+.home-page #project-grid .project-preview img.devi-project-logo {
+ border-radius:0;
+ -webkit-mask-image:radial-gradient(ellipse 95% 95% at 50% 50%,#000 43%,rgba(0,0,0,.95) 57%,rgba(0,0,0,.7) 70%,rgba(0,0,0,.25) 83%,transparent 99%);
+ mask-image:radial-gradient(ellipse 95% 95% at 50% 50%,#000 43%,rgba(0,0,0,.95) 57%,rgba(0,0,0,.7) 70%,rgba(0,0,0,.25) 83%,transparent 99%);
+}
+
+
+/* Projektide 04, 05, 06 pildid sulanduvad kaartide tumedasse tausta.
+   Tähtis: pilt ise kannab klassi .project-preview, mitte selle sees olev img. */
+.home-page #project-grid .project-preview[src$="elva-poksiklubi.png"],
+.home-page #project-grid .project-preview.devi-project-logo {
+  border-radius:0;
+  -webkit-mask-image:radial-gradient(ellipse 74% 78% at center, #000 34%, rgba(0,0,0,.95) 49%, rgba(0,0,0,.67) 63%, rgba(0,0,0,.24) 76%, transparent 91%);
+  mask-image:radial-gradient(ellipse 74% 78% at center, #000 34%, rgba(0,0,0,.95) 49%, rgba(0,0,0,.67) 63%, rgba(0,0,0,.24) 76%, transparent 91%);
+}
