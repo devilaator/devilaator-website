@@ -635,8 +635,43 @@
         >
           OK
         </button>
+
+        <!-- Väike peidetud vihje. Olemasoleva veateate tekst ja OK-nupp jäävad samaks. -->
+        <a href="/identiteet.html" class="dev-secret-signal" aria-label="Ava tundmatu signaal">
+          <span class="dev-secret-signal-dot" aria-hidden="true"></span>
+          <span>[ TUVASTAMATA SIGNAAL ]</span>
+          <span aria-hidden="true">↗</span>
+        </a>
       </div>
     </div>
+
+    <style>
+      /* 404-hüpikakna salalink; ei muuda ülejäänud kujundust. */
+      .dev-error-box .dev-secret-signal {
+        display: flex; align-items: center; justify-content: center; gap: 8px;
+        margin-top: 17px; padding: 8px 2px 0;
+        color: #76e2d3; font: 600 10px/1.5 system-ui, sans-serif;
+        letter-spacing: .13em; text-decoration: none;
+        border-top: 1px solid rgba(93, 235, 215, .13);
+        text-shadow: 0 0 12px rgba(73, 239, 217, .24);
+        opacity: .66; transition: opacity .3s, color .3s, text-shadow .3s;
+        animation: dev-signal-breathe 3.4s ease-in-out infinite;
+      }
+      .dev-error-box .dev-secret-signal:hover,
+      .dev-error-box .dev-secret-signal:focus-visible {
+        color: #c0fff6; opacity: 1; text-shadow: 0 0 15px #4bedd6;
+        outline-offset: 4px; animation: none;
+      }
+      .dev-secret-signal-dot {
+        display: inline-block; width: 5px; height: 5px; flex: 0 0 auto;
+        border-radius: 50%; background: #65f8da;
+        box-shadow: 0 0 8px #65f8da;
+      }
+      @keyframes dev-signal-breathe { 50% { opacity: .34; } }
+      @media (prefers-reduced-motion: reduce) {
+        .dev-error-box .dev-secret-signal { animation: none; }
+      }
+    </style>
 
     <script
       src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"

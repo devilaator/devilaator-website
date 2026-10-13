@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="et">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#030a0e">
+  <meta name="robots" content="noindex, nofollow">
+  <title>CLASSIFIED // DEVILAATOR</title>
+  <style>
+    *,*::before,*::after{box-sizing:border-box}
+    html,body{min-height:100%;margin:0}
+    body{background:radial-gradient(circle at 50% 35%,#0b2830 0%,#051119 37%,#020509 85%);color:#d8f5f1;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;display:grid;place-items:center;padding:26px;overflow-x:hidden}
+    body::before{content:"";position:fixed;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,transparent 0px,transparent 3px,rgba(103,239,213,.025) 4px);z-index:3}
+    .panel{width:min(640px,100%);padding:clamp(22px,5vw,46px);position:relative;border:1px solid rgba(100,248,224,.28);border-radius:14px;background:rgba(2,11,16,.8);box-shadow:0 0 80px rgba(38,220,208,.08),inset 0 0 40px rgba(49,169,178,.04);overflow:hidden}
+    .panel::before{content:"";position:absolute;left:-30%;top:0;width:36%;height:1px;background:linear-gradient(90deg,transparent,#a7fff0,transparent);animation:scan 4s linear infinite}
+    .top{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;color:#6bdaca;font-size:clamp(10px,2.4vw,13px);letter-spacing:.12em}
+    .top span:last-child{color:#a6a5b4;font-size:10px}
+    .rule{height:1px;background:linear-gradient(90deg,#63dfce66,transparent);margin:21px 0 26px}
+    .log{font-size:clamp(12px,2.6vw,15px);line-height:2.1;min-height:145px;color:#82c5bb}
+    .line{opacity:0;transform:translateY(7px);animation:showline .4s ease forwards}
+    .line:nth-child(1){animation-delay:.35s}.line:nth-child(2){animation-delay:1.12s}.line:nth-child(3){animation-delay:2.05s}
+    .ok{color:#91ffcb}
+    .identity{text-align:center;padding:26px 0 13px;opacity:0;transform:translateY(15px);animation:reveal .85s 2.7s ease forwards}
+    .symbol{margin:auto auto 17px;width:74px;height:74px;border:1px solid #69eed4;border-radius:50%;display:grid;place-items:center;box-shadow:0 0 20px #42e8d044,inset 0 0 24px #42e8d022;color:#abfff0;font-size:36px;animation:pulse 2.7s ease-in-out infinite}
+    .label{font-size:11px;letter-spacing:.25em;color:#79c8bf}
+    .name{font-family:system-ui,sans-serif;font-weight:850;font-size:clamp(25px,6vw,44px);letter-spacing:.08em;color:#f1fffe;text-shadow:0 0 24px #3ae8d799;margin:16px 0 13px;overflow-wrap:anywhere}
+    .note{font-size:12px;color:#88b4b5;letter-spacing:.1em}
+    .back{display:inline-flex;margin-top:27px;color:#70cdbf;font-size:12px;text-decoration:none;border-bottom:1px solid #70cdbf55;padding-bottom:5px}
+    .back:hover,.back:focus-visible{color:#c1fff1;border-color:currentColor}
+    @keyframes scan{to{left:130%}}@keyframes showline{to{opacity:1;transform:none}}@keyframes reveal{to{opacity:1;transform:none}}@keyframes pulse{50%{box-shadow:0 0 36px #42e8d066,inset 0 0 32px #42e8d044}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important}.line,.identity{opacity:1;transform:none}}
+  </style>
+</head>
+<body>
+  <main class="panel" aria-label="Devilaatori salajane identiteedifail">
+    <div class="top"><span>▣ DEVILAATOR // CLASSIFIED</span><span>ACCESS LEVEL: UNKNOWN</span></div>
+    <div class="rule"></div>
+    <div class="log" aria-label="Ühenduse loomine ja identiteedi tuvastamine">
+      <div class="line">&gt; ÜHENDUSE LOOMINE...</div>
+      <div class="line">&gt; IDENTITEEDI DEKRÜPTEERIMINE...</div>
+      <div class="line ok">&gt; JUURDEPÄÄS LUBATUD ✓</div>
+    </div>
+    <div class="identity">
+      <div class="symbol" aria-hidden="true">⌁</div>
+      <div class="label">DEVILAATORI LOOJA</div>
+      <!-- ASENDA AINULT JÄRGMINE NIMI OMA PÄRISNIMEGA. -->
+      <div class="name"> MIKE UUSNA </div>
+      <div class="note">ÜLEJÄÄNU JÄÄB SALADUSEKS!</div>
+      <a class="back" href="/#devilaatorist">← TAGASI DEVILAATORISSE</a>
+    </div>
+  </main>
+</body>
+</html>
