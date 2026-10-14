@@ -20,7 +20,8 @@
       #fx11-boot { position:fixed; inset:0; z-index:2147483647; background:radial-gradient(ellipse at center,#0b2531 0%,#031017 45%,#010408 100%); overflow:hidden; display:grid; place-items:center; isolation:isolate; pointer-events:all; }
       #fx11-boot, #fx11-boot * { box-sizing:border-box; }
       #fx11-boot .fx11-field { position:absolute; inset:-12%; opacity:.38; background:repeating-radial-gradient(circle at center,transparent 0 42px,rgba(71,233,215,.1) 43px 44px,transparent 45px 86px); animation:fx11-field 4.2s linear both; }
-      #fx11-boot .fx11-center { position:relative; display:flex; flex-direction:column; align-items:center; gap:20px; transform-origin:center; animation:fx11-collapse 1s 3.55s cubic-bezier(.65,0,1,.7) both; }
+      #fx11-boot .fx11-center { position:absolute; inset:0; display:grid; place-items:center; transform-origin:center; animation:fx11-collapse 1s 3.55s cubic-bezier(.65,0,1,.7) both; }
+      #fx11-boot .fx11-copy { position:absolute; top:calc(50% + min(21.5vw,110px) + 20px); left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:20px; width:max-content; max-width:calc(100% - 24px); }
       #fx11-boot .fx11-halo { position:relative; width:min(43vw,220px); height:min(43vw,220px); border:1px solid rgba(81,231,213,.55); border-radius:50%; box-shadow:0 0 34px rgba(53,213,218,.2),inset 0 0 24px rgba(53,213,218,.13); animation:fx11-halo 2.4s ease-in-out infinite alternate; }
       #fx11-boot .fx11-halo::before, #fx11-boot .fx11-halo::after { content:''; position:absolute; inset:18%; border:2px dashed rgba(101,235,226,.55); border-radius:50%; animation:fx11-spin 5s linear infinite; }
       #fx11-boot .fx11-halo::after { inset:37%; border:2px solid #affff5; box-shadow:0 0 32px 10px rgba(67,240,217,.55),0 0 90px 35px rgba(30,199,205,.18); animation-direction:reverse; }
@@ -82,7 +83,7 @@
   <body class="home-page">
     <div id="fx11-boot" aria-hidden="true">
       <div class="fx11-field"></div>
-      <div class="fx11-center"><div class="fx11-halo"></div><div class="fx11-title">DEVILAATOR</div><div class="fx11-sub">SÜSTEEMI KÄIVITAMINE · ÜHENDUSE LOOMINE</div><div class="fx11-progress"></div></div>
+      <div class="fx11-center"><div class="fx11-halo"></div><div class="fx11-copy"><div class="fx11-title">DEVILAATOR</div><div class="fx11-sub">SÜSTEEMI KÄIVITAMINE · ÜHENDUSE LOOMINE</div><div class="fx11-progress"></div></div></div>
       <div class="fx11-star"></div><div class="fx11-ring"></div><div class="fx11-ring two"></div><div class="fx11-rays"></div><div class="fx11-flash"></div>
     </div>
     <script>
